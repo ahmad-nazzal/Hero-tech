@@ -1,11 +1,13 @@
+"use client";
 import React from "react";
+import { Box, Text } from "@chakra-ui/react";
 
 interface Props {
   startDate: Date;
   endDate: Date;
-  adText: string;
 }
-const AdComponent: React.FC<Props> = ({ startDate, endDate, adText }) => {
+
+const AdComponent: React.FC<Props> = ({ startDate, endDate }) => {
   const isValidDate = (
     startDate: Date,
     endDate: Date,
@@ -15,20 +17,20 @@ const AdComponent: React.FC<Props> = ({ startDate, endDate, adText }) => {
   };
 
   return (
-    <div
-      className="ad-container"
-      style={{
-        padding: "32px",
-        display: "grid",
-        placeItems: "center",
-        background: "#462576",
-        color: "white",
-      }}
+    <Box
+      padding="32px"
+      display="grid"
+      placeItems="center"
+      background="tekhelet"
+      color="white"
+      textAlign="center"
     >
       {isValidDate(startDate, endDate) && (
-        <h1 style={{ fontSize: "1.5vw" }}>{adText}</h1>
+        <Text variant={"heading1"} color="white" fontWeight="bold">
+          خصومات تصل إلى 20% على الكورسات!
+        </Text>
       )}
-    </div>
+    </Box>
   );
 };
 
