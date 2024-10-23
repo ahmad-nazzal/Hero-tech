@@ -1,3 +1,12 @@
+# Group B
+
+## Our Website Name: Hero Teach
+
+![image](https://github.com/user-attachments/assets/2091d904-368b-4d34-a048-1bb4cea1cf1d)
+
+## Team Leader: Marah Saadeh
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
