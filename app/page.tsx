@@ -1,7 +1,8 @@
 "use client";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider , Box } from "@chakra-ui/react";
 import DiscountBanner from "./components/DiscountBanner";
 import theme from "./theme";
+import Footer from "./components/Footer";
 
 export default function Home() {
   const startDate = "2024-10-20T10:00:00";
@@ -10,11 +11,14 @@ export default function Home() {
   return (
     <>
       <ChakraProvider theme={theme}>
+        <Box dir={"rtl"}>
         <DiscountBanner
           startDate={startDate}
           endDate={endDate}
           promotionMessage="خصومات بنسبة 20% على الكورسات"
         />
+        <Footer />
+        </Box>
       </ChakraProvider>
     </>
   );
