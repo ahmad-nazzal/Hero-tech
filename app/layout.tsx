@@ -33,8 +33,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+<<<<<<< HEAD
+    <html lang="en" dir="rtl">
+=======
 
     <html lang="ar" dir="rtl">
+>>>>>>> cb8b5b3940a18751632a7b7a1575cd7e3e7afb7d
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${tajawal.className} antialiased`}
       >
