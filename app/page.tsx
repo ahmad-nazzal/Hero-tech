@@ -1,17 +1,21 @@
 "use client";
-import AdComponent from "./components/AdComponent";
-import HomePage from "./(home)/page";
+import { ChakraProvider } from "@chakra-ui/react";
+import DiscountBanner from "./components/DiscountBanner";
+import theme from "./theme";
+
 export default function Home() {
-  const date = new Date("2024-10-20T10:00:00");
-  const date2 = new Date("2024-11-25T23:59:59");
+  const startDate = "2024-10-20T10:00:00";
+  const endDate = "2024-10-25T23:59:59";
+
   return (
     <>
-      <AdComponent
-        startDate={date}
-        endDate={date2}
-        adText="خصومات بنسبة 20% على الكورسات"
-      />
-      <HomePage/>
+      <ChakraProvider theme={theme}>
+        <DiscountBanner
+          startDate={startDate}
+          endDate={endDate}
+          promotionMessage="خصومات بنسبة 20% على الكورسات"
+        />
+      </ChakraProvider>
     </>
   );
 }
