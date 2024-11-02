@@ -1,0 +1,88 @@
+header.flex {
+  
+ 
+  background-color: #783BA2 ;
+  justify-content: space-between;
+  color:white ;
+
+
+img {
+  height: 50px;
+  margin: 10px 50px;
+}
+.links {
+
+  display: flex;
+  gap: 20px; 
+  justify-content: center;
+}
+
+.link {
+  text-decoration: none;
+  color: white; 
+  padding: 22px 10px;
+}
+.icon {
+  width: 20px; 
+  height: 20px; 
+}
+
+  & .sign-in {
+    margin-inline: 1rem;
+  }
+
+  & .sign-in,
+  & .register {
+    border: 1px solid var(--bodyFont);
+    padding: 0.44rem 1rem;
+    border-radius: 55px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  & .sign-in:hover,
+  & .register:hover,
+  & .sign-in:hover .fa-solid,
+  & .register:hover .fa-solid {
+    background-color: var(--bodyFont);
+    color: var(--blue);
+  }
+
+
+}
+
+@media (width < 600px) {
+  header.flex {
+    justify-content: center;
+    padding-inline: 0;
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: none;
+
+    }
+    
+  }
+}
+
+/* ==============================
+When dcroll down on the home page 
+=================================*/
+header.scroll-down {
+  position: fixed;
+  right: 0;
+  left: 0;
+  padding-bottom: 0.5rem;
+  background-color: var(--footer-bg);
+  color: #fff;
+  z-index: 11;
+
+
+
+}
