@@ -54,7 +54,6 @@ export default function Contact() {
               display="flex"
               alignItems="center"
               gap={2}
-              onClick={() => alert("تواصل معنا عبر الهاتف: +447918713367")}
               mx={textAlign === "center" ? "auto" : "0"}
             >
               <Image src={vector} alt="call us" width={24} height={22} />

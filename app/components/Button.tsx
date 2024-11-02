@@ -96,6 +96,7 @@ const Button: React.FC<CustomButtonProps> = ({
       borderRadius="10px"
       padding="0 16px"
       _hover={{ opacity: 0.9 }}
+      _active={{ opacity: 0.8 }}
       display="flex"
       alignItems="center"
       justifyContent="center"

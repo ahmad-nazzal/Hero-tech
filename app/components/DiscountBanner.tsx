@@ -19,7 +19,7 @@ const DiscountBanner: React.FC<Props> = ({
     return currentDate >= start && currentDate <= end;
   };
 
-  return (
+  return isDateInRange(startDate, endDate) ? (
     <div
       style={{
         padding: "32px",
@@ -29,13 +29,9 @@ const DiscountBanner: React.FC<Props> = ({
         color: "white",
       }}
     >
-      {isDateInRange(startDate, endDate) ? (
-        <h1 style={{ fontSize: "40px" }}>{promotionMessage}</h1>
-      ) : (
-        <p>No current promotions.</p>
-      )}
+      <h1 style={{ fontSize: "40px" }}>{promotionMessage}</h1>
     </div>
-  );
+  ) : null;
 };
 
 export default DiscountBanner;
