@@ -23,6 +23,7 @@ const AdComponent: React.FC<Props> = ({ startDate, endDate, adText }) => {
         placeItems: "center",
         background: "#462576",
         color: "white",
+      //  border: "2px solid red"
       }}
     >
       {isValidDate(startDate, endDate) && (
