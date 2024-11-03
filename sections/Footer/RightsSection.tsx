@@ -1,6 +1,6 @@
 "use client";
 import { Flex, Text } from "@chakra-ui/react";
-import arabacademy from "../../assets/arabacademy.png";
+import arabacademy from "../../public/images/arabacademy.png";
 import Image from "next/image";
 import useResponsiveStyles from "../../Hooks/useResponsiveStyles";
 export default function RightsSection() {

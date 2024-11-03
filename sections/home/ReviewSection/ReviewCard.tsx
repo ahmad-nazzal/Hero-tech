@@ -8,8 +8,8 @@ import {
   Box,
   Flex,
 } from "@chakra-ui/react";
-import star from "../../assets/Star 1.png";
-import Rectangle from "../../assets/Rectangle.png";
+import star from "../../../public/images/Star 1.png";
+import Rectangle from "../../../public/images/Rectangle.png";
 import ReviewCardProps from "./ReviewCardProps";
 
 export default function ReviewCard({

@@ -1,8 +1,8 @@
 import { Box, Container } from "@chakra-ui/react"; // Keep only this import
-import contactus from "../assets/contactus.png";
-import CustomBox from "./CustomBox";
-import Button from "./Button";
-import vector from "../assets/vector.png";
+import contactus from "../../../public/images/contactus.png";
+import CustomBox from "../../../components/CustomBox";
+import Button from "../../../components/Button";
+import vector from "../../../public/images/vector.png";
 
 function ContactUs() {
   return (

@@ -3,7 +3,7 @@ import { Box, Button, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
 import CustomLine from "./CustomLine";
 import Image from "next/image";
 import useResponsiveStyles from "../../Hooks/useResponsiveStyles";
-import masaratlogo from "../../assets/masaratlogo.png";
+import masaratlogo from "../../public/images/masaratlogo.png";
 
 export default function InfoAndPolicy() {
   const { infoColumns, textAlign, flexAlign } = useResponsiveStyles();

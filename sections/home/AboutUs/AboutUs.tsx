@@ -1,8 +1,8 @@
 import { Box, Container, Grid, GridItem, Image } from "@chakra-ui/react";
-import aboutus from "../assets/aboutus.png";
-import masaratlogo from "../assets/masaratlogo.png";
-import CustomBox from "./CustomBox";
-import Button from "./Button";
+import aboutus from "../../../public/images/aboutus.png";
+import masaratlogo from "../../../public/images/masaratlogo.png";
+import CustomBox from "../../../components/CustomBox";
+import Button from "../../../components/Button";
 
 export default function AboutUs() {
   return (
