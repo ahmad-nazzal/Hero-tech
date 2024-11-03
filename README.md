@@ -1,4 +1,4 @@
-## Hero Teach
+## Hero Tech
 
 ![image](https://github.com/user-attachments/assets/2091d904-368b-4d34-a048-1bb4cea1cf1d)
 
