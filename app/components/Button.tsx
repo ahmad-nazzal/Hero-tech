@@ -17,7 +17,11 @@ const IconWrapper: React.FC<IconWrapperProps> = ({ icon, sizeVariant }) => {
   if (!icon) return null;
 
   // Adjust icon size based on button sizeVariant
+<<<<<<< HEAD
+  const iconSize = sizeVariant === "sm" ? "19px" : "26px"; // Smaller for 'sm'
+=======
   const iconSize = sizeVariant === "sm" ? "16px" : "24px"; // Smaller for 'sm'
+>>>>>>> cb8b5b3940a18751632a7b7a1575cd7e3e7afb7d
   const marginLeft = sizeVariant === "sm" ? "8px" : "12px";
 
   const iconContainerStyle = {
@@ -96,6 +100,10 @@ const Button: React.FC<CustomButtonProps> = ({
       borderRadius="10px"
       padding="0 16px"
       _hover={{ opacity: 0.9 }}
+<<<<<<< HEAD
+      _active={{ opacity: 0.8 }}
+=======
+>>>>>>> cb8b5b3940a18751632a7b7a1575cd7e3e7afb7d
       display="flex"
       alignItems="center"
       justifyContent="center"
