@@ -1,3 +1,4 @@
+"use client";
 import { Box, Button, Flex, GridItem, Text } from "@chakra-ui/react";
 import CustomLine from "./CustomLine";
 import Image from "next/image";
@@ -5,7 +6,7 @@ import location from "../../assets/location.png";
 import tele from "../../assets/tele.png";
 import msg from "../../assets/msg.png";
 import vector from "../../assets/vector.png";
-import useResponsiveStyles from "@/app/Hooks/useResponsiveStyles";
+import useResponsiveStyles from "../../Hooks/useResponsiveStyles";
 
 export default function Contact() {
   const { textAlign, flexAlign } = useResponsiveStyles();

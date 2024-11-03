@@ -1,4 +1,5 @@
-import useResponsiveStyles from "@/app/Hooks/useResponsiveStyles";
+"use client";
+import useResponsiveStyles from "../../Hooks/useResponsiveStyles";
 import { Box, Grid, Text } from "@chakra-ui/react";
 import CustomLine from "./CustomLine";
 

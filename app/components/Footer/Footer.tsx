@@ -1,10 +1,11 @@
+"use client";
 import { Grid, Box } from "@chakra-ui/react";
-import useResponsiveStyles from "@/app/Hooks/useResponsiveStyles";
 import InfoAndPolicy from "./InfoAndPolicy";
 import Contact from "./Contact";
 import SocialMedia from "./SocialMedia";
 import Sources from "./Sources";
 import RightsSection from "./RightsSection";
+import useResponsiveStyles from "../../Hooks/useResponsiveStyles";
 
 export default function Footer() {
   const { columns } = useResponsiveStyles();

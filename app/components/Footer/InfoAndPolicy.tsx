@@ -1,19 +1,13 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Grid,
-  GridItem,
-  Hide,
-  Text,
-} from "@chakra-ui/react";
+"use client";
+import { Box, Button, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
 import CustomLine from "./CustomLine";
 import Image from "next/image";
-import useResponsiveStyles from "@/app/Hooks/useResponsiveStyles";
+import useResponsiveStyles from "../../Hooks/useResponsiveStyles";
 import masaratlogo from "../../assets/masaratlogo.png";
 
 export default function InfoAndPolicy() {
   const { infoColumns, textAlign, flexAlign } = useResponsiveStyles();
+
   return (
     <>
       <GridItem
@@ -31,6 +25,7 @@ export default function InfoAndPolicy() {
           width="100%"
           maxW={{ base: "100%", md: "600px" }}
         >
+          {/* "معلومات" section */}
           <Box width="100%">
             <Text
               fontSize="heading2"
@@ -53,6 +48,8 @@ export default function InfoAndPolicy() {
               <Text color="white">حول الاكاديمية</Text>
             </Flex>
           </Box>
+
+          {/* "السياسات" section */}
           <Box width="100%">
             <Text
               fontSize="heading2"
@@ -77,36 +74,38 @@ export default function InfoAndPolicy() {
           </Box>
         </Grid>
 
-        {/* the button for  المسارات التعليمية */}
-        <Hide breakpoint="(min-width: 700px) and (max-width: 1300px)">
-          <Box mt={{ base: 8, lg: "100px" }} width="100%">
-            <Button
-              bg="secondary"
-              size="lg"
-              width={{ base: "100%", md: "none", lg: "none" }}
-              height="80px"
-              color="white"
-              _hover={{ bg: "secondaryDark" }}
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              gap="10px"
-              mx={textAlign === "center" ? "auto" : "0"}
-            >
-              <Image
-                src={masaratlogo}
-                alt="logo"
-                width={40}
-                height={40}
-                style={{ objectFit: "contain" }}
-                unoptimized
-              />
-              <Text fontSize="lg" fontWeight="bold">
-                المسارات التعليمية
-              </Text>
-            </Button>
-          </Box>
-        </Hide>
+        {/* Button for المسارات التعليمية */}
+        <Box
+          mt={{ base: 8, lg: "100px" }}
+          width="100%"
+          display={{ base: "block", lg: "none" }} // Show on small screens, hide on large screens
+        >
+          <Button
+            bg="secondary"
+            size="lg"
+            width={{ base: "100%", md: "auto", lg: "auto" }}
+            height="80px"
+            color="white"
+            _hover={{ bg: "secondaryDark" }}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            gap="10px"
+            mx={textAlign === "center" ? "auto" : "0"}
+          >
+            <Image
+              src={masaratlogo}
+              alt="logo"
+              width={40}
+              height={40}
+              style={{ objectFit: "contain" }}
+              unoptimized
+            />
+            <Text fontSize="lg" fontWeight="bold">
+              المسارات التعليمية
+            </Text>
+          </Button>
+        </Box>
       </GridItem>
     </>
   );

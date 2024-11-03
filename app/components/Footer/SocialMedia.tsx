@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import facebook from "../../assets/facebook.png";
 import discord from "../../assets/discord.png";
@@ -9,7 +10,7 @@ import threds from "../../assets/threds.png";
 import linkedin from "../../assets/linkedin.png";
 
 import { Grid, GridItem, Flex, Box, Text } from "@chakra-ui/react";
-import useResponsiveStyles from "@/app/Hooks/useResponsiveStyles";
+import useResponsiveStyles from "../../Hooks/useResponsiveStyles";
 import CustomLine from "./CustomLine";
 
 export default function SocialMedia() {
