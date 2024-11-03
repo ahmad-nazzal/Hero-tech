@@ -1,31 +1,16 @@
 "use client";
-import { ChakraProvider, Box } from "@chakra-ui/react";
-import DiscountBanner from "./components/DiscountBanner";
-import theme from "./theme";
-import AboutUs from "./components/AboutUs";
-import ContactUs from "./components/ContactUs";
-import ReviewList from "./components/ReviewSection/ReviewList";
-import Footer from "./components/Footer/Footer";
+import AdComponent from "./components/AdComponent";
 
 export default function Home() {
-  const startDate = "2024-10-20T10:00:00";
-  const endDate = "2024-10-25T23:59:59";
-
+  const date = new Date("2024-10-20T10:00:00");
+  const date2 = new Date("2024-10-25T23:59:59");
   return (
     <>
-      <ChakraProvider theme={theme}>
-        <Box dir={"rtl"}>
-          <DiscountBanner
-            startDate={startDate}
-            endDate={endDate}
-            promotionMessage="خصومات بنسبة 20% على الكورسات"
-          />
-        </Box>
-        <AboutUs></AboutUs>
-        <ContactUs></ContactUs>
-        <ReviewList></ReviewList>
-        <Footer></Footer>
-      </ChakraProvider>
+      <AdComponent
+        startDate={date}
+        endDate={date2}
+        adText="خصومات بنسبة 20% على الكورسات"
+      />
     </>
   );
 }
