@@ -7,6 +7,7 @@ import ContactUs from "../sections/home/ContactUs/ContactUs";
 import ReviewList from "../sections/home/ReviewSection/ReviewList";
 import Footer from "../sections/Footer/Footer";
 import Hero from "../sections/home/Hero/Hero";
+
 export default function Home() {
   const startDate = "2024-10-20T10:00:00";
   const endDate = "2024-10-25T23:59:59";

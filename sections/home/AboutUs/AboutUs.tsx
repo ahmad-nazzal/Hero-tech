@@ -2,7 +2,7 @@ import { Box, Container, Grid, GridItem, Image } from "@chakra-ui/react";
 import aboutus from "../../../public/images/aboutus.png";
 import masaratlogo from "../../../public/images/masaratlogo.png";
 import CustomBox from "../../../components/CustomBox";
-import Button from "../../../components/Button";
+import ButtonAC from "../../../components/ButtonAC";
 
 export default function AboutUs() {
   return (
@@ -64,7 +64,7 @@ export default function AboutUs() {
                 p={10}
                 opacity={0.9}
               >
-                <Button
+                <ButtonAC
                   alignSelf={"center"}
                   mt={8}
                   sizeVariant="lg"
@@ -72,7 +72,7 @@ export default function AboutUs() {
                   bg={"secondary"}
                   text="المسارات التعليمية"
                   icon={masaratlogo}
-                ></Button>
+                ></ButtonAC>
               </CustomBox>
             </Container>
           </Box>

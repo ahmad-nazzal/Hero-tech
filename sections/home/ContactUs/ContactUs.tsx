@@ -1,7 +1,7 @@
-import { Box, Container } from "@chakra-ui/react"; // Keep only this import
+import { Box, Container } from "@chakra-ui/react";
 import contactus from "../../../public/images/contactus.png";
 import CustomBox from "../../../components/CustomBox";
-import Button from "../../../components/Button";
+import ButtonAC from "../../../components/ButtonAC";
 import vector from "../../../public/images/vector.png";
 
 function ContactUs() {
@@ -43,7 +43,7 @@ function ContactUs() {
             minH="50vh"
           >
             <Box z-index={2}>
-              <Button
+              <ButtonAC
                 text="تواصل معنا  "
                 icon={vector}
                 alignSelf={"center"}
