@@ -18,7 +18,7 @@ function Quiz() {
         display="flex"
         flexDirection={{ base: "column", md: "column", lg: "row" }}
         alignItems="center"
-        gap={10}
+        gap={20}
         py={10}
       >
         <Box
