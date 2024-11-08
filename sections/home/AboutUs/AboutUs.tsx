@@ -29,9 +29,10 @@ export default function AboutUs() {
             <Image
               src={aboutus.src}
               alt="About us"
-              objectFit="contain"
-              maxH={{ base: "auto", lg: "650px" }}
-              maxW="100%"
+              objectFit="cover"
+              width={{ base: "100%", lg: "100%" }}
+              height={{ base: "auto", lg: "580px" }}
+              maxH="700px"
               zIndex={1}
               borderRadius="md"
             />
@@ -58,22 +59,21 @@ export default function AboutUs() {
               p={{ base: 4, sm: 6 }}
             >
               <CustomBox
-                title="الأكاديمية العربية للبرمجة"
+                title=" التجربة التعليمية في الأكاديمية العربية للبرمجة "
                 description="الأكاديمية العربية للبرمجة تقدم تجربة تعليمية مميزة وفريدة تركز على إنتاج فيديوهات تعليمية بعناصر تفاعلية وشاملة تناسب جميع الفئات العمرية والمستويات. نسعى لتمكين كل فرد من تعلم البرمجة بطريقة مبسطة وممتعة، مع مراعاة احتياجات المتعلمين وتقديم محتوى يلهمهم للتفوق والإبداع. سواء كنت مبتدئًا أو محترفًا، ستجد لدينا ما يلهمك ويطور مهاراتك في عالم البرمجة، مع دعم مستمر وموارد غنية تواكب أحدث التقنيات والأساليب التعليمية."
                 bg="white"
                 p={10}
                 opacity={0.9}
-              >
-                <ButtonAC
-                  alignSelf={"center"}
-                  mt={8}
-                  sizeVariant="lg"
-                  color={"white"}
-                  bg={"secondary"}
-                  text="المسارات التعليمية"
-                  icon={masaratlogo}
-                ></ButtonAC>
-              </CustomBox>
+              ></CustomBox>
+              <ButtonAC
+                alignSelf={"center"}
+                mt={8}
+                sizeVariant="lg"
+                color={"white"}
+                bg={"secondary"}
+                text="المسارات التعليمية"
+                icon={masaratlogo}
+              ></ButtonAC>
             </Container>
           </Box>
         </GridItem>
