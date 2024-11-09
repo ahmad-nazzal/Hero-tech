@@ -1,28 +1,16 @@
+import Image from "next/image";
 import "./header.css";
+import ButtonAC from "../../components/ButtonAC";
 
 import Link from "next/link";
-//      border: '5px solid red';
+import registerlogo from "../../public/images/🦆 icon _profile circled_.png";
+import loginlogo from "../../public/images/🦆 icon _log in_.png";
+
 const Header = () => {
   return (
-    <header id="headerElement" className="flex">
-      <nav className="links">
-        <Link className="sign-in" href="/signin">
-          <img
-            src="../../public/images/🦆 icon _log in_.png"
-            alt="Login Icon"
-            className="icon"
-          />
-          تسجيل دخول
-        </Link>
-        <Link className="register" href="/register">
-          <img
-            src="./images/🦆 icon _profile circled_.png"
-            alt="Login Icon"
-            className="icon"
-          />
-          إنشاء حساب
-        </Link>
-      </nav>
+    <header id="headerElement" className="flex" >
+      <Image src="/images/8e6c847871186b9180f5ae9f99b6bcbc.png" width={200} height={50} style={{ margin: "10px 50px" }}  alt="Logo" />
+    
       <nav className="links">
         <Link href="/contact" className="link">
           التواصل
@@ -35,7 +23,41 @@ const Header = () => {
         </Link>
       </nav>
 
-      <img src="./images/8e6c847871186b9180f5ae9f99b6bcbc.png" alt="Logo" />
+      <nav className="links">
+      
+<ButtonAC
+                        alignSelf="center"
+                        mt={8}
+                        sizeVariant="lg"
+                        color="white"
+                        bg="secondary"
+                        text="إنشاء حساب"
+                        icon={registerlogo}
+                        href="/register"
+                        marginTop={{ lg: 0 }}
+                      sx={{
+                        width: "200px",
+                        height: "50px"
+                      }}
+                      />
+                        <ButtonAC
+                        alignSelf="center"
+                        mt={8}
+                        sizeVariant="lg"
+                        color="white"
+                         bg="tomato"
+                        text="تسجيل الدخول"
+                        icon={loginlogo}
+                        href="/signin"
+                        marginTop={{ lg: 0 }}
+                        marginLeft={{ lg: 3 }}
+                        sx={{
+                          width: "200px",
+                          height: "50px"
+                        }}
+                      />
+      </nav>
+  
     </header>
   );
 };

@@ -1,12 +1,12 @@
+
 header.flex {
   
- 
   background-color: #783BA2 ;
   justify-content: space-between;
   color:white ;
 
 
-img {
+Image {
   height: 50px;
   margin: 10px 50px;
 }
@@ -22,40 +22,23 @@ img {
   color: white; 
   padding: 22px 10px;
 }
-.icon {
-  width: 20px; 
-  height: 20px; 
-}
-
-  & .sign-in {
-    margin-inline: 1rem;
-  }
-
-  & .sign-in,
-  & .register {
-    border: 1px solid var(--bodyFont);
-    padding: 0.44rem 1rem;
-    border-radius: 55px;
-    font-size: 0.8rem;
-    font-weight: 500;
-  }
-
-  & .sign-in:hover,
-  & .register:hover,
-  & .sign-in:hover .fa-solid,
-  & .register:hover .fa-solid {
-    background-color: var(--bodyFont);
-    color: var(--blue);
-  }
-
 
 }
 
-@media (width < 600px) {
+@media (width < 900px) {
+  * {
+    box-sizing: border-box !important;
+    margin: 0!important;
+    padding: 0!important;
+    width: 100%; 
+      
+      overflow-x: hidden;
+    
+  }
   header.flex {
     justify-content: center;
     padding-inline: 0;
-
+    
     .links {
       display: flex;
       flex-wrap: wrap;
