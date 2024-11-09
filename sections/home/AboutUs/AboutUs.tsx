@@ -64,16 +64,17 @@ export default function AboutUs() {
                 bg="white"
                 p={10}
                 opacity={0.9}
-              ></CustomBox>
-              <ButtonAC
-                alignSelf={"center"}
-                mt={8}
-                sizeVariant="lg"
-                color={"white"}
-                bg={"secondary"}
-                text="المسارات التعليمية"
-                icon={masaratlogo}
-              ></ButtonAC>
+              >
+                <ButtonAC
+                  alignSelf={"center"}
+                  mt={8}
+                  sizeVariant="lg"
+                  color={"white"}
+                  bg={"secondary"}
+                  text="المسارات التعليمية"
+                  icon={masaratlogo}
+                ></ButtonAC>
+              </CustomBox>
             </Container>
           </Box>
         </GridItem>
