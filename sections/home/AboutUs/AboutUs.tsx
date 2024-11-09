@@ -17,7 +17,7 @@ export default function AboutUs() {
         mx="auto"
         px={{ base: 8, sm: 10, lg: 0 }}
       >
-        <GridItem colSpan={{ base: 1, lg: 1 }}>
+        <GridItem flexGrow={1} flexShrink={0}>
           <Box
             width={{ base: "100%", lg: "auto" }}
             height="100%"
