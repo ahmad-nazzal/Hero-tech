@@ -2,7 +2,7 @@ import { extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
   breakpoints: {
-    sm: "480px",
+    sm: "640px",
     md: "700px",
     lg: "1300px",
     xl: "1540px",
@@ -34,6 +34,7 @@ const theme = extendTheme({
         heading1: {
           fontSize: { base: "20px", md: "40px", lg: "50px" },
           fontWeight: "700",
+          
         },
         heading2: {
           fontSize: { base: "18px", md: "27px", lg: "30px" },
