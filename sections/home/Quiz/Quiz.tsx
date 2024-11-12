@@ -69,7 +69,7 @@ function Quiz() {
             text="قسم الامتحانات"
             bg="tomato"
             color={"white"}
-            sizeVariant="lg"
+            size="lg"
             mt={54}
           />
         </Box>

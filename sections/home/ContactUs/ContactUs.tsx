@@ -47,7 +47,7 @@ function ContactUs() {
                 text="تواصل معنا  "
                 icon={vector}
                 alignSelf={"center"}
-                sizeVariant="md"
+                size="md"
                 fontWeight={"500"}
                 fontSize={"18px"}
                 bg={"secondary"}

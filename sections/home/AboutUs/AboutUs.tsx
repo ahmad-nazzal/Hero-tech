@@ -68,7 +68,7 @@ export default function AboutUs() {
                 <ButtonAC
                   alignSelf={"center"}
                   mt={8}
-                  sizeVariant="lg"
+                  size="lg"
                   color={"white"}
                   bg={"secondary"}
                   text="المسارات التعليمية"
