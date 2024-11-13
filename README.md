@@ -5,6 +5,28 @@
 ## Team Leader: Marah Saadeh
 
 
+
+## Run JSON Server
+
+To use the API with **JSON Server**, please follow these steps:
+
+1. Make sure **JSON Server** is installed. If not, you can install it with this command:
+   ```bash
+   npm install -g json-server
+   ```
+
+2. Run JSON Server with this command:
+   ```bash
+   json-server --watch ./fakeDB/db.json --port 4000
+   ```
+   This command will start the server on port `4000` and will watch for changes in the `db.json` file located at `./fakeDB/`.
+
+3. After starting JSON Server, you can access the API at:
+   ```
+   http://localhost:4000
+   ```
+   **Note:** Make sure to update this path if it is different in your project.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
