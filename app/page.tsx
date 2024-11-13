@@ -9,6 +9,7 @@ import Footer from "../sections/Footer/Footer";
 import Hero from "../sections/home/Hero/Hero";
 import Quiz from "../sections/home/Quiz/Quiz";
 import Header from "../sections/header/header";
+import { BrowserRouter as Router } from 'react-router-dom';
 
 export default function Home() {
   const startDate = "2024-10-20T10:00:00";
@@ -25,7 +26,9 @@ export default function Home() {
             promotionMessage="خصومات بنسبة 20% على الكورسات"
           />
         </Box>
-        <Header />
+        <Router>
+          <Header />
+        </Router>
         <Hero></Hero>
         <Quiz></Quiz>
         <AboutUs></AboutUs>

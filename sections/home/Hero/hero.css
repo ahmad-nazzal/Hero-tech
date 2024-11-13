@@ -77,12 +77,6 @@ main h1.recommended {
   margin: 2.3rem 0 2rem 2%;
 }
 
-.bottons {
-  margin-left: 0px !important;
-  margin-right: 7px;
-  margin-bottom: 10px;
-}
-
 main section.products.flex{
   flex-wrap: wrap;
   justify-content: center;

@@ -3,6 +3,7 @@ import ButtonAC from "../../../components/ButtonAC";
 import mazedlogo from "../../../public/images/🦆 icon _more horiz circled outline_.png";
 import paylogo from "../../../public/images/🦆 icon _cart_.png";
 import Loading from "./loading";
+import { Card, CardHeader, CardBody, CardFooter, Image, Text, Heading, Flex, Box } from "@chakra-ui/react";
 //async & await : Because API process takes time
 async function getData() {
   //Loading 5 mintues
@@ -47,51 +48,38 @@ const Courses = () => {
       {data &&
         data.map((item) => {
           return (
-            <article title={item.name} key={item.id} className="card" dir="rtl">
-              <a href="/">
-                <div
-                  style={{
-                    backgroundColor: "#FF6542",
-                    padding: "10px",
-                    borderRadius: "8px",
-                  }}
-                >
-                  <img
-                    width={266}
-                    height={285}
-                    src={item.image}
-                    alt=""
-                    style={{
-                      filter: "invert(1)",
-                    }}
-                  />
-                </div>
-              </a>
-
-              <div style={{ fontWeight: "bold", width: "266px" }}>
-                {/* {item.name.slice(0,15)}... : Displays first 15 characters of the title*/}
-                <h1 className="title">{item.name.slice(0, 15)}...</h1>
-                <div className="price">${item.price}</div>
-
-                <div
-                  style={{
-                    color: "#555",
-                    fontSize: "15px",
-                    marginBottom: "8px",
-                  }}
-                >
-                  <p> اسم المدرب: {item.trainer}</p>
-
-                  <p>{item.duration}</p>
-                </div>
-
-                <div
-                  className="bottons"
-                  style={{
-                    display: "flex",
-                    gap: "10px",
-                  }}
-                >
+      
+            <Card key={item.id} borderRadius="md" boxShadow="lg" bg="white">
+              <CardHeader p="0">
+                <a href="/">
+                  <Box bg="#FF6542" p="10" borderRadius="8">
+                    <Image
+                      width="266px"
+                      height="285px"
+                      src={item.image}
+                      alt=""
+                      filter="invert(1)"                    
+                    />
+                  </Box>
+                </a>
+              </CardHeader>
+            
+              <CardBody fontWeight="bold">
+                <Heading as="h1" size="md" mb="2" className="title">
+                  {item.name.slice(0, 15)}...
+                </Heading>
+                <Text color="green.500" className="price">
+                  ${item.price}
+                </Text>
+            
+                <Box color="#555" fontSize="sm" >
+                  <Text>اسم المدرب: {item.trainer}</Text>
+                  <Text>{item.duration}</Text>
+                </Box>
+              </CardBody>
+            
+              <CardFooter>
+                <Flex gap="4" justify="center" mt="4">
                   <ButtonAC
                     alignSelf="center"
                     mt={8}
@@ -100,8 +88,6 @@ const Courses = () => {
                     bg="secondary"
                     text="اقرأ المزيد"
                     icon={mazedlogo}
-                    marginTop={{ lg: 0 }}
-                    marginLeft={{ lg: 0 }}
                     sx={{
                       width: "190px",
                       height: "40px",
@@ -115,16 +101,15 @@ const Courses = () => {
                     bg="tomato"
                     text="شراء"
                     icon={paylogo}
-                    marginTop={{ lg: 0 }}
-                    marginLeft={{ lg: 0 }}
                     sx={{
                       width: "150px",
                       height: "40px",
                     }}
                   />
-                </div>
-              </div>
-            </article>
+                </Flex>
+              </CardFooter>
+            </Card>
+            
           );
         })}
     </section>
