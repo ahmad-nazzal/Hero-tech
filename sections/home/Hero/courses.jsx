@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from "react";
 import ButtonAC from "../../../components/ButtonAC";
-import mazedlogo from "../../../public/images/🦆 icon _more horiz circled outline_.png";
-import paylogo from "../../../public/images/🦆 icon _cart_.png";
+
+import mazedlogo from "../../../public/images/circled_outline.png";
+import paylogo from "../../../public/images/cart_icon.png";
 import Loading from "./loading";
-import { Card, CardHeader, CardBody, CardFooter, Image, Text, Heading, Flex, Box } from "@chakra-ui/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Image,
+  Text,
+  Heading,
+  Flex,
+  Box,
+} from "@chakra-ui/react";
 //async & await : Because API process takes time
 async function getData() {
   //Loading 5 mintues
@@ -48,7 +59,6 @@ const Courses = () => {
       {data &&
         data.map((item) => {
           return (
-      
             <Card key={item.id} borderRadius="md" boxShadow="lg" bg="white">
               <CardHeader p="0">
                 <a href="/">
@@ -58,12 +68,12 @@ const Courses = () => {
                       height="285px"
                       src={item.image}
                       alt=""
-                      filter="invert(1)"                    
+                      filter="invert(1)"
                     />
                   </Box>
                 </a>
               </CardHeader>
-            
+
               <CardBody fontWeight="bold">
                 <Heading as="h1" size="md" mb="2" className="title">
                   {item.name.slice(0, 15)}...
@@ -71,19 +81,19 @@ const Courses = () => {
                 <Text color="green.500" className="price">
                   ${item.price}
                 </Text>
-            
-                <Box color="#555" fontSize="sm" >
+
+                <Box color="#555" fontSize="sm">
                   <Text>اسم المدرب: {item.trainer}</Text>
                   <Text>{item.duration}</Text>
                 </Box>
               </CardBody>
-            
+
               <CardFooter>
                 <Flex gap="4" justify="center" mt="4">
                   <ButtonAC
                     alignSelf="center"
                     mt={8}
-                    sizeVariant="lg"
+                    size="lg"
                     color="white"
                     bg="secondary"
                     text="اقرأ المزيد"
@@ -96,7 +106,7 @@ const Courses = () => {
                   <ButtonAC
                     alignSelf="center"
                     mt={8}
-                    sizeVariant="lg"
+                    size="lg"
                     color="white"
                     bg="tomato"
                     text="شراء"
@@ -109,7 +119,6 @@ const Courses = () => {
                 </Flex>
               </CardFooter>
             </Card>
-            
           );
         })}
     </section>

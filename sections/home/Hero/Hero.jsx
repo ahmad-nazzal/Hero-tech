@@ -15,7 +15,6 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
 export default function Hero() {
-  
   return (
     <>
       <Box
@@ -23,7 +22,6 @@ export default function Hero() {
         minH="100vh"
         overflow="hidden"
         className="slider-image-section"
-        
       >
         <Swiper
           modules={[Navigation, Pagination, A11y]}
@@ -46,41 +44,38 @@ export default function Hero() {
               <Grid
                 templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }}
                 height="100%"
-                gap={{lg:20,sm:0}}
+                gap={{ lg: 20, sm: 0 }}
                 maxW={{ base: "100%", lg: "1200px" }}
                 mx="auto"
                 px={{ base: 8, sm: 10, lg: 0 }}
-                         
               >
-                <GridItem flexGrow={1} flexShrink={0}
-                  >
+                <GridItem flexGrow={1} flexShrink={0}>
                   <Box
                     width={{ base: "100%", lg: "auto" }}
                     height="100%"
                     display="flex"
                     alignItems="center"
-                    paddingTop={{base:5,sm:30}}
-                    paddingRight={{base:90, lg: 100 ,sm:150}}
-                    paddingLeft={{base:90,sm:150,lg:50}}
-                    paddingBottom={{base:0,lg: 150 }}
+                    paddingTop={{ base: 5, sm: 30 }}
+                    paddingRight={{ base: 90, lg: 100, sm: 150 }}
+                    paddingLeft={{ base: 90, sm: 150, lg: 50 }}
+                    paddingBottom={{ base: 0, lg: 150 }}
                     fontSize={{ base: "23px", sm: "33px", lg: "25px" }}
-                    textAlign={{ lg:"right",sm: "center" ,base:"center"}}
+                    textAlign={{ lg: "right", sm: "center", base: "center" }}
                   >
-                    <p className="content"       
-                    >
+                    <p className="content">
                       تعمل الاكادمية العربية للبرمجة كجسر يربط العقول
                       التكنولوجيةالعربية في المهجر بالطلبة العرب أينما كانوا
                     </p>
                   </Box>
                 </GridItem>
 
-                <GridItem flexGrow={1} flexShrink={0} >
+                <GridItem flexGrow={1} flexShrink={0}>
                   <Box
                     height="100%"
                     display="flex"
                     flexDirection="column"
                     justifyContent="center"
-                    textAlign={{ base:"center",sm: "center", lg: "right" }}
+                    textAlign={{ base: "center", sm: "center", lg: "right" }}
                   >
                     <Container
                       maxW="1200px"
@@ -88,66 +83,67 @@ export default function Hero() {
                       display="flex"
                       flexDirection="column"
                       gap={3}
-                      paddingLeft={{ lg: 100,sm:100 }}
-                      paddingRight={{ lg: 0,sm:100}}
-                      paddingBottom={{sm:70,lg:0}}
-                      marginBottom={{base:20}}
-                    
-
+                      paddingLeft={{ lg: 100, sm: 100 }}
+                      paddingRight={{ lg: 0, sm: 100 }}
+                      paddingBottom={{ sm: 70, lg: 0 }}
+                      marginBottom={{ base: 20 }}
                     >
-                  {useBreakpointValue({ base: true,sm:false ,lg: false }) && (
-                      <ButtonAC
-                        alignSelf="center"
-                        mt={8}
-                        sizeVariant="lg"
-                        color="white"
-                        bg="secondary"
-                        text="المسارات التعليمية"
-                        icon={masaratlogo}
-                        marginLeft={{ lg: 170 }}
-                        marginTop={{ base:0 }}
-                  
-                        sx={{
-                          width: "235px",
-                          height: "60px",
-                        }}
-                      />
-                    )}
-                      <p className="content" 
-                      >
+                      {useBreakpointValue({
+                        base: true,
+                        sm: false,
+                        lg: false,
+                      }) && (
+                        <ButtonAC
+                          alignSelf="center"
+                          mt={8}
+                          size="lg"
+                          color="white"
+                          bg="secondary"
+                          text="المسارات التعليمية"
+                          icon={masaratlogo}
+                          marginLeft={{ lg: 170 }}
+                          marginTop={{ base: 0 }}
+                          sx={{
+                            width: "235px",
+                            height: "60px",
+                          }}
+                        />
+                      )}
+                      <p className="content">
                         تقدم الأكاديمية العربية للبرمجة تجربة تعلم متميزة من
                         خلال مجموعة من الدروس والمناهج الاحترافية بجودة عالية
                       </p>
-                      <p className="content"
-                      >
+                      <p className="content">
                         وأسلوب تدريسي ممتع يتناسب مع مختلف الطرق التعليمية
                         للمبتدئين والمحترفين بإشراف مدربين ومبرمجين ذوي خبرة
                         عالمية في المجال التقني
                       </p>
-                      {!useBreakpointValue({ base: true,sm:false, lg: false }) && (
-                      <ButtonAC
-                        alignSelf="center"
-                        mt={8}
-                        sizeVariant="lg"
-                        color="white"
-                        bg="secondary"
-                        text="المسارات التعليمية"
-                        icon={masaratlogo}
-                        marginLeft={{ lg: 170 }}
-                        sx={{
-                          width: "235px",
-                          height: "60px"
-                        }}
-                      />
-                    )}
+                      {!useBreakpointValue({
+                        base: true,
+                        sm: false,
+                        lg: false,
+                      }) && (
+                        <ButtonAC
+                          alignSelf="center"
+                          mt={8}
+                          size="lg"
+                          color="white"
+                          bg="secondary"
+                          text="المسارات التعليمية"
+                          icon={masaratlogo}
+                          marginLeft={{ lg: 170 }}
+                          sx={{
+                            width: "235px",
+                            height: "60px",
+                          }}
+                        />
+                      )}
                     </Container>
                   </Box>
                 </GridItem>
               </Grid>
             </div>
           </SwiperSlide>
-
-
 
           <SwiperSlide>
             <div
@@ -156,13 +152,10 @@ export default function Hero() {
             >
               <div className="overlay overlay1"></div>
               <div className="overlay overlay2"></div>
-              
-            </div                      >
+            </div>
           </SwiperSlide>
         </Swiper>
       </Box>
-
-
 
       <main>
         <h1
