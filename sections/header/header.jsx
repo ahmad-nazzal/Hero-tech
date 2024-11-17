@@ -2,10 +2,9 @@ import Image from "next/image";
 
 import ButtonAC from "../../components/ButtonAC";
 import { Flex, List, Grid, GridItem, ListItem } from "@chakra-ui/react";
-
-import { NavLink } from "react-router-dom";
-import registerlogo from "../../public/images/🦆 icon _profile circled_.png";
-import loginlogo from "../../public/images/🦆 icon _log in_.png";
+import registerlogo from "../../public/images/profile_circled.png";
+import loginlogo from "../../public/images/log_in.png";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -23,7 +22,7 @@ const Header = () => {
         pl={77}
         height={100}
       >
-        <GridItem >
+        <GridItem>
           <Image
             src="/images/8e6c847871186b9180f5ae9f99b6bcbc.png"
             width={280}
@@ -41,13 +40,13 @@ const Header = () => {
             sx={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
           >
             <ListItem>
-              <NavLink to="/sources">المصادر</NavLink>
+              <Link href="/sources">المصادر</Link>
             </ListItem>
             <ListItem>
-              <NavLink to="/education-paths">المسارات التعليمية</NavLink>
+              <Link href="/education-paths">المسارات التعليمية</Link>
             </ListItem>
             <ListItem>
-              <NavLink to="/contact">التواصل</NavLink>
+              <Link href="/contact">التواصل</Link>
             </ListItem>
           </List>
         </GridItem>
@@ -60,7 +59,7 @@ const Header = () => {
           <ButtonAC
             alignSelf="center"
             mt={8}
-            sizeVariant="lg"
+            size="lg"
             color="white"
             bg="secondary"
             text="إنشاء حساب"
@@ -83,7 +82,7 @@ const Header = () => {
           <ButtonAC
             alignSelf="center"
             mt={8}
-            sizeVariant="lg"
+            size="lg"
             color="white"
             bg="tomato"
             text="تسجيل الدخول"
@@ -95,7 +94,6 @@ const Header = () => {
                 style={{ width: "25.71px", height: "30px" }}
               />
             }
-            href="/signin"
             marginTop={{ lg: 0 }}
             sx={{
               boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",

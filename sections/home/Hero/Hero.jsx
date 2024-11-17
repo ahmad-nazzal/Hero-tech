@@ -26,7 +26,6 @@ import "swiper/css/scrollbar";
 import mazedlogo from "../../../public/images/🦆 icon _more horiz circled outline_.png";
 import CustomCard from "../../../components/CustomCard";
 export default function Hero() {
-  
   return (
     <>
       <Box
@@ -108,7 +107,7 @@ export default function Hero() {
                         <ButtonAC
                           alignSelf="center"
                           mt={8}
-                          sizeVariant="lg"
+                          size="lg"
                           color="white"
                           bg="secondary"
                           text="المسارات التعليمية"
@@ -138,7 +137,7 @@ export default function Hero() {
                         <ButtonAC
                           alignSelf="center"
                           mt={8}
-                          sizeVariant="lg"
+                          size="lg"
                           color="white"
                           bg="secondary"
                           text="المسارات التعليمية"

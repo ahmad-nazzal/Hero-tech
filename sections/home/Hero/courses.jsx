@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ButtonAC from "../../../components/ButtonAC";
-import mazedlogo from "../../../public/images/🦆 icon _more horiz circled outline_.png";
-import paylogo from "../../../public/images/🦆 icon _cart_.png";
+
+import mazedlogo from "../../../public/images/circled_outline.png";
+import paylogo from "../../../public/images/cart_icon.png";
 import Loading from "./loading";
 import { Navigation, Pagination,Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
