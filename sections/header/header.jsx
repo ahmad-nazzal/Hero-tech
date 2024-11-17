@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import ButtonAC from "../../components/ButtonAC";
 import { Flex, List, Grid, GridItem, ListItem } from "@chakra-ui/react";
+
 import { NavLink } from "react-router-dom";
 import registerlogo from "../../public/images/🦆 icon _profile circled_.png";
 import loginlogo from "../../public/images/🦆 icon _log in_.png";

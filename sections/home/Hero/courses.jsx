@@ -3,7 +3,19 @@ import ButtonAC from "../../../components/ButtonAC";
 import mazedlogo from "../../../public/images/🦆 icon _more horiz circled outline_.png";
 import paylogo from "../../../public/images/🦆 icon _cart_.png";
 import Loading from "./loading";
-import { Card, CardHeader, CardBody, CardFooter, Image, Text, Heading, Flex, Box } from "@chakra-ui/react";
+import { Navigation, Pagination,Scrollbar, A11y } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import CustomCard from '../../../components/CustomCard';
+import { Tooltip } from '@chakra-ui/react';
+
+import {
+
+  Box,
+} from "@chakra-ui/react";
 //async & await : Because API process takes time
 async function getData() {
   //Loading 5 mintues
@@ -40,79 +52,157 @@ const Courses = () => {
   if (loading) return <Loading />;
 
   return (
-    <section
-      className="products flex"
-      style={{ color: "#462576", padding: "0px 55px" }}
+    <Box 
+marginBottom={112}
+paddingTop={2}
+paddingBottom={2}
+marginRight="77px"
+
+
+    marginLeft="48px"
     >
-      {/* array.map */}
-      {data &&
-        data.map((item) => {
-          return (
+    <Swiper    
+      modules={[Navigation, Pagination, Scrollbar, A11y]}
+      spaceBetween={109}
+      navigation={true} 
+      breakpoints={{
+        320: {
+          slidesPerView: 1,
+        
+        },
+        480: {
+          slidesPerView: 1,
+          
+        },
+        768: {
+          slidesPerView: 2,
+        
+        },
+        1024: {
+          slidesPerView: 5,  
+        
+        },
+      }}
+  
+    >
       
-            <Card key={item.id} borderRadius="md" boxShadow="lg" bg="white">
-              <CardHeader p="0">
-                <a href="/">
-                  <Box bg="#FF6542" p="10" borderRadius="8">
-                    <Image
-                      width="266px"
-                      height="285px"
-                      src={item.image}
-                      alt=""
-                      filter="invert(1)"                    
-                    />
-                  </Box>
-                </a>
-              </CardHeader>
-            
-              <CardBody fontWeight="bold">
-                <Heading as="h1" size="md" mb="2" className="title">
-                  {item.name.slice(0, 15)}...
-                </Heading>
-                <Text color="green.500" className="price">
-                  ${item.price}
-                </Text>
-            
-                <Box color="#555" fontSize="sm" >
-                  <Text>اسم المدرب: {item.trainer}</Text>
-                  <Text>{item.duration}</Text>
-                </Box>
-              </CardBody>
-            
-              <CardFooter>
-                <Flex gap="4" justify="center" mt="4">
+      {data && data.map((item, index) => (
+
+<SwiperSlide
+key={item.id}
+style={
+  index === 0
+    ? { marginRight: "130px" }
+    : index === 3
+    ? { marginLeft: "400px" }
+    : {}
+}
+>
+           <CustomCard
+         
+         title={ <Tooltip label={item.name} aria-label="Full Title">
+         <span>
+           {item.name.length > 15 ? `${item.name.slice(0, 15)}...` : item.name}
+         </span>
+       </Tooltip>}
+
+              price={item.price}        
+              trainerName={item.trainer} 
+              duration={item.duration}   
+              imageSrc={
+                              item.image
+
+              
+              }
+              applyFilter={true} 
+              buttons={[
                   <ButtonAC
-                    alignSelf="center"
-                    mt={8}
-                    sizeVariant="lg"
-                    color="white"
-                    bg="secondary"
-                    text="اقرأ المزيد"
-                    icon={mazedlogo}
-                    sx={{
-                      width: "190px",
-                      height: "40px",
-                    }}
-                  />
-                  <ButtonAC
-                    alignSelf="center"
-                    mt={8}
-                    sizeVariant="lg"
-                    color="white"
-                    bg="tomato"
-                    text="شراء"
-                    icon={paylogo}
-                    sx={{
-                      width: "150px",
-                      height: "40px",
-                    }}
-                  />
-                </Flex>
-              </CardFooter>
-            </Card>
+                  key="read-more" 
+                  borderRadius="6px"
+                  mb="30px"
+                  color="white"
+                  bg="secondary"
+                  text="اقرأ المزيد"
+                  icon={mazedlogo}
+                  sx={{
+                    width: "143px",
+                    height: "44px",
+                    fontWeight: "normal",
+                    fontSize: "17px",
+                  }}
+                  />,
+                <ButtonAC
+                key="buy" 
+                  borderRadius="6px"
+                  alignSelf="center"
+                  mb="30px"
+                //  sizeVariant="lg"
+                  color="white"
+                  bg="tomato"
+                  text="شراء"
+                  icon={paylogo}
+                  sx={{
+                    width: "143px",
+                    height: "44px",
+                    fontWeight: "normal",
+                    fontSize: "17px",
+                  }}
+                />
+
+
+              ]}
+              boxShadow="0px 4px 12px rgba(0, 0, 0, 0.34)"
+              cardWidth="350.03px"
+              cardHeight="510px"
+              headerBg="#FF6542"
+              headerWidth="350px"
+              headerHeight="286px"
+  
+                imageWidth="280px"
+                imageHeight="280px"
+                borderRadius="11px 11px 0 0"
+             marginRight="20px"
             
-          );
-        })}
-    </section>
+             marginBottom="55px"
+            />
+
+            
+        </SwiperSlide>
+      ))}
+    </Swiper>
+
+    <style>
+  {`
+    
+  
+    .swiper-button-prev {
+      width: 65px;
+      height: 65px; 
+      border: 6px solid #713488;
+
+
+
+      margin-left: -90px; 
+      
+    }
+
+
+    .swiper-button-next {
+      width: 65px;
+      height: 65px;
+  
+  border: 6px solid #713488;
+      margin-right: -90px;
+
+    }
+
+    
+  `}
+</style>
+
+  </Box>
+  
+  
   );
 };
 
