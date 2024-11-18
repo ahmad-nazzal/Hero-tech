@@ -4,6 +4,7 @@ import "./hero.css";
 //import bookIcon from "../../../public/icons/book-icon.png";
 import Courses from "./courses.jsx";
 import Loading from "./loading.jsx";
+import SearchBar from "../../../components/SearchBar";
 import {
   Text,
   Flex,
@@ -23,7 +24,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import mazedlogo from "../../../public/images/🦆 icon _more horiz circled outline_.png";
+import mazedlogo from "../../../public/images/masaratlogo.png";
 import CustomCard from "../../../components/CustomCard";
 export default function Hero() {
   return (
@@ -321,8 +322,14 @@ export default function Hero() {
       </Box>
 
       <main  >
-        <Grid templateColumns="repeat(4, 1fr)" gap="4">
-          <GridItem colSpan={1}>
+      <Grid
+  templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }} 
+  gap="4"
+>
+
+  <GridItem
+    colSpan={{ base: 4, md: 1}} 
+  >
             <Text
               className="recommended"
               marginRight="237px"
@@ -338,8 +345,10 @@ export default function Hero() {
             </Text>
           </GridItem>
 
-          {/*Put here Search Bar*/}
-          <GridItem colSpan={3}></GridItem>
+        
+          <GridItem colSpan={3} className="grid-item">
+          <SearchBar placeholder="..... مقدمة لمحرك الألعاب اليونتي"  />
+          </GridItem>
         </Grid>
 
         <Suspense  fallback={<Loading />}>

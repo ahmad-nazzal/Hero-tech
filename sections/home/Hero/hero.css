@@ -73,8 +73,43 @@ height: 70px;
 /* ===============================
   2.  Main contents (courses)
 ==================================*/
-main h1.recommended {
-  margin: 2.3rem 0 2rem 2%;
+
+/* CSS العادي */
+.grid-item {
+  margin-left: 212px;
+  margin-top: 123px;
+}
+
+.recommended {
+  margin-right: 237px;
+  margin-bottom: 84px;
+  padding-top: 153px;
+  color: #713488;
+  border-bottom: 2px solid #713488;
+  width: 208px;
+  font-weight: bold;
+  font-size: 27px;
+}
+
+
+@media screen and (max-width: 1299px) {
+  .grid-item {
+    margin-left: 235px;
+    margin-top: 335px;
+  }
+  
+
+  .grid-item {
+    margin-top: 30px; 
+  }
+
+  .recommended {
+    grid-column: span 4;
+  }
+
+  .search-bar {
+    grid-column: span 4;
+  }
 }
 
 main section.products.flex{

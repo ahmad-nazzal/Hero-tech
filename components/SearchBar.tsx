@@ -14,9 +14,9 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
   const inputWidth = useBreakpointValue({
-    base: "100%",
-    md: "100%",
-    lg: "50%",
+    base: "713px",
+    md: "713px",
+    lg: "713px",
   });
 
   return (
@@ -34,8 +34,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
               <Image
                 src={Search.src}
                 alt="Search"
-                width={20}
-                height={20}
+                width={25}
+                height={25}
                 style={{ objectFit: "contain", height: "20px", width: "20px" }}
               />
             </Box>
