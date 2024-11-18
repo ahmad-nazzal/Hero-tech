@@ -30,8 +30,7 @@ export default function Home() {
         </Box>
         {/* <Header /> */}
 
-         <Hero></Hero> 
-
+        <Hero></Hero>
 
         <Service></Service>
 
