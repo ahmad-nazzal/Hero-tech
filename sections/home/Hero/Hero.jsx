@@ -4,7 +4,19 @@ import "./hero.css";
 //import bookIcon from "../../../public/icons/book-icon.png";
 import Courses from "./courses.jsx";
 import Loading from "./loading.jsx";
-import { Text, Box, Container, Grid, GridItem } from "@chakra-ui/react";
+
+import SearchBar from "../../../components/SearchBar";
+import {
+  Text,
+  Flex,
+  List,
+  ListItem,
+  Box,
+  Container,
+  Grid,
+  GridItem,
+} from "@chakra-ui/react";
+
 import masaratlogo from "../../../public/images/masaratlogo.png";
 import ButtonAC from "../../../components/ButtonAC";
 import { useBreakpointValue } from "@chakra-ui/react";
@@ -14,6 +26,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+
 
 export default function Hero() {
   return (
@@ -158,9 +171,17 @@ export default function Hero() {
         </Swiper>
       </Box>
 
-      <main>
-        <Grid templateColumns="repeat(4, 1fr)" gap="4">
-          <GridItem colSpan={1}>
+
+      <main  >
+      <Grid
+  templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }} 
+  gap="4"
+>
+
+  <GridItem
+    colSpan={{ base: 4, md: 1}} 
+  >
+
             <Text
               className="recommended"
               marginRight="237px"
@@ -176,8 +197,10 @@ export default function Hero() {
             </Text>
           </GridItem>
 
-          {/*Put here Search Bar*/}
-          <GridItem colSpan={3}></GridItem>
+        
+          <GridItem colSpan={3} className="grid-item">
+          <SearchBar placeholder="..... مقدمة لمحرك الألعاب اليونتي"  />
+          </GridItem>
         </Grid>
 
         <Suspense fallback={<Loading />}>

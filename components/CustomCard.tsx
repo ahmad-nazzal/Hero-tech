@@ -30,6 +30,7 @@ interface CustomCardProps {
   headerHeight?: string;
   imageWidth?: string;  
   imageHeight?: string; 
+  imageMargin?: string; 
   applyFilter?: boolean;
   borderRadius: string; 
   marginRight?: string; 
@@ -55,6 +56,7 @@ const CustomCard: React.FC<CustomCardProps> = ({
   headerHeight ,
   imageWidth, 
 imageHeight,
+imageMargin,
 applyFilter , 
 borderRadius ,  
 marginRight , 
@@ -93,6 +95,7 @@ justifyContent ,
          <Image    
            height={imageHeight}
            width={imageWidth} 
+          marginRight={imageMargin}
          src={imageSrc}
           alt={title} 
           style={{
