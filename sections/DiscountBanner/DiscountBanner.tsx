@@ -1,4 +1,4 @@
-import { Heading, Center } from "@chakra-ui/react";
+import { Text, Center } from "@chakra-ui/react";
 interface Props {
   startDate: string;
   endDate: string;
@@ -21,15 +21,16 @@ const DiscountBanner: React.FC<Props> = ({
   };
 
   return isDateInRange(startDate, endDate) ? (
-    
-    <Center bg="#462576" color="white" p="32px" height="120">
-      <Heading 
-       fontSize={{ base: "12px", sm:"23px",lg: "20px" }}
-       mr="734px"  
-       ml="799px"  
-      >{promotionMessage}</Heading>
-    </Center>  
-
+    <Center
+      bg="#462576"
+      color="white"
+      py={{ base: "18px", md: "44px", lg: "40px" }}
+      height={{ base: "50px", md: "120px", lg: "110px" }}
+    >
+      <Text fontSize={{ base: "12px", md: "23px", lg: "25px" }}>
+        {promotionMessage}
+      </Text>
+    </Center>
   ) : null;
 };
 
