@@ -27,6 +27,8 @@ const CustomBox: React.FC<CustomBoxProps> = ({
     <Box
       bg={bg}
       p={p}
+      w={{ base: "100%", md: "100%", lg: "600px" }}
+      minHh={{ base: "100%", md: "100%", lg: "380px" }}
       borderWidth={borderWidth}
       borderColor={borderColor}
       boxShadow={boxShadow}
@@ -42,11 +44,16 @@ const CustomBox: React.FC<CustomBoxProps> = ({
         fontSize="2xl"
         fontWeight="700"
         color="primary"
-        mb={{ base: 6, md: 10, lg: 12 }}
+        mb={{ base: "12px", md: "82px", lg: "90px" }}
       >
         {title}
       </Text>
-      <Text fontSize="19px" fontWeight="500" color="primary">
+      <Text
+        fontSize="19px"
+        fontWeight="500"
+        color="primary"
+        lineHeight={"30px"}
+      >
         {description}
       </Text>
       {children}
