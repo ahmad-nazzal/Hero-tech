@@ -4,6 +4,7 @@ import "./hero.css";
 //import bookIcon from "../../../public/icons/book-icon.png";
 import Courses from "./courses.jsx";
 import Loading from "./loading.jsx";
+
 import SearchBar from "../../../components/SearchBar";
 import {
   Text,
@@ -15,6 +16,7 @@ import {
   Grid,
   GridItem,
 } from "@chakra-ui/react";
+
 import masaratlogo from "../../../public/images/masaratlogo.png";
 import ButtonAC from "../../../components/ButtonAC";
 import { useBreakpointValue } from "@chakra-ui/react";
@@ -24,8 +26,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import mazedlogo from "../../../public/images/masaratlogo.png";
-import CustomCard from "../../../components/CustomCard";
+
+
 export default function Hero() {
   return (
     <>
@@ -167,159 +169,8 @@ export default function Hero() {
             </div>
           </SwiperSlide>
         </Swiper>
-
-        <Box as="section" overflow="hidden" bg="#9D809B">
-          <List
-            display="flex"
-          paddingTop={3}
-          paddingBottom={13}
-            justifyContent="center"
-            
-                  >
-                    
-            <Flex
-              height={450}
-              width={900}
-              padding={60}
-
-            bg="white"
-              borderRadius="11"
-              boxShadow="0px 4px 12px rgba(0, 0, 0, 0.37)"
-            
-              justifyContent="center"  
-              alignItems="center"  
-              gap={9}    
-      
-            >
-              <ListItem    >
-                <CustomCard
-                
-                  title="دروس وانماط الميدجورني"
-                  description="وصف قصير للكارد"
-                  imageSrc="/icons/transparent-book-icon-open-blank-book-pages-icon-education-ico-5f9bad3ade7008 1.png"
-                  applyFilter={false}
-                  buttons={[
-                    <ButtonAC
-                      key="read-more"
-                      borderRadius="6px"
-                      mb="30px"
-                      color="white"
-                      bg="secondary"
-                      text="المزيد..."
-                      icon={mazedlogo}
-                      sx={{
-                        width: "200px",
-                        height: "60px",
-                        
-                        fontSize: "17px",
-                        fontWeight: "bold"
-                      }}
-                    
-                    />,
-                  ]}
-                
-                imageWidth="77.21px"
-                imageHeight="57.78px"
-                        boxShadow="0px 0px 0px rgba(0, 0, 0, 0)"
-                         cardWidth="250px"
-                        //cardHeight="450px"
-                        cardHeight="350px"
-                        headerBg="#783BA2"
-                        headerWidth="130px"
-                        headerHeight="130px"
-                    borderRadius="50%"
-                    marginRight="30px"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center" 
-                />
-              </ListItem>
-              <ListItem     >
-                <CustomCard
-                  title="بنك الأسئلة التقنية"
-                  description="وصف قصير للكارد"
-                  imageSrc="/icons/transparent-test-quiz-icon-my-classroom-icon-check-icon-5dd1c17b65bb03 1.png"
-                  applyFilter={false}
-                  buttons={[
-                    <ButtonAC
-                      key="read-more"
-                      borderRadius="6px"
-                      mb="30px"
-                      color="white"
-                      bg="secondary"
-                            text="المزيد..."
-                      icon={mazedlogo}
-                      sx={{
-                        width: "200px",
-                        height: "60px",
-                  fontWeight: "bold",
-                        fontSize: "17px",
-                      }}
-                    />,
-                  ]}
-                  boxShadow="0px 0px 0px rgba(0, 0, 0, 0)"
-                        cardWidth="250px"
-                        cardHeight="350px"
-        
-                        imageWidth="48.31px"
-                imageHeight="64.28px"
-                        headerBg="#783BA2"
-                        headerWidth="130px"
-                        headerHeight="130px"
-                            borderRadius="50%"
-                    marginRight="30px"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center" 
-                />
-              </ListItem>
-              <ListItem   
-  
-              >
-                <CustomCard
-                  title="دروس وانماط الميدجورني"
-                  description="وصف قصير للكارد"
-                  imageSrc="/icons/kisspng-education-logo-image-e-learning-5cce15891e7a39 1.png"
-                  applyFilter={false}
-                  buttons={[
-                    <ButtonAC
-            
-                      key="read-more"
-                      borderRadius="6px"
-                      mb="30px"
-                      color="white"
-                      bg="secondary"
-                            text="المزيد..."
-                      icon={mazedlogo}
-                      sx={{
-                        width: "200px",
-                        height: "60px",
-                      
-                        fontSize: "17px",
-                         fontWeight: "bold"
-                      }}
-                    />,
-                  ]}
-                  boxShadow="0px 0px 0px rgba(0, 0, 0, 0)"
-                         cardWidth="250px"
-        
-                        cardHeight="350px"
-                        headerBg="#783BA2"
-                        headerWidth="140px"
-                        headerHeight="130px"
-                              imageWidth="58.48px"
-                imageHeight="55.61px"
-                    borderRadius="50%"
-                    marginRight="30px"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center" 
-                />
-              </ListItem>
-            </Flex>
-          </List>
-        </Box>
       </Box>
+
 
       <main  >
       <Grid
@@ -330,6 +181,7 @@ export default function Hero() {
   <GridItem
     colSpan={{ base: 4, md: 1}} 
   >
+
             <Text
               className="recommended"
               marginRight="237px"
@@ -351,13 +203,10 @@ export default function Hero() {
           </GridItem>
         </Grid>
 
-        <Suspense  fallback={<Loading />}>
+        <Suspense fallback={<Loading />}>
           <Courses />
-    
         </Suspense>
       </main>
     </>
   );
 }
-
-

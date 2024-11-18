@@ -17,34 +17,34 @@ const ReviewList = () => {
       id: 1,
       name: "محمد",
       review: "جودة عالية ومناهج احترافية !شكرا للاكاديمية العربية للبرمجة",
-      rating: 3,
+      rating: 2,
       date: "10/10/2022",
     },
     {
       id: 2,
       name: "سليم",
-      review: " شكرا للاكاديمية العربية للبرمجة مدرسين ذو خبرة عالية وقوية",
+      review: "جودة عالية ومناهج احترافية !شكرا للاكاديمية العربية للبرمجة",
       rating: 3,
       date: "10/10/2022",
     },
     {
       id: 3,
       name: "محمود",
-      review: "شكرا للاكاديمية العربية للبرمجة محتوى جميل جدا ومناسب للطلاب",
+      review: "جودة عالية ومناهج احترافية !شكرا للاكاديمية العربية للبرمجة",
       rating: 5,
       date: "10/10/2022",
     },
     {
       id: 4,
       name: "سلمى",
-      review: "فرصة عظيمة ومدرسين اعظم ! شكرا للاكاديمية العربية للبرمجة",
+      review: "جودة عالية ومناهج احترافية !شكرا للاكاديمية العربية للبرمجة",
       rating: 4,
       date: "10/10/2022",
     },
     {
       id: 5,
       name: "دانا",
-      review: "اكاديمية قوية ومنهج قوي شكرا للاكاديمية العربية للبرمجة",
+      review: "جودة عالية ومناهج احترافية !شكرا للاكاديمية العربية للبرمجة",
       rating: 4,
       date: "10/10/2022",
     },
@@ -54,7 +54,7 @@ const ReviewList = () => {
     <Box width="100%" padding={4}>
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween={30}
+        spaceBetween={0}
         navigation
         pagination={{
           clickable: true,
@@ -63,19 +63,15 @@ const ReviewList = () => {
         breakpoints={{
           320: {
             slidesPerView: 1,
-            spaceBetween: 10,
           },
           480: {
             slidesPerView: 1,
-            spaceBetween: 20,
           },
           768: {
             slidesPerView: 2,
-            spaceBetween: 30,
           },
           1024: {
             slidesPerView: 3,
-            spaceBetween: 40,
           },
         }}
         style={{

@@ -431,42 +431,41 @@ style={{
    .swiper-button-prev, .swiper-button-next {
     width: 70px;
     height: 70px;
-    border: 6px solid #713488; /* الإطار الخارجي */
-    border-radius: 50%; /* لجعل الشكل دائرياً */
-    background: transparent; /* خلفية شفافة */
+    border: 6px solid #713488; 
+    border-radius: 50%; 
+    background: transparent; 
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  /* إزالة سهم Swiper الافتراضي */
+  
   .swiper-button-prev::after, .swiper-button-next::after {
-    content: ''; /* إزالة النص الافتراضي */
-    display: block ; /* تأكيد منع أي عنصر افتراضي */
-    width: 20px; /* عرض السهم */
-    height: 20px; /* ارتفاع السهم */
-    background: none ; /* منع أي أيقونات افتراضية */
-    font-size: 0 ; /* إزالة أي تأثير للنص */
-    color: transparent ; /* إزالة اللون */
-    border: none ; /* منع أي تأثير افتراضي */
+    content: ''; 
+    display: block ; 
+    width: 20px; 
+    height: 20px; 
+    background: none ; 
+    font-size: 0 ; 
+    color: transparent ; 
+    border: none ; 
   }
-  /* تعديل سهم السابق */
   .swiper-button-prev::after {
   
-      width: 20px; /* عرض السهم */
-    height: 20px; /* ارتفاع السهم */
-    border-left: 6px solid #713488; /* سماكة ولون الخط الأيسر للسهم */
-    border-bottom: 6px solid #713488; /* سماكة ولون الخط السفلي للسهم */
-    transform: rotate(225deg); /* تشكيل السهم */
+      width: 20px; 
+    height: 20px; 
+    border-left: 6px solid #713488; 
+    border-bottom: 6px solid #713488;
+    transform: rotate(225deg); 
   }
 
-  /* تعديل سهم التالي */
+  
   .swiper-button-next::after {
     
-      width: 20px; /* عرض السهم */
-    height: 20px; /* ارتفاع السهم */
-    border-right: 6px solid #713488; /* سماكة ولون الخط الأيمن للسهم */
-    border-top: 6px solid #713488; /* سماكة ولون الخط العلوي للسهم */
-    transform: rotate(225deg); /* تشكيل السهم */
+      width: 20px; 
+    height: 20px;
+    border-right: 6px solid #713488;
+    border-top: 6px solid #713488;
+    transform: rotate(225deg); 
   }
 
     
