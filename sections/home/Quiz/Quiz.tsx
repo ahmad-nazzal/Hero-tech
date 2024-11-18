@@ -44,7 +44,6 @@ function Quiz() {
         </Box>
         <Box
           color="white"
-          w={480}
           display="flex"
           flexDirection={"column"}
           alignItems={{ base: "center", md: "center", lg: "start" }}
