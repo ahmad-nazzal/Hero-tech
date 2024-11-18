@@ -225,16 +225,22 @@ const Courses = () => {
                       : index === 4
                       ? "150px"
                       : "0",
-                  ...(window.innerWidth < 766 && index === 1
+                  ...(typeof window !== "undefined" &&
+                  window.innerWidth < 766 &&
+                  index === 1
                     ? { marginRight: "200px" }
                     : {}),
-                  ...(window.innerWidth >= 766 && window.innerWidth < 1300
+                  ...(typeof window !== "undefined" &&
+                  window.innerWidth >= 766 &&
+                  window.innerWidth < 1300
                     ? {
                         marginRight:
                           index === 0 ? "115px" : index === 2 ? "230px" : "0",
                       }
                     : {}),
-                  ...(window.innerWidth >= 1500 && window.innerWidth < 1700
+                  ...(typeof window !== "undefined" &&
+                  window.innerWidth >= 1500 &&
+                  window.innerWidth < 1700
                     ? {
                         marginRight:
                           index === 0
@@ -246,7 +252,7 @@ const Courses = () => {
                             : "0",
                       }
                     : {}),
-                  ...(window.innerWidth >= 1700
+                  ...(typeof window !== "undefined" && window.innerWidth >= 1700
                     ? {
                         marginRight:
                           index === 0
@@ -386,16 +392,22 @@ const Courses = () => {
                         : index === 4
                         ? "150px"
                         : "0",
-                    ...(window.innerWidth < 766 && index === 1
+                    ...(typeof window !== "undefined" &&
+                    window.innerWidth < 766 &&
+                    index === 1
                       ? { marginRight: "200px" }
                       : {}),
-                    ...(window.innerWidth >= 766 && window.innerWidth < 1300
+                    ...(typeof window !== "undefined" &&
+                    window.innerWidth >= 766 &&
+                    window.innerWidth < 1300
                       ? {
                           marginRight:
                             index === 0 ? "115px" : index === 2 ? "230px" : "0",
                         }
                       : {}),
-                    ...(window.innerWidth >= 1500 && window.innerWidth < 1700
+                    ...(typeof window !== "undefined" &&
+                    window.innerWidth >= 1500 &&
+                    window.innerWidth < 1700
                       ? {
                           marginRight:
                             index === 0
@@ -407,7 +419,8 @@ const Courses = () => {
                               : "0",
                         }
                       : {}),
-                    ...(window.innerWidth >= 1700
+                    ...(typeof window !== "undefined" &&
+                    window.innerWidth >= 1700
                       ? {
                           marginRight:
                             index === 0
