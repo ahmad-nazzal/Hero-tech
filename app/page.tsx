@@ -1,7 +1,6 @@
 "use client";
-import { ChakraProvider, Box } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import DiscountBanner from "../sections/DiscountBanner/DiscountBanner";
-import theme from "./theme";
 import AboutUs from "../sections/home/AboutUs/AboutUs";
 import ContactUs from "../sections/home/ContactUs/ContactUs";
 import ReviewList from "../sections/home/ReviewSection/ReviewList";
@@ -20,26 +19,24 @@ export default function Home() {
 
   return (
     <>
-      <ChakraProvider theme={theme}>
-        <Box dir={"rtl"}>
-          <DiscountBanner
-            startDate={startDate}
-            endDate={endDate}
-            promotionMessage="خصومات بنسبة 20% على الكورسات"
-          />
-        </Box>
-        {/* <Header /> */}
+      <Box dir={"rtl"}>
+        <DiscountBanner
+          startDate={startDate}
+          endDate={endDate}
+          promotionMessage="خصومات بنسبة 20% على الكورسات"
+        />
+      </Box>
+      {/* <Header /> */}
 
-        <Hero></Hero>
+      <Hero></Hero>
 
-        <Service></Service>
+      <Service></Service>
 
-        {/* <Quiz></Quiz> */}
-        <AboutUs></AboutUs>
-        <ContactUs></ContactUs>
-        <ReviewList></ReviewList>
-        <Footer></Footer>
-      </ChakraProvider>
+      {/* <Quiz></Quiz> */}
+      <AboutUs></AboutUs>
+      <ContactUs></ContactUs>
+      <ReviewList></ReviewList>
+      <Footer></Footer>
     </>
   );
 }
