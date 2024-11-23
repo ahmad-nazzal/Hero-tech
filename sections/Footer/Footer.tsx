@@ -1,15 +1,12 @@
 "use client";
-import { Grid, Box } from "@chakra-ui/react";
+import { Grid, Box, GridItem } from "@chakra-ui/react";
 import InfoAndPolicy from "./InfoAndPolicy";
 import Contact from "./Contact";
 import SocialMedia from "./SocialMedia";
 import Sources from "./Sources";
 import RightsSection from "./RightsSection";
-import useResponsiveStyles from "../../Hooks/useResponsiveStyles";
 
 export default function Footer() {
-  const { columns } = useResponsiveStyles();
-
   return (
     <Box
       as="footer"
@@ -19,29 +16,70 @@ export default function Footer() {
       minW="100%"
       overflowX="hidden"
     >
-      <Box maxW="1200px" mx="auto" px={{ base: 0, md: 6 }} w="100%">
+      <Box
+        maxW={{ base: "600px", md: "800px", lg: "1200px" }}
+        mx="auto"
+        px={{ base: 0, md: 6 }}
+        w="100%"
+      >
         <Grid
-          templateColumns={columns}
-          gap={{ base: 4, md: 8, lg: 4 }}
+          gap={{ base: 4, md: "20px", lg: 4 }}
+          templateColumns={{
+            base: "1fr",
+            sm: "1fr",
+            md: "repeat(2, 1fr)",
+            lg: "repeat(3, 1fr)",
+          }}
+          templateAreas={{
+            base: `
+              "info"
+              "contact"
+              "social"
+            `,
+            md: `
+              "info info"
+              "contact social"
+            `,
+            lg: `
+              "info contact social"
+            `,
+          }}
           justifyContent="center"
-          alignItems="center"
+          alignItems="start"
           w="100%"
+          columnGap={{ md: "20px" }}
+          rowGap={{ md: "30px" }}
         >
-          {/*  information and policies section  */}
-          <InfoAndPolicy></InfoAndPolicy>
-
-          {/*  contact us section  */}
-          <Contact></Contact>
-
-          {/* social media section */}
-          <SocialMedia></SocialMedia>
+          <GridItem
+            area="info"
+            justifySelf={{ md: "center" }}
+            mb={{ md: "20px" }}
+          >
+            <InfoAndPolicy />
+          </GridItem>
+          <GridItem
+            area="contact"
+            display="flex"
+            justifyContent={{ md: "flex-end" }}
+            px={{ md: "10px" }}
+          >
+            <Contact />
+          </GridItem>
+          <GridItem
+            area="social"
+            display="flex"
+            justifyContent={{ md: "flex-start" }}
+            px={{ md: "10px" }}
+          >
+            <SocialMedia />
+          </GridItem>
         </Grid>
 
-        {/*  sources section */}
+        {/* Sources section */}
+        <Sources />
 
-        <Sources></Sources>
-        {/* rigts section   */}
-        <RightsSection></RightsSection>
+        {/* Rights section */}
+        <RightsSection />
       </Box>
     </Box>
   );
