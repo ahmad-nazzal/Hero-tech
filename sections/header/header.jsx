@@ -94,6 +94,7 @@ const Header = () => {
                 style={{ width: "25.71px", height: "30px" }}
               />
             }
+          href="/signin"
             marginTop={{ lg: 0 }}
             sx={{
               boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",

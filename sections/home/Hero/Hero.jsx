@@ -1,12 +1,18 @@
 "use client";
 import { Suspense } from "react";
 import "./hero.css";
-//import bookIcon from "../../../public/icons/book-icon.png";
 import Courses from "./courses.jsx";
 import Loading from "./loading.jsx";
 
 import SearchBar from "../../../components/SearchBar";
-import { Text, Box, Container, Grid, GridItem } from "@chakra-ui/react";
+import {
+  Text,
+
+  Box,
+  Container,
+  Grid,
+  GridItem,
+} from "@chakra-ui/react";
 
 import masaratlogo from "../../../public/images/masaratlogo.png";
 import ButtonAC from "../../../components/ButtonAC";
@@ -21,6 +27,7 @@ import "swiper/css/scrollbar";
 export default function Hero() {
   return (
     <>
+
       <Box
         as="section"
         minH="100vh"
@@ -150,15 +157,75 @@ export default function Hero() {
           </SwiperSlide>
 
           <SwiperSlide>
-            <div
-              className="slide"
-              style={{ backgroundImage: "url('/images/talaween.png')" }}
+      <div
+        className="slide"
+        style={{ backgroundImage: "url('/images/talaween.png')" }}
+      >
+        <div className="overlay overlay1"></div>
+        <div className="overlay overlay2"></div>
+        <Grid
+          templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }}
+          height="100%"
+          gap={{ lg: 20, sm: 0 }}
+          maxW={{ base: "100%", lg: "1200px" }}
+          mx="auto"
+          px={{ base: 8, sm: 10, lg: 0 }}
+        >
+          <GridItem flexGrow={1} flexShrink={0}>
+            <Box
+              width={{ base: "100%", lg: "auto" }}
+              height="100%"
+              display="flex"
+              alignItems="center"
+              paddingTop={{ base: 5, sm: 30 }}
+              paddingRight={{ base: 90, lg: 100, sm: 150 }}
+              paddingLeft={{ base: 90, sm: 150, lg: 50 }}
+              paddingBottom={{ base: 0, lg: 150 }}
+              fontSize={{ base: "23px", sm: "33px", lg: "25px" }}
+              textAlign={{ lg: "right", sm: "center", base: "center" }}
             >
-              <div className="overlay overlay1"></div>
-              <div className="overlay overlay2"></div>
-            </div>
-          </SwiperSlide>
-        </Swiper>
+              <p className="content">
+                في الأكاديمية العربية للبرمجة، نسعى لإعداد جيل جديد من
+                المبرمجين العرب الذين يمتلكون الأدوات والمهارات اللازمة لمواكبة
+                التطور التكنولوجي العالمي.
+              </p>
+            </Box>
+          </GridItem>
+          <GridItem flexGrow={1} flexShrink={0}>
+            <Box
+              height="100%"
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              textAlign={{ base: "center", sm: "center", lg: "right" }}
+            >
+              <Container
+                maxW="1200px"
+                width="100%"
+                display="flex"
+                flexDirection="column"
+                gap={3}
+                paddingLeft={{ lg: 100, sm: 100 }}
+                paddingRight={{ lg: 0, sm: 100 }}
+                paddingBottom={{ sm: 70, lg: 0 }}
+                marginBottom={{ base: 20 }}
+              >
+                <p className="content">
+                  نؤمن بأن البرمجة ليست مجرد مهارة، بل هي لغة المستقبل التي
+                  تفتح آفاقًا جديدة للإبداع والابتكار.
+                </p>
+                <p className="content">
+                  انضم إلينا اليوم لتبدأ رحلتك في عالم التقنية بدعم من خبرائنا،
+                  ومجتمعنا الملهم الذي يشجعك على التقدم خطوة بخطوة نحو تحقيق
+                  أهدافك.
+                </p>
+              </Container>
+            </Box>
+          </GridItem>
+        </Grid>
+      </div>
+    </SwiperSlide>
+  </Swiper>
       </Box>
 
       <main>
