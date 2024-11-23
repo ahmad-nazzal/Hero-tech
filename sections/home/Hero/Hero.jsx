@@ -228,17 +228,9 @@ export default function Hero() {
   </Swiper>
       </Box>
 
-
-      <main  >
-      <Grid
-  templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }} 
-  gap="4"
->
-
-  <GridItem
-    colSpan={{ base: 4, md: 1}} 
-  >
-
+      <main>
+        <Grid templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }} gap="4">
+          <GridItem colSpan={{ base: 4, md: 1 }}>
             <Text
               className="recommended"
               marginRight="237px"
@@ -254,9 +246,8 @@ export default function Hero() {
             </Text>
           </GridItem>
 
-        
           <GridItem colSpan={3} className="grid-item">
-          <SearchBar placeholder="..... مقدمة لمحرك الألعاب اليونتي"  />
+            <SearchBar placeholder="..... مقدمة لمحرك الألعاب اليونتي" />
           </GridItem>
         </Grid>
 
