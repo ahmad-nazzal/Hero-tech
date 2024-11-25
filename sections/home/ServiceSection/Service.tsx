@@ -163,9 +163,6 @@ export const Service = () => {
           _hover={{ bg: "transparent" }}
         />
       </Box>
-      <Box bg={"black"} minH={200} color={"white"}>
-        for test
-      </Box>
     </>
   );
 };
