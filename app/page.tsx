@@ -1,14 +1,15 @@
 "use client";
-import { Box } from "@chakra-ui/react";
 import DiscountBanner from "../sections/DiscountBanner/DiscountBanner";
 import AboutUs from "../sections/home/AboutUs/AboutUs";
 import ContactUs from "../sections/home/ContactUs/ContactUs";
 import ReviewList from "../sections/home/ReviewSection/ReviewList";
 import Footer from "../sections/Footer/Footer";
 import Hero from "../sections/home/Hero/Hero";
+
  import Quiz from "../sections/home/Quiz/Quiz";
 
 //import Header from "../sections/header/header";
+
 import { Service } from "../sections/home/ServiceSection/Service";
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
       </Box>
       {/*<Header />*/}
       <Hero/>
+
       <Service></Service>
        <Quiz></Quiz> 
       <AboutUs></AboutUs>
