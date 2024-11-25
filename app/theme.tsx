@@ -2,11 +2,11 @@ import { extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
   breakpoints: {
-    sm: "600px",
-    md: "700px",
-    lg: "1300px",
-    xl: "1540px",
-    "2xl": "1680px",
+    sm: "30em", // 480px
+    md: "64em", // 1024px
+    lg: "80em", // 1280px
+    xl: "90em", // 1440px
+    "2xl": "120em", // 1920px
   },
   colors: {
     primary: "#462576", // Tekhelet
@@ -34,7 +34,6 @@ const theme = extendTheme({
         heading1: {
           fontSize: { base: "20px", md: "40px", lg: "50px" },
           fontWeight: "700",
-          
         },
         heading2: {
           fontSize: { base: "18px", md: "27px", lg: "30px" },

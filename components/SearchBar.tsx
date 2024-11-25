@@ -14,9 +14,9 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
   const inputWidth = useBreakpointValue({
-    base: "713px",
-    md: "713px",
-    lg: "713px",
+    base: "100%",
+    md: "100%",
+    lg: "50%",
   });
 
   return (

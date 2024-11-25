@@ -1,3 +1,4 @@
+"use client";
 import { Box, IconButton, Text, useBreakpointValue } from "@chakra-ui/react";
 import { useState } from "react";
 import ButtonAC from "../../../components/ButtonAC";

@@ -63,6 +63,19 @@ export default function AboutUs() {
                 bg="white"
                 p={10}
                 opacity={0.9}
+                w={{ base: "100%", md: "100%", lg: "600px" }}
+                minH={{ base: "100%", md: "100%", lg: "380px" }}
+                borderWidth={{ base: 1, lg: 0 }}
+                borderColor={"primary"}
+                boxShadow={{
+                  base: "lg",
+                  lg: "-4px -4px 6px rgba(0, 0, 0, 0.1), 4px 4px 6px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.1)",
+                }}
+                rounded={"lg"}
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                textAlign="center"
               >
                 <ButtonAC
                   alignSelf={"center"}
