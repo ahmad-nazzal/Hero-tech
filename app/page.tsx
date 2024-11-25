@@ -6,11 +6,9 @@ import ContactUs from "../sections/home/ContactUs/ContactUs";
 import ReviewList from "../sections/home/ReviewSection/ReviewList";
 import Footer from "../sections/Footer/Footer";
 import Hero from "../sections/home/Hero/Hero";
-// import Quiz from "../sections/home/Quiz/Quiz";
+ import Quiz from "../sections/home/Quiz/Quiz";
 
 //import Header from "../sections/header/header";
-
-// import Header from "../sections/header/header";
 import { Service } from "../sections/home/ServiceSection/Service";
 
 export default function Home() {
@@ -19,20 +17,18 @@ export default function Home() {
 
   return (
     <>
+
       <Box dir={"rtl"}>
-        <DiscountBanner
+      <DiscountBanner
           startDate={startDate}
           endDate={endDate}
           promotionMessage="خصومات بنسبة 20% على الكورسات"
         />
       </Box>
-      {/* <Header /> */}
-
-      <Hero></Hero>
-
+      {/*<Header />*/}
+      <Hero/>
       <Service></Service>
-
-      {/* <Quiz></Quiz> */}
+       <Quiz></Quiz> 
       <AboutUs></AboutUs>
       <ContactUs></ContactUs>
       <ReviewList></ReviewList>
