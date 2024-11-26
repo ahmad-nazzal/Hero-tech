@@ -53,12 +53,24 @@
   width: 20px !important; 
   height: 20px !important; 
   margin-left: 9px !important;
+  position: relative;
 }
 
 .swiper-pagination-bullet::after {
   border: none !important;
 }
 
+@media (min-width: 1024px) {
+  .swiper-pagination-bullet {
+    top: -18px; 
+  }
+}
+
+@media (max-width: 1279px) {
+  .swiper-pagination-bullet {
+    top: 10px; 
+  }
+}
 /* =======================
     2. Navigation Buttons
 ==========================*/
@@ -103,7 +115,8 @@
 
 .slider-image-section .swiper-button-next::after {
   border-top: 6px solid white; 
-  border-right: 6px solid white;  
+  border-right: 6px solid white;
+  transform: rotate(-135deg);   
   margin-right: -7px;
 }
 
