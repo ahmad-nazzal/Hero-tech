@@ -108,6 +108,68 @@
 }
 
 
+.slider-image-section .swiper-button-prev,
+.slider-image-section .swiper-button-next {
+  width: 70px;
+  height: 70px;
+  background-color: transparent;
+  border: 6px solid white;
+  border-radius: 50%;
+  color: white;
+  transition: all 0.1s ease;
+  top: 352px;
+}
+
+.slider-image-section .swiper-button-prev {
+  right: 70px !important;
+}
+
+.slider-image-section .swiper-button-next {
+  left: 55px !important;
+}
+
+
+@media (max-width: 480px) {
+  .slider-image-section .swiper-button-prev,
+  .slider-image-section .swiper-button-next {
+    width: 40px; 
+    height: 40px; 
+    border: 3px solid white;
+  }
+  .slider-image-section .swiper-button-prev::after,
+  .slider-image-section .swiper-button-next::after {
+    width: 11.03px; 
+    height: 11.03px; 
+  }
+  .slider-image-section .swiper-button-prev {
+    right: 30px !important;
+  }
+  .slider-image-section .swiper-button-next {
+    left: 30px !important; 
+  }
+  .slider-image-section .swiper-button-prev::after {
+    border-top: 3px solid white; 
+    border-left: 3px solid white;
+    margin-left: -2px;
+  }
+
+  .slider-image-section .swiper-button-next::after {
+    border-top: 3px solid white; 
+    border-right: 3px solid white;
+    margin-right: -2px;
+  }
+  .swiper-pagination {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+  }
+
+  .swiper-pagination-bullet {
+    margin-left: 6px !important; 
+    margin-right: 5px !important; 
+  }
+}
+
 /* ===============================
   3.  Main contents (courses)
 ==================================*/
