@@ -18,6 +18,58 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
 export default function Hero() {
+  const sliderTextOneStyles = {
+    height: "100%",
+    display: "flex",
+    justifyContent: { sm: "center" },
+    width: { lg: 740, sm: 900 },
+    lineHeight: { base: "normal", sm: "1.18", lg: "1.18" },
+    alignItems: "center",
+    paddingTop: { base: 5, sm: 5, lg: 19 },
+    marginRight: { lg: 85, md: 28 },
+    paddingRight: { base: 50, lg: 150 },
+    paddingBottom: { base: 8, lg: 150 },
+    paddingLeft: { base: 50, sm: 210, lg: 4 },
+    fontSize: { base: "25px", sm: "50px", lg: "40px" },
+    textAlign: { lg: "right", sm: "center", base: "center" },
+    sx: {
+      "@media (min-width: 1280px) and (max-width: 1400px)": {
+        width: "610px",
+      },
+    },
+  };
+
+  const sliderTextTwoStyles = {
+    height: "37%",
+    lineHeight: "1.2",
+    width: { base: "100%", lg: 770 },
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    fontSize: { base: "16px", sm: "25px", lg: "23px" },
+    textAlign: { base: "center", sm: "center", lg: "right" },
+    paddingTop: { lg: 162, sm: 7 },
+    paddingRight: { lg: 95, md: 10 },
+    paddingLeft: { lg: 10 },
+    paddingBottom: { sm: 70, lg: 0 },
+    marginTop: { lg: 202, sm: 20 },
+    marginBottom: { base: 20 },
+    sx: {
+      "@media (min-width: 1280px) and (max-width: 1650px)": {
+        width: "590px",
+      },
+    },
+  };
+
+  const commonContainerStyles = {
+    width: { base: "100%", sm: "70%", lg: "100%" },
+    display: "flex",
+    flexDirection: "column",
+    gap: { lg: 10, sm: 10, base: 3 },
+    alignItems: { sm: "center" },
+    marginRight: { lg: 0, sm: 10, md: 110 },
+  };
+
   return (
     <>
       <Box as="section" overflow="hidden" className="slider-image-section">
@@ -53,24 +105,7 @@ export default function Hero() {
                 px={{ base: 8, sm: 10, lg: 0 }}
               >
                 <GridItem className="content" flexGrow={1} flexShrink={0}>
-                  <Box
-                    height="100%"
-                    display="flex"
-                    width={740}
-                    alignItems="center"
-                    paddingTop={{ base: 5, sm: 30, lg: 19 }}
-                    marginRight={{ lg: 85 }}
-                    paddingRight={{ base: 90, lg: 150, sm: 150 }}
-                    paddingBottom={{ base: 0, lg: 150 }}
-                    paddingLeft={{ base: 90, sm: 150, lg: 4 }}
-                    fontSize={{ base: "23px", sm: "33px", lg: "40px" }}
-                    textAlign={{ lg: "right", sm: "center", base: "center" }}
-                    sx={{
-                      "@media (min-width: 1280px) and (max-width: 1400px)": {
-                        width: "610px",
-                      },
-                    }}
-                  >
+                  <Box {...sliderTextOneStyles}>
                     <p>
                       تعمل الاكادمية العربية للبرمجة كجسر يربط العقول
                       التكنولوجية العربية في المهجر بالطلبة العرب أينما كانوا
@@ -79,31 +114,8 @@ export default function Hero() {
                 </GridItem>
 
                 <GridItem className="content" flexGrow={1} flexShrink={0}>
-                  <Box
-                    height="37%"
-                    width={{ base: "100%", lg: 770 }}
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent="center"
-                    fontSize={{ base: "10px", sm: "10px", lg: "23px" }}
-                    textAlign={{ base: "center", sm: "center", lg: "right" }}
-                    paddingTop={{ lg: 162 }}
-                    paddingRight={{ lg: 104, sm: 100 }}
-                    paddingBottom={{ sm: 70, lg: 0 }}
-                    marginTop={{ lg: 202 }}
-                    marginBottom={{ base: 20 }}
-                    sx={{
-                      "@media (min-width: 1280px) and (max-width: 1650px)": {
-                        width: "450px",
-                      },
-                    }}
-                  >
-                    <Container
-                      width="100%"
-                      display="flex"
-                      flexDirection="column"
-                      gap={5}
-                    >
+                  <Box {...sliderTextTwoStyles}>
+                    <Container {...commonContainerStyles}>
                       {useBreakpointValue({
                         base: true,
                         sm: false,
@@ -111,16 +123,17 @@ export default function Hero() {
                       }) && (
                         <ButtonAC
                           alignSelf="center"
-                          mt={8}
+                          mb={8}
                           size="lg"
                           color="white"
                           bg="secondary"
                           text="المسارات التعليمية"
                           icon={masaratlogo}
-                          marginLeft={{ lg: 170 }}
                           sx={{
-                            width: "235px",
+                            width: "200px",
                             height: "60px",
+                            fontSize: { base: "14px" },
+                            fontWeight: 900,
                           }}
                         />
                       )}
@@ -141,12 +154,20 @@ export default function Hero() {
                         <ButtonAC
                           color="white"
                           bg="secondary"
+                          size="lg"
                           text="المسارات التعليمية"
                           icon={masaratlogo}
-                          marginTop={{ lg: 70, sm: 0 }}
+                          marginTop={{ lg: 70, sm: 10 }}
+                          marginLeft={{ lg: 300, sm: -10 }}
                           sx={{
                             width: "310px",
                             height: "80px",
+                            fontSize: { sm: "19px", lg: "17px" },
+                            fontWeight: "900",
+                            "@media (min-width: 1280px) and (max-width: 1650px)":
+                              {
+                                marginLeft: "90px",
+                              },
                           }}
                         />
                       )}
@@ -163,6 +184,10 @@ export default function Hero() {
               style={{
                 backgroundImage:
                   "url('/images/medium-shot-happy-colleagues-working-together 1.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                width: "100%",
               }}
             >
               <div className="overlay overlay1"></div>
@@ -174,22 +199,7 @@ export default function Hero() {
                 px={{ base: 8, sm: 10, lg: 0 }}
               >
                 <GridItem className="content" flexGrow={1} flexShrink={0}>
-                  <Box
-                    height="100%"
-                    display="flex"
-                    width={740}
-                    alignItems="center"
-                    marginRight={{ lg: 85 }}
-                    paddingRight={{ base: 90, lg: 150, sm: 150 }}
-                    paddingLeft={{ base: 90, sm: 150, lg: 4 }}
-                    fontSize={{ base: "23px", sm: "33px", lg: "40px" }}
-                    textAlign={{ lg: "right", sm: "center", base: "center" }}
-                    sx={{
-                      "@media (min-width: 1280px) and (max-width: 1400px)": {
-                        width: "610px",
-                      },
-                    }}
-                  >
+                  <Box {...sliderTextOneStyles}>
                     <p>
                       في الأكاديمية العربية للبرمجة، نسعى لإعداد جيل جديد من
                       المبرمجين العرب الذين يمتلكون الأدوات والمهارات اللازمة
@@ -198,31 +208,8 @@ export default function Hero() {
                   </Box>
                 </GridItem>
                 <GridItem className="content" flexGrow={1} flexShrink={0}>
-                  <Box
-                    height="37%"
-                    width={{ base: "100%", lg: 770 }}
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent="center"
-                    fontSize={{ base: "10px", sm: "10px", lg: "23px" }}
-                    textAlign={{ base: "center", sm: "center", lg: "right" }}
-                  
-                    paddingRight={{ lg: 104, sm: 100 }}
-                    paddingBottom={{ sm: 70, lg: 0 }}
-                    marginTop={{ lg: 202 }}
-                    marginBottom={{ base: 20 }}
-                    sx={{
-                      "@media (min-width: 1280px) and (max-width: 1650px)": {
-                        width: "450px",
-                      },
-                    }}
-                  >
-                    <Container
-                      width="100%"
-                      display="flex"
-                      flexDirection="column"
-                      gap={5}
-                    >
+                  <Box {...sliderTextTwoStyles}>
+                    <Container {...commonContainerStyles}>
                       <p>
                         نؤمن بأن البرمجة ليست مجرد مهارة، بل هي لغة المستقبل
                         التي تفتح آفاقًا جديدة للإبداع والابتكار
