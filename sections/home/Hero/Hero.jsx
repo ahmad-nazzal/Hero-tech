@@ -1,11 +1,6 @@
 "use client";
-import { Suspense } from "react";
 import "./hero.css";
-import Courses from "./courses.jsx";
-import Loading from "./loading.jsx";
-
-import SearchBar from "../../../components/SearchBar";
-import { Text, Box, Container, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Container, Grid, GridItem } from "@chakra-ui/react";
 
 import masaratlogo from "../../../public/images/masaratlogo.png";
 import ButtonAC from "../../../components/ButtonAC";
@@ -228,33 +223,7 @@ export default function Hero() {
         </Swiper>
       </Box>
 
-      <main style={{ margin: "0", width: "100%", overflow: "hidden" }}>
-        <Grid templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }} gap="4">
-          <GridItem colSpan={{ base: 4, md: 1 }}>
-            <Text
-              className="recommended"
-              marginRight="237px"
-              marginBottom="84px"
-              paddingTop="153px"
-              color="#713488"
-              borderBottom="2px solid #713488"
-              width="208px"
-              fontWeight="bold"
-              fontSize="27px"
-            >
-              الدورات التدريبية
-            </Text>
-          </GridItem>
 
-          <GridItem colSpan={3} className="grid-item">
-            <SearchBar placeholder="..... مقدمة لمحرك الألعاب اليونتي" />
-          </GridItem>
-        </Grid>
-
-        <Suspense fallback={<Loading />}>
-          <Courses />
-        </Suspense>
-      </main>
     </>
   );
 }

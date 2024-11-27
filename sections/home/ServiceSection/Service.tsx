@@ -66,9 +66,7 @@ export const Service = () => {
 
   return (
     <>
-      <Box bg={"black"} minH={200} color={"white"}>
-        for test
-      </Box>
+    
       <Box
         position="relative"
         display="flex"
