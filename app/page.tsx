@@ -5,9 +5,8 @@ import ContactUs from "../sections/home/ContactUs/ContactUs";
 import ReviewList from "../sections/home/ReviewSection/ReviewList";
 import Footer from "../sections/Footer/Footer";
 import Hero from "../sections/home/Hero/Hero";
-
+import Header from "../sections/header/header";
 import Quiz from "../sections/home/Quiz/Quiz";
-
 import { Box } from "@chakra-ui/react";
 import { Service } from "../sections/home/ServiceSection/Service";
 import Dad from "../sections/DadSection/Dad";
@@ -25,6 +24,7 @@ export default function Home() {
           promotionMessage="خصومات بنسبة 20% على الكورسات"
         />
       </Box>
+      <Header/>
       <Hero></Hero>
       <Service></Service>
       <Dad></Dad>
