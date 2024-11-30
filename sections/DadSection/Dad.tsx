@@ -1,19 +1,56 @@
 import React from "react";
-import { Box, Grid, GridItem, Text, Flex } from "@chakra-ui/react";
+import {
+  Box,
+  Grid,
+  GridItem,
+  Text,
+  Flex,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import Image from "next/image";
 import dad from "../../public/icons/dad.svg";
 import ButtonAC from "../../components/ButtonAC";
 import googleDocs from "../../public/icons/google docs.svg";
 
 const Dad = () => {
+  const [isMobile] = useMediaQuery("(max-width: 768px)");
+
   return (
     <Box
       minHeight="100vh"
-      bg="url('/images/video.png') no-repeat center center/cover"
       display="flex"
       alignItems="center"
       justifyContent="center"
+      position="relative"
+      overflow="hidden"
     >
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          zIndex: -1,
+        }}
+      >
+        <source
+          src={
+            isMobile
+              ? "/videos/acavideomobile.mp4"
+              : "/videos/acavideodesktop.mp4"
+          }
+          type="video/mp4"
+        />
+        <p>متصفحك لا يدعم تشغيل الفيديوهات. يرجى التحديث!</p>
+      </video>
+
       <Box>
         <Grid templateColumns={{ base: "1fr", lg: "1fr 1fr" }} gap={4}>
           <GridItem>
@@ -37,6 +74,7 @@ const Dad = () => {
                 }}
                 fontWeight={700}
                 mt={4}
+                textAlign={{ base: "center", lg: "right" }}
               >
                 لغة ضاد
               </Text>

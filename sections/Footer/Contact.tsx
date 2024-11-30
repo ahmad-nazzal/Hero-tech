@@ -5,7 +5,7 @@ import Image from "next/image";
 import location from "../../public/images/location.png";
 import tele from "../../public/images/tele.png";
 import msg from "../../public/images/msg.png";
-import vector from "../../public/images/vector.png";
+import vector1tele from "../../public/images/vector1tele.png";
 
 export default function Contact() {
   return (
@@ -58,7 +58,7 @@ export default function Contact() {
                 fontWeight="normal"
                 textAlign={"center"}
               >
-                <Image src={vector} alt="call us" width={23} height={21} />
+                <Image src={vector1tele} alt="call us" width={23} height={21} />
                 تواصل معنا
               </Button>
             </Box>
