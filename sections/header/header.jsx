@@ -10,7 +10,6 @@ const Header = () => {
 
   return (
     <Box>
-
       {isMobile ? <HeaderMobile /> : <HeaderDesktop />}
     </Box>
   );
