@@ -1,19 +1,7 @@
 "use client";
-import { Suspense } from "react";
 import "./hero.css";
-//import bookIcon from "../../../public/icons/book-icon.png";
-import Courses from "./courses.jsx";
-import Loading from "./loading.jsx";
-import {
-  Text,
-  Flex,
-  List,
-  ListItem,
-  Box,
-  Container,
-  Grid,
-  GridItem,
-} from "@chakra-ui/react";
+import { Box, Container, Grid, GridItem } from "@chakra-ui/react";
+
 import masaratlogo from "../../../public/images/masaratlogo.png";
 import ButtonAC from "../../../components/ButtonAC";
 import { useBreakpointValue } from "@chakra-ui/react";
@@ -23,17 +11,63 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import mazedlogo from "../../../public/images/🦆 icon _more horiz circled outline_.png";
-import CustomCard from "../../../components/CustomCard";
+
 export default function Hero() {
+  const sliderTextOneStyles = {
+    height: "100%",
+    display: "flex",
+    justifyContent: { sm: "center" },
+    width: { lg: 740, sm: 900 },
+    lineHeight: { base: "normal", sm: "1.18", lg: "1.18" },
+    alignItems: "center",
+    paddingTop: { base: 5, sm: 5, lg: 19 },
+    marginRight: { lg: 85, md: 28 },
+    paddingRight: { base: 50, lg: 150 },
+    paddingBottom: { base: 8, lg: 150 },
+    paddingLeft: { base: 50, sm: 210, lg: 4 },
+    fontSize: { base: "25px", sm: "50px", lg: "40px" },
+    textAlign: { lg: "right", sm: "center", base: "center" },
+    sx: {
+      "@media (min-width: 1280px) and (max-width: 1400px)": {
+        width: "610px",
+      },
+    },
+  };
+
+  const sliderTextTwoStyles = {
+    height: "37%",
+    lineHeight: "1.2",
+    width: { base: "100%", lg: 770 },
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    fontSize: { base: "16px", sm: "25px", lg: "23px" },
+    textAlign: { base: "center", sm: "center", lg: "right" },
+    paddingTop: { lg: 162, sm: 7 },
+    paddingRight: { lg: 95, md: 10 },
+    paddingLeft: { lg: 10 },
+    paddingBottom: { sm: 70, lg: 0 },
+    marginTop: { lg: 202, sm: 20 },
+    marginBottom: { base: 20 },
+    sx: {
+      "@media (min-width: 1280px) and (max-width: 1650px)": {
+        width: "590px",
+      },
+    },
+  };
+
+  const commonContainerStyles = {
+    width: { base: "100%", sm: "70%", lg: "100%" },
+    display: "flex",
+    flexDirection: "column",
+    gap: { lg: 10, sm: 10, base: 3 },
+    alignItems: { sm: "center" },
+    marginRight: { lg: 0, sm: 10, md: 110 },
+  };
+
   return (
     <>
-      <Box
-        as="section"
-        minH="100vh"
-        overflow="hidden"
-        className="slider-image-section"
-      >
+      <Box as="section" overflow="hidden" className="slider-image-section">
         <Swiper
           modules={[Navigation, Pagination, A11y]}
           spaceBetween={0}
@@ -48,57 +82,35 @@ export default function Hero() {
           <SwiperSlide>
             <div
               className="slide"
-              style={{ backgroundImage: "url('/images/bac.jpg')" }}
+              style={{
+                backgroundImage:
+                  "url('/images/medium-shot-happy-colleagues-working-together 1.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                width: "100%",
+              }}
             >
               <div className="overlay overlay1"></div>
               <div className="overlay overlay2"></div>
               <Grid
                 templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }}
                 height="100%"
-                gap={{ lg: 20, sm: 0 }}
-                maxW={{ base: "100%", lg: "1200px" }}
                 mx="auto"
                 px={{ base: 8, sm: 10, lg: 0 }}
               >
-                <GridItem flexGrow={1} flexShrink={0}>
-                  <Box
-                    width={{ base: "100%", lg: "auto" }}
-                    height="100%"
-                    display="flex"
-                    alignItems="center"
-                    paddingTop={{ base: 5, sm: 30 }}
-                    paddingRight={{ base: 90, lg: 100, sm: 150 }}
-                    paddingLeft={{ base: 90, sm: 150, lg: 50 }}
-                    paddingBottom={{ base: 0, lg: 150 }}
-                    fontSize={{ base: "23px", sm: "33px", lg: "25px" }}
-                    textAlign={{ lg: "right", sm: "center", base: "center" }}
-                  >
-                    <p className="content">
+                <GridItem className="content" flexGrow={1} flexShrink={0}>
+                  <Box {...sliderTextOneStyles}>
+                    <p>
                       تعمل الاكادمية العربية للبرمجة كجسر يربط العقول
-                      التكنولوجيةالعربية في المهجر بالطلبة العرب أينما كانوا
+                      التكنولوجية العربية في المهجر بالطلبة العرب أينما كانوا
                     </p>
                   </Box>
                 </GridItem>
 
-                <GridItem flexGrow={1} flexShrink={0}>
-                  <Box
-                    height="100%"
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent="center"
-                    textAlign={{ base: "center", sm: "center", lg: "right" }}
-                  >
-                    <Container
-                      maxW="1200px"
-                      width="100%"
-                      display="flex"
-                      flexDirection="column"
-                      gap={3}
-                      paddingLeft={{ lg: 100, sm: 100 }}
-                      paddingRight={{ lg: 0, sm: 100 }}
-                      paddingBottom={{ sm: 70, lg: 0 }}
-                      marginBottom={{ base: 20 }}
-                    >
+                <GridItem className="content" flexGrow={1} flexShrink={0}>
+                  <Box {...sliderTextTwoStyles}>
+                    <Container {...commonContainerStyles}>
                       {useBreakpointValue({
                         base: true,
                         sm: false,
@@ -106,46 +118,51 @@ export default function Hero() {
                       }) && (
                         <ButtonAC
                           alignSelf="center"
-                          mt={8}
+                          mb={8}
                           size="lg"
                           color="white"
                           bg="secondary"
                           text="المسارات التعليمية"
                           icon={masaratlogo}
-                          marginLeft={{ lg: 170 }}
-                          marginTop={{ base: 0 }}
                           sx={{
-                            width: "235px",
+                            width: "200px",
                             height: "60px",
+                            fontSize: { base: "14px" },
+                            fontWeight: 900,
                           }}
                         />
                       )}
-                      <p className="content">
+                      <p>
                         تقدم الأكاديمية العربية للبرمجة تجربة تعلم متميزة من
                         خلال مجموعة من الدروس والمناهج الاحترافية بجودة عالية
                       </p>
-                      <p className="content">
+                      <p>
                         وأسلوب تدريسي ممتع يتناسب مع مختلف الطرق التعليمية
                         للمبتدئين والمحترفين بإشراف مدربين ومبرمجين ذوي خبرة
                         عالمية في المجال التقني
                       </p>
-                      {!useBreakpointValue({
-                        base: true,
-                        sm: false,
-                        lg: false,
+                      {useBreakpointValue({
+                        base: false,
+                        sm: true,
+                        lg: true,
                       }) && (
                         <ButtonAC
-                          alignSelf="center"
-                          mt={8}
-                          size="lg"
                           color="white"
                           bg="secondary"
+                          size="lg"
                           text="المسارات التعليمية"
                           icon={masaratlogo}
-                          marginLeft={{ lg: 170 }}
+                          marginTop={{ lg: 70, sm: 10 }}
+                          marginLeft={{ lg: 300, sm: -10 }}
                           sx={{
-                            width: "235px",
-                            height: "60px",
+                            width: "310px",
+                            height: "80px",
+                            fontSize: { sm: "19px", lg: "17px" },
+                            fontWeight: "900",
+                            "@media (min-width: 1280px) and (max-width: 1650px)":
+                              {
+                                marginLeft: "90px",
+                              },
                           }}
                         />
                       )}
@@ -159,196 +176,54 @@ export default function Hero() {
           <SwiperSlide>
             <div
               className="slide"
-              style={{ backgroundImage: "url('/images/talaween.png')" }}
+              style={{
+                backgroundImage:
+                  "url('/images/medium-shot-happy-colleagues-working-together 1.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                width: "100%",
+              }}
             >
               <div className="overlay overlay1"></div>
               <div className="overlay overlay2"></div>
+              <Grid
+                templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }}
+                height="100%"
+                mx="auto"
+                px={{ base: 8, sm: 10, lg: 0 }}
+              >
+                <GridItem className="content" flexGrow={1} flexShrink={0}>
+                  <Box {...sliderTextOneStyles}>
+                    <p>
+                      في الأكاديمية العربية للبرمجة، نسعى لإعداد جيل جديد من
+                      المبرمجين العرب الذين يمتلكون الأدوات والمهارات اللازمة
+                      لمواكبة التطور التكنولوجي العالمي
+                    </p>
+                  </Box>
+                </GridItem>
+                <GridItem className="content" flexGrow={1} flexShrink={0}>
+                  <Box {...sliderTextTwoStyles}>
+                    <Container {...commonContainerStyles}>
+                      <p>
+                        نؤمن بأن البرمجة ليست مجرد مهارة، بل هي لغة المستقبل
+                        التي تفتح آفاقًا جديدة للإبداع والابتكار
+                      </p>
+                      <p>
+                        انضم إلينا اليوم لتبدأ رحلتك في عالم التقنية بدعم من
+                        خبرائنا، ومجتمعنا الملهم الذي يشجعك على التقدم خطوة
+                        بخطوة نحو تحقيق أهدافك
+                      </p>
+                    </Container>
+                  </Box>
+                </GridItem>
+              </Grid>
             </div>
           </SwiperSlide>
         </Swiper>
-
-        <Box as="section" overflow="hidden" bg="#9D809B">
-          <List
-            display="flex"
-          paddingTop={3}
-          paddingBottom={13}
-            justifyContent="center"
-            
-                  >
-                    
-            <Flex
-              height={450}
-              width={900}
-              padding={60}
-
-            bg="white"
-              borderRadius="11"
-              boxShadow="0px 4px 12px rgba(0, 0, 0, 0.37)"
-            
-              justifyContent="center"  
-              alignItems="center"  
-              gap={9}    
-      
-            >
-              <ListItem    >
-                <CustomCard
-                
-                  title="دروس وانماط الميدجورني"
-                  description="وصف قصير للكارد"
-                  imageSrc="/icons/transparent-book-icon-open-blank-book-pages-icon-education-ico-5f9bad3ade7008 1.png"
-                  applyFilter={false}
-                  buttons={[
-                    <ButtonAC
-                      key="read-more"
-                      borderRadius="6px"
-                      mb="30px"
-                      color="white"
-                      bg="secondary"
-                      text="المزيد..."
-                      icon={mazedlogo}
-                      sx={{
-                        width: "200px",
-                        height: "60px",
-                        
-                        fontSize: "17px",
-                        fontWeight: "bold"
-                      }}
-                    
-                    />,
-                  ]}
-                
-                imageWidth="77.21px"
-                imageHeight="57.78px"
-                        boxShadow="0px 0px 0px rgba(0, 0, 0, 0)"
-                         cardWidth="250px"
-                        //cardHeight="450px"
-                        cardHeight="350px"
-                        headerBg="#783BA2"
-                        headerWidth="130px"
-                        headerHeight="130px"
-                    borderRadius="50%"
-                    marginRight="30px"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center" 
-                />
-              </ListItem>
-              <ListItem     >
-                <CustomCard
-                  title="بنك الأسئلة التقنية"
-                  description="وصف قصير للكارد"
-                  imageSrc="/icons/transparent-test-quiz-icon-my-classroom-icon-check-icon-5dd1c17b65bb03 1.png"
-                  applyFilter={false}
-                  buttons={[
-                    <ButtonAC
-                      key="read-more"
-                      borderRadius="6px"
-                      mb="30px"
-                      color="white"
-                      bg="secondary"
-                            text="المزيد..."
-                      icon={mazedlogo}
-                      sx={{
-                        width: "200px",
-                        height: "60px",
-                  fontWeight: "bold",
-                        fontSize: "17px",
-                      }}
-                    />,
-                  ]}
-                  boxShadow="0px 0px 0px rgba(0, 0, 0, 0)"
-                        cardWidth="250px"
-                        cardHeight="350px"
-        
-                        imageWidth="48.31px"
-                imageHeight="64.28px"
-                        headerBg="#783BA2"
-                        headerWidth="130px"
-                        headerHeight="130px"
-                            borderRadius="50%"
-                    marginRight="30px"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center" 
-                />
-              </ListItem>
-              <ListItem   
-  
-              >
-                <CustomCard
-                  title="دروس وانماط الميدجورني"
-                  description="وصف قصير للكارد"
-                  imageSrc="/icons/kisspng-education-logo-image-e-learning-5cce15891e7a39 1.png"
-                  applyFilter={false}
-                  buttons={[
-                    <ButtonAC
-            
-                      key="read-more"
-                      borderRadius="6px"
-                      mb="30px"
-                      color="white"
-                      bg="secondary"
-                            text="المزيد..."
-                      icon={mazedlogo}
-                      sx={{
-                        width: "200px",
-                        height: "60px",
-                      
-                        fontSize: "17px",
-                         fontWeight: "bold"
-                      }}
-                    />,
-                  ]}
-                  boxShadow="0px 0px 0px rgba(0, 0, 0, 0)"
-                         cardWidth="250px"
-        
-                        cardHeight="350px"
-                        headerBg="#783BA2"
-                        headerWidth="140px"
-                        headerHeight="130px"
-                              imageWidth="58.48px"
-                imageHeight="55.61px"
-                    borderRadius="50%"
-                    marginRight="30px"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center" 
-                />
-              </ListItem>
-            </Flex>
-          </List>
-        </Box>
       </Box>
 
-      <main  >
-        <Grid templateColumns="repeat(4, 1fr)" gap="4">
-          <GridItem colSpan={1}>
-            <Text
-              className="recommended"
-              marginRight="237px"
-              marginBottom="84px"
-              paddingTop="153px"
-              color="#713488"
-              borderBottom="2px solid #713488"
-              width="208px"
-              fontWeight="bold"
-              fontSize="27px"
-            >
-              الدورات التدريبية
-            </Text>
-          </GridItem>
 
-          {/*Put here Search Bar*/}
-          <GridItem colSpan={3}></GridItem>
-        </Grid>
-
-        <Suspense  fallback={<Loading />}>
-          <Courses />
-    
-        </Suspense>
-      </main>
     </>
   );
 }
-
-

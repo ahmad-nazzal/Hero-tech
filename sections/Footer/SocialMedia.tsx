@@ -3,73 +3,252 @@ import Image from "next/image";
 import facebook from "../../public/images/facebook.png";
 import discord from "../../public/images/discord.png";
 import x from "../../public/images/x.png";
-import youtube from "../../public/images/youtube.png";
+import youtubesvg from "../../public/icons/youtubesvg.svg";
 import instagram from "../../public/images/instagram.png";
 import tiktok from "../../public/images/tiktok.png";
 import threds from "../../public/images/threds.png";
 import linkedin from "../../public/images/linkedin.png";
 
-import { Grid, GridItem, Flex, Box, Text } from "@chakra-ui/react";
-import useResponsiveStyles from "../../Hooks/useResponsiveStyles";
+import { GridItem, Flex, Box, Text } from "@chakra-ui/react";
 import CustomLine from "./CustomLine";
 
 export default function SocialMedia() {
-  const { textAlign, flexAlign } = useResponsiveStyles();
   return (
-    <>
-      <GridItem width="100%" px={{ base: 4, md: 0 }}>
-        <Box
-          w="100%"
-          maxW={{ base: "100%", md: "400px" }}
-          p={6}
-          bg="white"
-          borderRadius="5px"
-          color="primary"
-          mx="auto"
-          height="auto"
-          minHeight="400px"
+    <GridItem width="100%" px={{ base: 4, md: 0 }}>
+      <Box
+        w="100%"
+        maxW={{ base: "80%", md: "320px", lg: "400px" }}
+        p={4}
+        bg="white"
+        borderRadius="5px"
+        color="primary"
+        mx="auto"
+        height={{ base: "310px", md: "330px", lg: "auto" }}
+        minHeight={{ base: "280px", md: "300px", lg: "350px" }}
+      >
+        <Text alignItems="flex-start" fontSize="20px" mb={4}>
+          مواقع التواصل الاجتماعي
+        </Text>
+        <CustomLine
+          width="70%"
+          bg="primary"
+          marginBottom={8}
+          alignItems="flex-start"
+        />
+        <Flex
+          direction="column"
+          gap={3}
+          alignItems="flex-start"
+          justifyItems="flex-start"
         >
-          <Text textAlign={textAlign} fontWeight="bold" mb={4}>
-            مواقع التواصل الاجتماعي
-          </Text>
-          <CustomLine
-            width="70%"
-            bg="primary"
-            marginBottom={8}
-            mx={textAlign === "center" ? "auto" : "0"}
-          />
-          <Flex direction="column" gap={6} alignItems={flexAlign}>
-            <Grid
-              templateColumns="repeat(4, 1fr)"
-              gap={4}
-              justifyContent="center"
-              width="100%"
-              maxW="300px"
+          <Flex
+            gap={4}
+            justifyContent="flex-start"
+            width="100%"
+            maxW="100%"
+            mb={3}
+          >
+            <div
+              style={{
+                width: "32px",
+                height: "32px",
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
-              <Image src={facebook} alt="Facebook" width={32} height={32} />
-              <Image src={discord} alt="Discord" width={33} height={33} />
-              <Image src={youtube} alt="YouTube" width={40} height={40} />
-              <Image src={x} alt="X" width={32} height={32} />
-            </Grid>
-            <Grid
-              templateColumns="repeat(4, 1fr)"
-              gap={4}
-              justifyContent="center"
-              width="100%"
-              maxW="300px"
+              <Image
+                src={facebook}
+                alt="Facebook"
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  width: "auto",
+                  height: "auto",
+                }}
+                width={32}
+                height={32}
+                priority
+              />
+            </div>
+            <div
+              style={{
+                width: "32px",
+                height: "32px",
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
-              <Image src={tiktok} alt="TikTok" width={36} height={36} />
-              <Image src={threds} alt="Threads" width={33} height={32} />
-              <Image src={linkedin} alt="LinkedIn" width={34} height={34} />
-              <Image src={instagram} alt="Instagram" width={34} height={34} />
-            </Grid>
+              <Image
+                src={discord}
+                alt="Discord"
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  width: "auto",
+                  height: "auto",
+                }}
+                width={33}
+                height={33}
+                priority
+              />
+            </div>
+            <div
+              style={{
+                width: "32px",
+                height: "32px",
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Image
+                src={youtubesvg}
+                alt="YouTube"
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  width: "32px",
+                  height: "32px",
+                }}
+                width={32}
+                height={32}
+                priority
+              />
+            </div>
+            <div
+              style={{
+                width: "32px",
+                height: "32px",
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Image
+                src={x}
+                alt="X"
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  width: "auto",
+                  height: "auto",
+                }}
+                width={32}
+                height={32}
+                priority
+              />
+            </div>
           </Flex>
-          <Text textAlign={textAlign} color="primary" mt={10}>
-            انضم الآن إلى مجتمع المبرمجين في الأكاديمية وابدأ رحلتك نحو احتراف
-            البرمجة!
-          </Text>
-        </Box>
-      </GridItem>
-    </>
+          <Flex gap={4} justifyContent="flex-start" width="100%" maxW="100%">
+            <div
+              style={{
+                width: "32px",
+                height: "32px",
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Image
+                src={tiktok}
+                alt="TikTok"
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  width: "auto",
+                  height: "auto",
+                }}
+                width={32}
+                height={32}
+                priority
+              />
+            </div>
+            <div
+              style={{
+                width: "32px",
+                height: "32px",
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Image
+                src={threds}
+                alt="Threads"
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  width: "auto",
+                  height: "auto",
+                }}
+                width={32}
+                height={32}
+                priority
+              />
+            </div>
+            <div
+              style={{
+                width: "32px",
+                height: "32px",
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Image
+                src={linkedin}
+                alt="LinkedIn"
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  width: "auto",
+                  height: "auto",
+                }}
+                width={32}
+                height={32}
+                priority
+              />
+            </div>
+            <div
+              style={{
+                width: "32px",
+                height: "32px",
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Image
+                src={instagram}
+                alt="Instagram"
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  width: "auto",
+                  height: "auto",
+                }}
+                width={32}
+                height={32}
+                priority
+              />
+            </div>
+          </Flex>
+        </Flex>
+        <Text alignItems="flex-start" color="primary" mt={10}>
+          انضم الآن إلى مجتمع المبرمجين في الأكاديمية وابدأ رحلتك نحو احتراف
+          البرمجة!
+        </Text>
+      </Box>
+    </GridItem>
   );
 }

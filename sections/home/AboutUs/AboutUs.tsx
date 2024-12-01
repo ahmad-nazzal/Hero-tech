@@ -6,35 +6,34 @@ import ButtonAC from "../../../components/ButtonAC";
 
 export default function AboutUs() {
   return (
-    <Box as="section" minH="100vh" bg="white" pt={20} overflow="hidden">
+    <Box as="section" minH="screen" overflow="hidden" py={10}>
       <Grid
         templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }}
         height="100%"
         alignItems="center"
         justifyContent="center"
-        gap={10}
+        gap={4}
         maxW={{ base: "100%", lg: "1200px" }}
         mx="auto"
-        px={{ base: 8, sm: 10, lg: 0 }}
+        px={{ base: 10, sm: 10, lg: 0 }}
       >
-        <GridItem flexGrow={1} flexShrink={0}>
+        <GridItem>
           <Box
             width={{ base: "100%", lg: "auto" }}
             height="100%"
             display="flex"
             justifyContent="center"
             alignItems="center"
-            px={{ base: 6, sm: 8 }}
+            // px={{ base: 6, sm: 8 }}
           >
             <Image
               src={aboutus.src}
               alt="About us"
               objectFit="cover"
-              width={{ base: "100%", lg: "100%" }}
-              height={{ base: "auto", lg: "580px" }}
+              width={{ base: "100%", lg: "886px" }}
+              height={{ base: "auto", lg: "550px" }}
               maxH="700px"
               zIndex={1}
-              borderRadius="md"
             />
           </Box>
         </GridItem>
@@ -64,10 +63,24 @@ export default function AboutUs() {
                 bg="white"
                 p={10}
                 opacity={0.9}
+                w={{ base: "100%", md: "100%", lg: "600px" }}
+                minH={{ base: "100%", md: "100%", lg: "380px" }}
+                borderWidth={{ base: 1, lg: 0 }}
+                borderColor={"primary"}
+                boxShadow={{
+                  base: "lg",
+                  lg: "-4px -4px 6px rgba(0, 0, 0, 0.1), 4px 4px 6px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.1)",
+                }}
+                rounded={"lg"}
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                textAlign="center"
               >
                 <ButtonAC
                   alignSelf={"center"}
-                  mt={8}
+                  mt={{ base: "5px", md: "39px", lg: "56px" }}
+                  mb={{ base: "5x", md: "28px", lg: "40px" }}
                   size="lg"
                   color={"white"}
                   bg={"secondary"}

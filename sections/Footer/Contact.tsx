@@ -5,61 +5,63 @@ import Image from "next/image";
 import location from "../../public/images/location.png";
 import tele from "../../public/images/tele.png";
 import msg from "../../public/images/msg.png";
-import vector from "../../public/images/vector.png";
-import useResponsiveStyles from "../../Hooks/useResponsiveStyles";
+import vector1tele from "../../public/images/vector1tele.png";
 
 export default function Contact() {
-  const { textAlign, flexAlign } = useResponsiveStyles();
   return (
     <>
       <GridItem width="100%" px={{ base: 4, md: 0 }}>
         <Box
-          color="primary"
           w="100%"
-          maxW={{ base: "100%", md: "400px" }}
-          p={6}
+          maxW={{ base: "80%", md: "320px", lg: "400px" }}
+          p={4}
           bg="white"
           borderRadius="5px"
+          color="primary"
           mx="auto"
-          height="auto"
-          minHeight="400px"
+          height={{ base: "310px", md: "330px", lg: "auto" }}
+          minHeight={{ base: "280px", md: "300px", lg: "350px" }}
         >
-          <Text textAlign={textAlign} fontWeight="bold" mb={4}>
+          <Text alignItems={"flex-start"} fontSize={"25px"} mb={4}>
             التواصل
           </Text>
           <CustomLine
+            alignItems={"flex-start"}
             width="30%"
             bg="primary"
             marginBottom={8}
-            mx={textAlign === "center" ? "auto" : "0"}
           />
-          <Flex direction="column" gap={6} alignItems={flexAlign}>
-            <Flex alignItems="center" gap={4}>
+          <Flex direction="column" gap={6} alignItems={"flex-start"}>
+            <Flex alignItems="flex-start" gap={4}>
               <Image src={location} alt="location" width={17} height={27} />
               <Text>المقر الرئيسي: بريطانيا، لندن</Text>
             </Flex>
-            <Flex alignItems="center" gap={4}>
+            <Flex alignItems="flex-start" gap={4}>
               <Image src={tele} alt="tele" width={23} height={22} />
               <Text>+447918713367</Text>
             </Flex>
-            <Flex alignItems="center" gap={4}>
+            <Flex alignItems="flex-start" gap={4}>
               <Image src={msg} alt="msg" width={23} height={17} />
               <Text>info@arabcodeacademy.com</Text>
             </Flex>
-            <Button
-              marginTop={4}
-              bg="secondary"
-              color="white"
-              _hover={{ bg: "secondaryDark" }}
-              size="sm"
-              display="flex"
-              alignItems="center"
-              gap={2}
-              mx={textAlign === "center" ? "auto" : "0"}
-            >
-              <Image src={vector} alt="call us" width={24} height={22} />
-              <Text fontWeight="normal">تواصل معنا</Text>
-            </Button>
+            <Box alignItems="flex-start">
+              <Button
+                marginTop={{ base: 1, md: 2 }}
+                bg="secondary"
+                color="white"
+                _hover={{ bg: "secondaryDark" }}
+                w={"150px"}
+                h={"40px"}
+                display="flex"
+                alignItems={"center"}
+                gap={2}
+                fontWeight="normal"
+                textAlign={"center"}
+              >
+                <Image src={vector1tele} alt="call us" width={23} height={21} />
+                تواصل معنا
+              </Button>
+            </Box>
           </Flex>
         </Box>
       </GridItem>
