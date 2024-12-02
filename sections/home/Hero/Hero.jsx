@@ -14,6 +14,8 @@ import { Suspense } from "react";
 import "./hero.css";
 import Courses from "./courses.jsx";
 import Loading from "./loading.jsx";
+import { Service } from "../ServiceSection/Service";
+import Dad from "../../DadSection/Dad";
 import SearchBar from "../../../components/SearchBar";
 
 export default function Hero() {
@@ -226,30 +228,38 @@ export default function Hero() {
           </SwiperSlide>
         </Swiper>
       </Box>
-
+      <Service></Service>
+<Dad></Dad>
       <main style={{ margin: "0", width: "100%", overflow: "hidden" }}>
-        <Grid templateColumns={{ base: "1fr", md: "repeat(4, 1fr)",sm:"repeat(4, 1fr)",base:"repeat(4, 1fr)" }} gap="4">
-          <GridItem colSpan={{ base: 1, md: 1, sm: 1 }}>
-            <Text
-              className="recommended"
-              marginRight="237px"
-              marginBottom="84px"
-              paddingTop="153px"
-              color="#713488"
-              borderBottom="2px solid #713488"
-              width="208px"
-              fontWeight="bold"
-              fontSize="27px"
-            >
-              الدورات التدريبية
-            </Text>
-          </GridItem>
+  <Grid 
+    templateColumns={{ 
+      base: "1fr",   
+      sm: "1fr",     
+      md: "1fr",     
+      lg: "repeat(4, 1fr)"  
+    }} 
+    gap="4"
+  >
+    <GridItem colSpan={{ base: 1, lg: 1 }}>
+      <Text
+        className="recommended"
+        marginRight="237px"
+        marginBottom="84px"
+        paddingTop="153px"
+        color="#713488"
+        borderBottom="2px solid #713488"
+        width="208px"
+        fontWeight="bold"
+        fontSize="27px"
+      >
+        الدورات التدريبية
+      </Text>
+    </GridItem>
 
-          <GridItem colSpan={3} className="grid-item">
-            <SearchBar placeholder="..... مقدمة لمحرك الألعاب اليونتي" />
-          </GridItem>
-        </Grid>
-
+    <GridItem colSpan={{ base: 1, lg: 3 }}>
+      <SearchBar placeholder="..... مقدمة لمحرك الألعاب اليونتي" />
+    </GridItem>
+  </Grid>
         <Suspense fallback={<Loading />}>
           <Courses data={[
     {
