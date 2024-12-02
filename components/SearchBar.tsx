@@ -20,7 +20,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
   });
 
   return (
-    <Box display="flex" justifyContent="flex-end" width="100%">
+    <Box display="flex" justifyContent="flex-end" width="100%" marginTop={{lg:"160px"}} paddingLeft={{ base: "60px", sm: "140px", md: "220px",lg:"175px"}} paddingRight={{ base: "70px", sm: "150px", md: "180px",lg:"1px"}} >
       <InputGroup width={inputWidth} dir="ltr">
         <InputLeftElement height="100%" pointerEvents="none" marginLeft="1rem">
           <Box display="flex" alignItems="center" height="100%">
