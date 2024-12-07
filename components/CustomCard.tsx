@@ -1,6 +1,5 @@
 import React from "react";
 import { ReactNode } from "react";
-
 import {
   Card,
   Spacer,
@@ -12,32 +11,15 @@ import {
   Flex,
   Box,
 } from "@chakra-ui/react";
-
 interface CustomCardProps {
   title: string;
   price: string;
   trainerName?: string;
   duration?: string;
   imageSrc: string;
-  boxShadow?: string;
-  cardWidth?: string;
-  cardHeight?: string;
-  headerBg?: string;
-  headerWidth?: string;
-  headerHeight?: string;
-  imageWidth?: string;
-  imageHeight?: string;
-  imageMargin?: string;
   applyFilter?: boolean;
-  borderRadius: string;
-  marginRight?: string;
-  marginBottom?: string;
-  display?: string;
-  alignItems?: string;
-  justifyContent?: string;
   buttons: ReactNode[];
 }
-
 const CustomCard: React.FC<CustomCardProps> = ({
   title,
   price,
@@ -45,53 +27,35 @@ const CustomCard: React.FC<CustomCardProps> = ({
   duration,
   imageSrc,
   buttons,
-  boxShadow,
-  cardWidth,
-  cardHeight,
-  headerBg,
-  headerWidth,
-  headerHeight,
-  imageWidth,
-  imageHeight,
-  imageMargin,
   applyFilter,
-  borderRadius,
-  marginRight,
-  marginBottom,
-  display,
-  alignItems,
-  justifyContent,
 }: CustomCardProps) => {
   return (
     <Card
-      marginBottom={marginBottom}
-      boxShadow={boxShadow}
+      marginBottom="55px"
+      boxShadow="0px 4px 12px rgba(0, 0, 0, 0.17)"
       borderRadius="11px"
       bg="white"
-      width={cardWidth}
-      height={cardHeight}
+      width="350.03px"
+      height="510px"
     >
       <CardHeader
         pt="0"
         pr="0"
-        display={display}
-        justifyContent={justifyContent}
-        alignItems={alignItems}
+        
       >
         <Box
-          bg={headerBg}
+          bg="#FF6542"
           p="10"
-          borderRadius={borderRadius}
-          width={headerWidth}
-          height={headerHeight}
-          display={display}
-          justifyContent={justifyContent}
-          alignItems={alignItems}
+          borderRadius="11px 11px 0 0"
+          width="350px"
+          height="286px"
+      
+      
         >
           <Image
-            height={imageHeight}
-            width={imageWidth}
-            marginRight={imageMargin}
+            height="200px"
+            width="200px"
+            marginRight="38px"
             src={imageSrc}
             alt={title}
             style={{
@@ -101,7 +65,7 @@ const CustomCard: React.FC<CustomCardProps> = ({
         </Box>
       </CardHeader>
 
-      <CardBody marginRight={marginRight}>
+      <CardBody marginRight="20px">
         <Flex marginLeft="20px">
           <Text
             size="lg"
@@ -130,8 +94,6 @@ const CustomCard: React.FC<CustomCardProps> = ({
       <CardFooter paddingTop={0}>
         <Flex
           gap="13px"
-
-          //marginRight="12px"
         >
           {buttons && buttons.length > 0 ? (
             buttons.map((button, index) => (
