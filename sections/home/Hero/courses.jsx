@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ButtonAC from "../../../components/ButtonAC";
+import Loading from "./loading";
 import mazedlogo from "../../../public/images/circled_outline.png";
 import paylogo from "../../../public/images/cart_icon.png";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
@@ -12,17 +13,40 @@ import "swiper/css/scrollbar";
 import CustomCard from "../../../components/CustomCard";
 import { Tooltip } from "@chakra-ui/react";
 import { Text, Box, Grid, GridItem } from "@chakra-ui/react";
+async function getData() {
+  //Loading 5 mintues
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  //revalidate:1000 => 3600 seconds, which means that every hour the browser goes to check the data in db.json
+  const res = await fetch("http://localhost:4000/courses", {
+    next: { revalidate: 0 },
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
 
-const Courses = ({ data }) => {
+const Courses = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [slidesPerView, setSlidesPerView] = useState(1);
   const [showWhiteLayer, setShowWhiteLayer] = useState(true);
-  const handleSlideChange = (swiper) => {
-    if (swiper.activeIndex > 0) {
-      setShowWhiteLayer(false);
-    } else {
-      setShowWhiteLayer(true);
-    }
-  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getData();
+        setData(result);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   useEffect(() => {
     const updateSlidesPerView = () => {
       const width = window.innerWidth;
@@ -44,6 +68,15 @@ const Courses = ({ data }) => {
       window.removeEventListener("resize", updateSlidesPerView);
     };
   }, []);
+  if (loading) return <Loading />;
+  const handleSlideChange = (swiper) => {
+    if (swiper.activeIndex > 0) {
+      setShowWhiteLayer(false);
+    } else {
+      setShowWhiteLayer(true);
+    }
+  };
+  if (loading) return <Loading />;
   return (
     <Box
       marginBottom={112}
