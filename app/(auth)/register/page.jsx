@@ -11,53 +11,62 @@ import {
   Text,
   Button,
   HStack,
+  Select,
+  Checkbox
 } from "@chakra-ui/react";
 
 const Page = () => {
+  const [step, setStep] = useState(1); // To track form step
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
-  const [usernameError, setUsernameError] = useState(false);
+  const [country, setCountry] = useState("");
   const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
-  const handleSubmit = async () => {
-    //e.preventDefault();
-    let hasError = false;
-    console.log(" تم ادخال البيانات التالية :", { username, email, password });
-  // Store data in DataBase
-  const response = await fetch("api/register", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ username, email, password }),
-  });
-  console.log("Response received from Back-end to Front-end. Object printed in console:", response);
-if(response.ok){  console.log("Done!!!!All steps completed successfully. Response received from Back-end and printed in terminal.");
-}
-  if (!username) {
-      setUsernameError(true);
-      hasError = true;
-    } else {
-      setUsernameError(false);
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
+
+  const [errors, setErrors] = useState({});
+
+  const handleNext = () => {
+    const newErrors = {};
+    if (step === 1) {
+      if (!email) newErrors.email = "يرجى إدخال البريد الإلكتروني.";
+      if (!password || password.length < 6)
+        newErrors.password = "يرجى إدخال كلمة مرور صالحة (أكثر من 6 أحرف).";
+      if (password !== passwordConfirm)
+        newErrors.passwordConfirm = "كلمات المرور غير متطابقة.";
+
+      if (Object.keys(newErrors).length === 0) {
+        setStep(2); // Move to step 2
+      }
+    } else if (step === 2) {
+      if (!firstName) newErrors.firstName = "يرجى إدخال اسمك الأول.";
+      if (!lastName) newErrors.lastName = "يرجى إدخال اسم العائلة.";
+      if (!username) newErrors.username = "يرجى إدخال اسم المستخدم.";
+      if (!country) newErrors.country = "يرجى اختيار بلد الإقامة.";
+      if (!privacyAccepted)
+        newErrors.privacyAccepted = "يرجى الموافقة على سياسة الخصوصية.";
+
+      if (Object.keys(newErrors).length === 0) {
+        alert("تم إدخال البيانات بنجاح!");
+        reset();
+      }
     }
 
-    if (!email) {
-      setEmailError(true);
-      hasError = true;
-    } else {
-      setEmailError(false);
-    }
-    if (!password || password.length < 6) {
-      setPasswordError(true);
-      hasError = true;
-    } else {
-      setPasswordError(false);
-    }
-    if (!hasError) {
-      alert("تم إدخال البيانات بنجاح!");
-      reset();
-    }
+    setErrors(newErrors); // Show errors if any
+  };
+
+  const reset = () => {
+    setFirstName("");
+    setLastName("");
+    setUsername("");
+    setCountry("");
+    setEmail("");
+    setPassword("");
+    setPasswordConfirm("");
+    setPrivacyAccepted(false);
+    setStep(1); // Reset to step 1 after submission
   };
 
   return (
@@ -74,95 +83,180 @@ if(response.ok){  console.log("Done!!!!All steps completed successfully. Respons
       >
         <VStack spacing={4} align="center" w="full">
           <Heading size="lg" textAlign="center" color="#713488">
-            قم بإنشاء حسابك على الأكاديمية!
+            {step === 1
+              ? "قم بإنشاء حسابك على الأكاديمية!"
+              : "أنت على بعد خطوة واحدة فقط من الانضمام إلينا!"}
           </Heading>
 
           <VStack spacing={4} w="full">
-            <FormControl isRequired isInvalid={usernameError}>
-              <FormLabel>اسم المستخدم</FormLabel>
-              <Input
-                type="text"
-                placeholder="اسم المستخدم"
-                rounded="md"
-                variant="outline"
-                borderColor="#A64DC7"
-                focusBorderColor="#783BA2"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-              {usernameError && (
-                <Text fontSize="xs" color="red.500" mt={1}>
-                  يرجى إدخال اسم المستخدم.
-                </Text>
-              )}
-            </FormControl>
-            <FormControl isRequired isInvalid={emailError}>
-              <FormLabel>عنوان البريد الإلكتروني</FormLabel>
-              <Input
-                type="email"
-                placeholder="عنوان البريد الإلكتروني"
-                rounded="md"
-                variant="outline"
-                borderColor="#A64DC7"
-                focusBorderColor="#783BA2"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              {emailError && (
-                <Text fontSize="xs" color="red.500" mt={1}>
-                  يرجى إدخال عنوان البريد الإلكتروني.
-                </Text>
-              )}
-            </FormControl>
+            {step === 1 ? (
+              <>
+                <FormControl isRequired isInvalid={errors.email}>
+                  <FormLabel>عنوان البريد الإلكتروني</FormLabel>
+                  <Input
+                    type="email"
+                    placeholder="عنوان البريد الإلكتروني"
+                    rounded="md"
+                    variant="outline"
+                    borderColor="#A64DC7"
+                    focusBorderColor="#783BA2"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  {errors.email && (
+                    <Text fontSize="xs" color="red.500" mt={1}>
+                      {errors.email}
+                    </Text>
+                  )}
+                </FormControl>
 
-            <FormControl isRequired isInvalid={passwordError}>
-              <FormLabel>كلمة المرور</FormLabel>
-              <Input
-                type="password"
-                placeholder="كلمة المرور"
-                rounded="md"
-                variant="outline"
-                borderColor="#A64DC7"
-                focusBorderColor="#783BA2"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            
-            </FormControl>
-            {/*
-            <FormControl>
-              <FormLabel>تأكيد كلمة المرور</FormLabel>
-              <Input
-                type="password"
-                placeholder="تأكيد كلمة المرور"
-                rounded="md"
-                variant="outline"
-                borderColor="#A64DC7"
-                focusBorderColor="#783BA2"
-              />
-              <Text fontSize="xs" color="red.500" mt={1}>
-                كلمات المرور غير متطابقة. يرجى المحاولة مرة أخرى.
-              </Text>
-            </FormControl>**/}
+                <FormControl isRequired isInvalid={errors.password}>
+                  <FormLabel>كلمة المرور</FormLabel>
+                  <Input
+                    type="password"
+                    placeholder="قم بإنشاء كلمة مرور قوية"
+                    rounded="md"
+                    variant="outline"
+                    borderColor="#A64DC7"
+                    focusBorderColor="#783BA2"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  {errors.password && (
+                    <Text fontSize="xs" color="red.500" mt={1}>
+                      {errors.password}
+                    </Text>
+                  )}
+                </FormControl>
+
+                <FormControl isRequired isInvalid={errors.passwordConfirm}>
+                  <FormLabel>تأكيد كلمة المرور</FormLabel>
+                  <Input
+                    type="password"
+                    placeholder="أعد إدخال كلمة المرور"
+                    rounded="md"
+                    variant="outline"
+                    borderColor="#A64DC7"
+                    focusBorderColor="#783BA2"
+                    value={passwordConfirm}
+                    onChange={(e) => setPasswordConfirm(e.target.value)}
+                  />
+                  {errors.passwordConfirm && (
+                    <Text fontSize="xs" color="red.500" mt={1}>
+                      {errors.passwordConfirm}
+                    </Text>
+                  )}
+                </FormControl>
+              </>
+            ) : (
+              <>
+                <FormControl isRequired isInvalid={errors.firstName}>
+                  <FormLabel>الاسم الأول</FormLabel>
+                  <Input
+                    type="text"
+                    placeholder="ادخل اسمك الأول"
+                    rounded="md"
+                    variant="outline"
+                    borderColor="#A64DC7"
+                    focusBorderColor="#783BA2"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                  {errors.firstName && (
+                    <Text fontSize="xs" color="red.500" mt={1}>
+                      {errors.firstName}
+                    </Text>
+                  )}
+                </FormControl>
+
+                <FormControl isRequired isInvalid={errors.lastName}>
+                  <FormLabel>الاسم الثاني</FormLabel>
+                  <Input
+                    type="text"
+                    placeholder="ادخل اسمك الأخير"
+                    rounded="md"
+                    variant="outline"
+                    borderColor="#A64DC7"
+                    focusBorderColor="#783BA2"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                  {errors.lastName && (
+                    <Text fontSize="xs" color="red.500" mt={1}>
+                      {errors.lastName}
+                    </Text>
+                  )}
+                </FormControl>
+
+                <FormControl isRequired isInvalid={errors.username}>
+                  <FormLabel>اسم المستخدم</FormLabel>
+                  <Input
+                    type="text"
+                    placeholder="اختر اسم مستخدم فريداً"
+                    rounded="md"
+                    variant="outline"
+                    borderColor="#A64DC7"
+                    focusBorderColor="#783BA2"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                  {errors.username && (
+                    <Text fontSize="xs" color="red.500" mt={1}>
+                      {errors.username}
+                    </Text>
+                  )}
+                </FormControl>
+
+                <FormControl isRequired isInvalid={errors.country}>
+                  <FormLabel>بلد إقامتك</FormLabel>
+                  <Select
+                    placeholder="اختر بلدك"
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                  >
+                    <option value="السعودية">السعودية</option>
+                    <option value="مصر">مصر</option>
+                    <option value="الإمارات">الإمارات</option>
+                    <option value="الكويت">الكويت</option>
+                    <option value="قطر">قطر</option>
+                  </Select>
+                  {errors.country && (
+                    <Text fontSize="xs" color="red.500" mt={1}>
+                      {errors.country}
+                    </Text>
+                  )}
+                </FormControl>
+
+                <FormControl isRequired isInvalid={errors.privacyAccepted}>
+                  <Checkbox
+                    isChecked={privacyAccepted}
+                    onChange={(e) => setPrivacyAccepted(e.target.checked)}
+                  >
+                    أوافق على سياسة الخصوصية الخاصة بنا
+                  </Checkbox>
+                  {errors.privacyAccepted && (
+                    <Text fontSize="xs" color="red.500" mt={1}>
+                      {errors.privacyAccepted}
+                    </Text>
+                  )}
+                </FormControl>
+              </>
+            )}
           </VStack>
 
           <HStack w="full" justify="space-between">
-            <Button bg="#34A853" color="white" w="full" onClick={handleSubmit}>
-              إنشاء حسابي
-            </Button>
-          </HStack>
-
-          <Text fontSize="sm" color="gray.500">
-            لديك حساب مسبقًا؟
-          </Text>
-
-          <Text fontSize="sm">يمكنك تسجيل الدخول باستخدام:</Text>
-          <HStack spacing={4}>
-            <Button bg="#DB4437" color="white" w="full">
-              Google
-            </Button>
-            <Button bg="#3B5998" color="white" w="full">
-              Facebook
+            {step === 2 && (
+              <Button
+                bg="gray.300"
+                color="black"
+                w="full"
+                onClick={() => setStep(1)}
+              >
+                رجوع
+              </Button>
+            )}
+            <Button bg="#34A853" color="white" w="full" onClick={handleNext}>
+              {step === 1 ? "التالي" : "إنشاء حسابي"}
             </Button>
           </HStack>
         </VStack>
@@ -170,4 +264,5 @@ if(response.ok){  console.log("Done!!!!All steps completed successfully. Respons
     </ChakraProvider>
   );
 };
+
 export default Page;

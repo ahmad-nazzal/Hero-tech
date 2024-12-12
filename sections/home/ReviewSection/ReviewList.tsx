@@ -1,6 +1,7 @@
+"use client";
 import { Box } from "@chakra-ui/react";
 import ReviewCard from "./ReviewCard";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Navigation, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ReviewCardProps from "./ReviewCardProps";
 // Import Swiper styles
@@ -10,56 +11,29 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 // Import custom styles
 import "./ReviewList.css";
+import { useEffect, useState } from "react";
 
 const ReviewList = () => {
-  const usersCardInfo: ReviewCardProps[] = [
-    {
-      id: 1,
-      name: "محمد",
-      review: "جودة عالية ومناهج احترافية !شكرا للاكاديمية العربية للبرمجة",
-      rating: 2,
-      date: "10/10/2022",
-    },
-    {
-      id: 2,
-      name: "سليم",
-      review: "جودة عالية ومناهج احترافية !شكرا للاكاديمية العربية للبرمجة",
-      rating: 3,
-      date: "10/10/2022",
-    },
-    {
-      id: 3,
-      name: "محمود",
-      review: "جودة عالية ومناهج احترافية !شكرا للاكاديمية العربية للبرمجة",
-      rating: 5,
-      date: "10/10/2022",
-    },
-    {
-      id: 4,
-      name: "سلمى",
-      review: "جودة عالية ومناهج احترافية !شكرا للاكاديمية العربية للبرمجة",
-      rating: 4,
-      date: "10/10/2022",
-    },
-    {
-      id: 5,
-      name: "دانا",
-      review: "جودة عالية ومناهج احترافية !شكرا للاكاديمية العربية للبرمجة",
-      rating: 4,
-      date: "10/10/2022",
-    },
-  ];
+  useEffect(() => {
+    getReviews();
+  });
+  const [reviews, setReviews] = useState<ReviewCardProps[]>([]);
+  async function getReviews() {
+    const res = await fetch("http://localhost:4000/reviews");
+    try {
+      const data = await res.json();
+      setReviews(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <Box width="100%" padding={4}>
       <Swiper
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        modules={[Navigation, Scrollbar, A11y]}
         spaceBetween={0}
         navigation
-        pagination={{
-          clickable: true,
-          dynamicBullets: false,
-        }}
         breakpoints={{
           320: {
             slidesPerView: 1,
@@ -77,12 +51,11 @@ const ReviewList = () => {
         style={{
           width: "100%",
           height: "100%",
-          paddingBottom: "60px",
           paddingLeft: "25px",
           paddingRight: "25px",
         }}
       >
-        {usersCardInfo.map((user) => (
+        {reviews.map((user) => (
           <SwiperSlide key={user.id}>
             <ReviewCard
               name={user.name}
