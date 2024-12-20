@@ -1,7 +1,8 @@
- type ReviewCardProps = {
+type ReviewCardProps = {
   id?: number;
-  name: string;
-  review: string;
+  reviewerName: string;
+  reviewerLastName: string;
+  reviewText: string;
   rating: number;
   date: string | number;
 };

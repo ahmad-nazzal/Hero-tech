@@ -19,10 +19,12 @@ const ReviewList = () => {
   });
   const [reviews, setReviews] = useState<ReviewCardProps[]>([]);
   async function getReviews() {
-    const res = await fetch("http://localhost:4000/reviews");
+    const res = await fetch(
+      "https://sitev2.arabcodeacademy.com/wp-json/aca/v1/reviews"
+    );
     try {
       const data = await res.json();
-      setReviews(data);
+      setReviews(data.reviews);
     } catch (error) {
       console.error(error);
     }
@@ -58,8 +60,9 @@ const ReviewList = () => {
         {reviews.map((user) => (
           <SwiperSlide key={user.id}>
             <ReviewCard
-              name={user.name}
-              review={user.review}
+              reviewerName={user.reviewerName}
+              reviewerLastName={user.reviewerLastName}
+              reviewText={user.reviewText}
               rating={user.rating}
               date={user.date}
             />

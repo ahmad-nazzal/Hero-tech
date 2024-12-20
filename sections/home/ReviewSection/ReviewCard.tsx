@@ -8,20 +8,18 @@ import {
   Box,
   Flex,
 } from "@chakra-ui/react";
-import Star1 from "../../../public/images/Star1.png";
-import Rectangle from "../../../public/images/Rectangle.png";
-import Starempty from "../../../public/images/Starempty.png";
-
 import ReviewCardProps from "./ReviewCardProps";
 
 export default function ReviewCard({
-  name,
-  review,
+  reviewerName,
+  reviewerLastName,
+  reviewText,
   rating,
   date,
 }: ReviewCardProps) {
+  // إنشاء قائمة النجوم بناءً على التقييم
   const stars = Array.from({ length: 5 }, (_, index) =>
-    index < rating ? Star1.src : Starempty.src
+    index < rating ? "/images/Star1.png" : "/images/Starempty.png"
   ).reverse();
 
   return (
@@ -43,8 +41,9 @@ export default function ReviewCard({
         borderRadius="md"
         position="relative"
       >
+        {/* الخلفية */}
         <Image
-          src={Rectangle.src}
+          src="/images/Rectangle.png"
           alt="Rectangle"
           position="absolute"
           top={0}
@@ -55,7 +54,7 @@ export default function ReviewCard({
           zIndex={0}
         />
 
-        {/* User Image */}
+        {/* صورة المستخدم */}
         <Image
           mt={12}
           src="https://via.placeholder.com/100"
@@ -76,7 +75,7 @@ export default function ReviewCard({
             fontWeight="700"
             fontSize="19px"
           >
-            {name}
+            {reviewerName} {""} {reviewerLastName}
           </Heading>
           <Text
             textAlign="center"
@@ -85,7 +84,7 @@ export default function ReviewCard({
             fontWeight="500"
             fontSize="18px"
           >
-            {review}
+            {reviewText}
           </Text>
         </CardBody>
 
@@ -96,7 +95,7 @@ export default function ReviewCard({
           position="relative"
           zIndex={2}
         >
-          {/* Stars */}
+          {/* النجوم */}
           <Flex
             gap={1}
             justifyContent="flex-end"
@@ -118,7 +117,7 @@ export default function ReviewCard({
             ))}
           </Flex>
 
-          {/* Date */}
+          {/* التاريخ */}
           <Box mx={5} color="gray.500" fontSize="14px">
             {date}
           </Box>
