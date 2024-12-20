@@ -1,9 +1,28 @@
 {
   "users": [
     {
-      "username": "مرح",
-      "email": "mara@",
-      "password": "1233654789"
+      "email": "samasaadeh@gmail.com",
+      "password": "123456789",
+      "firstName": "Sma",
+      "lastName": "Saadeh",
+      "username": "Sma Saadeh",
+      "country": "فلسطين"
+    },
+    {
+      "email": "test@gmail.com",
+      "password": "$2b$10$J1a3ZdQ9/iuerOuWkc3upO.pt7Y76dpeS2Ym87KsME/kJo834XnIy",
+      "firstName": "test",
+      "lastName": "test",
+      "username": "test test",
+      "country": "تونس"
+    },
+    {
+      "email": "marahsaadeh@gmail.com",
+      "password": "$2b$10$rSi6IYQGYOe4KCX3IQ4yiu5fS8mE4rRfo7RDx5nhio6Eilr7jbzy6",
+      "firstName": "marah",
+      "lastName": "saadeh",
+      "username": "marah saadeh",
+      "country": "عُمان"
     }
   ],
   "courses": [
@@ -66,6 +85,7 @@
       "rating": 4,
       "date": "10/10/2022"
     }
+
   ],
   
     "aiToolsPage": [
@@ -292,3 +312,4 @@
     ]
   }
   
+
