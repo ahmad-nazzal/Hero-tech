@@ -8,13 +8,18 @@ import Hero from "../sections/home/Hero/Hero";
 import Header from "../sections/header/header";
 import Quiz from "../sections/home/Quiz/Quiz";
 import { Box } from "@chakra-ui/react";
-
-export default function Home() {
+import { SessionProvider } from "next-auth/react";
+import { Session } from "next-auth";
+interface HomeProps {
+  session: Session | null; 
+}
+export default function Home({ session }: HomeProps) {
   const startDate = "2024-10-20T10:00:00";
   const endDate = "2024-11-25T23:59:59";
 
   return (
     <>
+        <SessionProvider session={session}>
       <Box dir={"rtl"}>
         <DiscountBanner
           startDate={startDate}
@@ -23,12 +28,15 @@ export default function Home() {
         />
       </Box>
       <Header/>
-      <Hero></Hero>
-      <Quiz></Quiz>
-      <AboutUs></AboutUs>
-      <ContactUs></ContactUs>
-      <ReviewList></ReviewList>
-      <Footer></Footer>
+
+    
+      <Hero/>
+      <Quiz/>
+      <AboutUs/>
+      <ContactUs/>
+      <ReviewList/>
+      <Footer/>
+      </SessionProvider>
     </>
   );
 }

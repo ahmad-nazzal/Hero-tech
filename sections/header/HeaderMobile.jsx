@@ -1,3 +1,4 @@
+"use client";
 import ButtonAC from "../../components/ButtonAC";
 import Image from "next/image";
 import registerlogo_mobile from "../../public/images/profile_circled__mobile.png";
@@ -14,8 +15,12 @@ import {
 import { CloseIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 import React, { useState } from "react";
+import vector1 from "../../public/images/Vector (1).png";
+import group46 from "../../public/images/Group 46.png";
+import { useSession } from "next-auth/react";
 
 const HeaderMobile = () => {
+  const { status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const sourceItems = [
@@ -59,84 +64,94 @@ const HeaderMobile = () => {
         alt="Logo"
         marginRight={9}
       />
-      <IconButton
-        onClick={toggleMenu}
-        icon={
-          menuOpen ? (
-            <CloseIcon w={5} h={5} color="white" fontWeight="bold" />
-          ) : (
-            <Image
-              src="/images/vector.png"
-              alt="Hamburger Icon"
-              width={25}
-              height={25}
-            />
-          )
-        }
-        variant="ghost"
-        aria-label="Toggle Navigation"
-        marginLeft="44px"
-      />
-    </Flex>
+       {status === "authenticated" && (
+          <Box display="flex" alignItems="center">
+            <Box width={{ sm: "30px", lg: "40px" }} height={{ sm: "30px", lg: "40px" }}>
+              <Image src={vector1} alt="Vector 1" />
+            </Box>
+            <Box width={{ sm: "30px", lg: "40px" }} height={{ sm: "30px", lg: "40px" }}>
+              <Image src={group46} alt="Group 46" />
+            </Box>
+          </Box>
+        )}
+        <IconButton
+          onClick={toggleMenu}
+          icon={
+            menuOpen ? (
+              <CloseIcon w={5} h={5} color="white" fontWeight="bold" />
+            ) : (
+              <Image
+                src="/images/vector.png"
+                alt="Hamburger Icon"
+                width={25}
+                height={25}
+              />
+            )
+          }
+          variant="ghost"
+          aria-label="Toggle Navigation"
+          marginLeft="44px"
+        />
+      </Flex>
 
-    <Collapse in={menuOpen} animateOpacity>
-      <Box
-        bg="#FFFFFF"
-        position="absolute"
-        top="55px"
-        left={0}
-        width="58%"
-        zIndex={10}
-        boxShadow="lg"
-        borderRadius="md"
-        display={{ sm: "none" }}
-      >
-        <List
-          textAlign="center"
-          boxShadow="0px 4px 8px rgba(0, 0, 0, 0.34)"
-          paddingBottom={5}
+      <Collapse in={menuOpen} animateOpacity>
+        <Box
+          bg="#FFFFFF"
+          position="absolute"
+          top="55px"
+          left={0}
+          width="58%"
+          zIndex={10}
+          boxShadow="lg"
+          borderRadius="md"
+          display={{ sm: "none" }}
         >
-          <ListItem>
-            <ButtonAC
-              alignSelf="center"
-              size="sm"
-              color="#783BA2"
-              bg="#FFFFFF"
-              text="تسجيل الدخول"
-              fontSize={16}
-              fontWeight={500}
-              icon={
-                <Image
-                  src={loginlogo_mobile}
-                  alt="Login Icon"
-                  style={{ width: "25.71px", height: "30px" }}
-                />
-              }
-              href="/signin"
-              sx={{ width: "100%" }}
-            />
-          </ListItem>
-          <Divider />
-          <ListItem>
-            <ButtonAC
-              alignSelf="center"
-              size="sm"
-              color="#783BA2"
-              bg="#FFFFFF"
-              text="إنشاء حساب"
-              fontSize={16}
-              fontWeight={500}
-              icon={
-                <Image
-                  src={registerlogo_mobile}
-                  alt="Register Icon"
-                  style={{ width: "30px", height: "30px" }}
-                />
-              }
-              href="/register"
-              sx={{ width: "100%" }}
-            />
-          </ListItem>
+          <List
+            textAlign="center"
+            boxShadow="0px 4px 8px rgba(0, 0, 0, 0.34)"
+            paddingBottom={5}
+          >
+            <ListItem>
+              <ButtonAC
+                alignSelf="center"
+                size="sm"
+                color="#783BA2"
+                bg="#FFFFFF"
+                text="تسجيل الدخول"
+                fontSize={16}
+                fontWeight={500}
+                icon={
+                  <Image
+                    src={loginlogo_mobile}
+                    alt="Login Icon"
+                    style={{ width: "25.71px", height: "30px" }}
+                  />
+                }
+                href="/signin"
+                sx={{ width: "100%" }}
+              />
+            </ListItem>
+            <Divider />
+            <ListItem>
+              <ButtonAC
+                alignSelf="center"
+                size="sm"
+                color="#783BA2"
+                bg="#FFFFFF"
+                text="إنشاء حساب"
+                fontSize={16}
+                fontWeight={500}
+                icon={
+                  <Image
+                    src={registerlogo_mobile}
+                    alt="Register Icon"
+                    style={{ width: "30px", height: "30px" }}
+                  />
+                }
+                href="/register"
+                sx={{ width: "100%" }}
+              />
+            </ListItem>
           <Divider />
           {["المسارات التعليمية", "المصادر", "التواصل"].map(
             (item, index, array) => (
