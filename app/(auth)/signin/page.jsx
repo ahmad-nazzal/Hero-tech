@@ -1,13 +1,9 @@
-import React from "react";
-import {Text} from "@chakra-ui/react";
-export const metadata = {
-  title: "Signin page",
-  description: "description for Signin page",
-};
+import LoginForm from"./loginForm";
+
 const Page = () => {
-  return <>
-<Text bg={"secondary"}>Sign in page </Text>
-  </>;
+  return <LoginForm/> ;
 };
 
 export default Page;
+
+ 

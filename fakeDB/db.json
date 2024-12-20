@@ -15,6 +15,14 @@
       "lastName": "test",
       "username": "test test",
       "country": "تونس"
+    },
+    {
+      "email": "marahsaadeh@gmail.com",
+      "password": "$2b$10$rSi6IYQGYOe4KCX3IQ4yiu5fS8mE4rRfo7RDx5nhio6Eilr7jbzy6",
+      "firstName": "marah",
+      "lastName": "saadeh",
+      "username": "marah saadeh",
+      "country": "عُمان"
     }
   ],
   "courses": [
