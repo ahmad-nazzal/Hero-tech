@@ -83,17 +83,18 @@ const HeaderDesktop = () => {
             </List>
           </GridItem>
           <GridItem
+        
             display="flex"
             justifyContent="left"
-            gap={{ lg: 45, md: 5, sm: 3 }}
+            gap={{ lg: 5, md: 5, sm: 3 }}
             marginLeft={{ lg: "75px", md: "20px", sm: "20px" }}
           >
             {status === "authenticated" ? (
               <>
-                <Box width={{ sm: "50px", lg: "60px" }} height={{ sm: "50px", lg: "60px" }}>
+                <Box  width={ "50px" } height={  "50px" } >
                   <Image src={group46} alt="Group 46" />
                 </Box>
-                <Box width={{ sm: "50px", lg: "60px" }} height={{ sm: "50px", lg: "60px" }}>
+                <Box  mt="6px" ml="-30px"  width={ "40px" } height={ "33.33px" }>
                   <Image src={vector1} alt="Vector 1" />
                 </Box>
               </>
