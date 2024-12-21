@@ -82,7 +82,7 @@ const HeaderMobile = () => {
           }
           variant="ghost"
           aria-label="Toggle Navigation"
-          marginLeft="-44px"
+          marginLeft={status === "authenticated" ? "-44px" : "0"}
         />
            {status === "authenticated" && (
           <Box display="flex" alignItems="center" 

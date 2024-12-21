@@ -25,30 +25,6 @@
       "country": "عُمان"
     }
   ],
-  "courses": [
-    {
-      "id": 1,
-      "name": "دورة بايثون المتقدمة",
-      "price": "$30",
-      "image": "./images/7c8b39cf40000f1df8cf455fa1a43cd3.png",
-      "duration": "40 فيديو، 30 ساعة و 20 دقيقة",
-      "trainer": "محمود يوسف",
-      "description": "تعلم مهارات متقدمة في لغة بايثون بما في ذلك تحليل البيانات وبناء التطبيقات.",
-      "level": "متقدم",
-      "isComingSoon": false
-    },
-    {
-      "id": 2,
-      "name": "دورة تطوير تطبيقات iOS باستخدام Swift",
-      "price": "$35",
-      "image": "./images/85ec0a9778292af7f20d1502a6ed0702.png",
-      "duration": "48 فيديو، 27 ساعة و 15 دقيقة",
-      "trainer": "ليلى فؤاد",
-      "description": "أساسيات تطوير التطبيقات للآيفون باستخدام لغة Swift من البداية حتى نشر التطبيق.",
-      "level": "متوسط",
-      "isComingSoon": false
-    }
-  ],
   "reviews": [
     {
       "id": 1,

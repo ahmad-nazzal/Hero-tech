@@ -59,8 +59,7 @@ const LoginForm = () => {
       setError("بيانات تسجيل الدخول غير صحيحة. حاول مرة أخرى.");
     } else {
       alert("تم تسجيل الدخول بنجاح!");
-      if (router) router.push("/");
-      // يمكنك إضافة التوجيه هنا بعد تسجيل الدخول بنجاح
+      if (router)   router.push("/aiToolsPage"); 
     }
 
     setLoading(false);
