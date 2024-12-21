@@ -13,32 +13,36 @@ import "swiper/css/scrollbar";
 import CustomCard from "../../../components/CustomCard";
 import { Tooltip } from "@chakra-ui/react";
 import { Text, Box, Grid, GridItem } from "@chakra-ui/react";
-async function getData() {
-  //Loading 5 mintues
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  //revalidate:1000 => 3600 seconds, which means that every hour the browser goes to check the data in db.json
-  const res = await fetch("http://localhost:4000/courses", {
-    next: { revalidate: 0 },
-  });
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res.json();
-}
 
 const Courses = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [slidesPerView, setSlidesPerView] = useState(1);
   const [showWhiteLayer, setShowWhiteLayer] = useState(true);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getData();
-        setData(result);
+        const response = await fetch(
+          "https://sitev2.arabcodeacademy.com/wp-json/aca/v1/courses"
+        );
+        const result = await response.json();
+        const formattedData = result.courses.map((course) => ({
+          id: course.id,
+          name: course.title,
+          price: `$${course.price}`,
+          image: course.imageURL,
+          duration: `${course.total_videos} فيديو، ${course.total_duration}`,
+          trainer: course.trainers
+            .filter((trainer) => trainer.leader)
+            .map((trainer) => `${trainer.first_name} ${trainer.last_name}`)
+            .join(", "),
+          description: `السعر الأصلي: ${course.original_price} ${course.currency}`,
+          level: "غير محدد",
+          isComingSoon: course.status === "coming_soon",
+        }));
+        setData(formattedData);
       } catch (error) {
-        console.error(error);
+        console.error("خطأ أثناء جلب البيانات:", error);
       } finally {
         setLoading(false);
       }
@@ -68,7 +72,7 @@ const Courses = () => {
       window.removeEventListener("resize", updateSlidesPerView);
     };
   }, []);
-  if (loading) return <Loading />;
+
   const handleSlideChange = (swiper) => {
     if (swiper.activeIndex > 0) {
       setShowWhiteLayer(false);
@@ -76,6 +80,7 @@ const Courses = () => {
       setShowWhiteLayer(true);
     }
   };
+
   if (loading) return <Loading />;
   return (
     <Box
@@ -132,7 +137,7 @@ const Courses = () => {
                   price={item.price}
                   trainerName={item.trainer}
                   duration={item.duration}
-                  imageSrc={item.image}
+                  imageSrc="/images/85ec0a9778292af7f20d1502a6ed0702.png"
                   applyFilter={true}
                   buttons={[
                     <ButtonAC
@@ -252,7 +257,7 @@ const Courses = () => {
                     price={item.price}
                     trainerName={item.trainer}
                     duration={item.duration}
-                    imageSrc={item.image}
+                    imageSrc="/images/85ec0a9778292af7f20d1502a6ed0702.png"
                     applyFilter={true}
                     buttons={[
                       <ButtonAC
