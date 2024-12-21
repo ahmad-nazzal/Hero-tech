@@ -9,7 +9,6 @@ import Header from "../header/header";
 import ButtonAC from "../../components/ButtonAC";
 import Image from "next/image";
 import heartlogo from "../../public/images/emp-heart.png";
-
 export default function AiToolsList() {
   const [loading, setLoading] = useState(true);
   const [aiTools, setAiTools] = useState<AiToolsCardProps[]>([]);
@@ -18,44 +17,66 @@ export default function AiToolsList() {
   const [hasMore, setHasMore] = useState(true);
   const itemsPerPage = 4;
   const [currentIndex, setCurrentIndex] = useState(12);
+  const [favorites, setFavorites] = useState<number[]>([]);
 
-  // قراءة قيمة البحث من الرابط عند تحميل الصفحة
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
-    const searchValue = query.get("search") || ""; // إذا لم يكن هناك قيمة، اجعلها فارغة
-    setSearchQuery(searchValue); // تحديث حالة البحث
+    const searchValue = query.get("search") || "";
+    setSearchQuery(searchValue);
     getAiTools();
   }, []);
 
   useEffect(() => {
-    handleSearch(); // قم بتطبيق البحث بناءً على قيمة searchQuery
-  }, [searchQuery, aiTools]);
+    const loadUserFavorites = async () => {
+      try {
+        const storedFavorites = localStorage.getItem('favorites');
+  
+        if (storedFavorites) {
+          setFavorites(JSON.parse(storedFavorites)); 
+        } else {
+        
+          const response = await fetch('/api/getUserFavorites?email=marahsaadeh@gmail.com');
+          const data = await response.json();
+  
+          if (data.success) {
+            const validIds = data.favorites.map((id: string) => Number(id)).filter(Number.isFinite);
+            setFavorites(validIds);
+            localStorage.setItem('favorites', JSON.stringify(validIds));
+          } else {
+            console.error('Failed to fetch favorites:', data.message);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching favorites:', error);
+      }
+    };
+  
+    loadUserFavorites();
+  }, []);
+  
+  
+  
+  useEffect(() => {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }, [favorites]);
+  
 
   useEffect(() => {
-    // تحديث الرابط عند تغيير قيمة searchQuery
-    const query = new URLSearchParams(window.location.search);
     if (searchQuery) {
-      query.set("search", searchQuery);
+      const filtered = aiTools.filter(tool => tool.title.toLowerCase().includes(searchQuery.toLowerCase()));
+      setFilteredTools(filtered);
     } else {
-      query.delete("search");
+      setFilteredTools(aiTools);
     }
-    history.pushState(
-      null,
-      "",
-      `${window.location.pathname}?${query.toString()}`
-    );
-  }, [searchQuery]);
+    setCurrentIndex(12);
+  }, [searchQuery, aiTools]);
 
   async function getAiTools() {
     try {
       setLoading(true);
-      const res = await fetch(
-        "https://sitev2.arabcodeacademy.com/wp-json/aca/v1/aitools"
-      );
+      const res = await fetch("https://sitev2.arabcodeacademy.com/wp-json/aca/v1/aitools");
       const data = await res.json();
-      console.log("Fetched Data:", data);
-      setAiTools(data?.data);
-      setFilteredTools(data?.data);
+      setAiTools(data?.data || []);
     } catch (error) {
       console.error("Failed to fetch AI tools:", error);
     } finally {
@@ -63,40 +84,28 @@ export default function AiToolsList() {
     }
   }
 
-  const handleSearch = () => {
-    if (searchQuery === "") {
-      setFilteredTools(aiTools); // إذا لم يكن هناك نص بحث، اعرض كل الأدوات
-    } else {
-      const filtered = aiTools.filter((tool) =>
-        tool.title.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      console.log("Filtered Tools:", filtered);
-      setFilteredTools(filtered);
-    }
-    setCurrentIndex(12); // إعادة ضبط عدد العناصر المعروضة بعد البحث
-  };
-
   const loadMore = () => {
     const nextIndex = currentIndex + itemsPerPage;
     if (nextIndex >= filteredTools.length) {
       setHasMore(false);
+    } else {
+      setCurrentIndex(nextIndex);
     }
-    setCurrentIndex(nextIndex);
   };
-
-  if (loading) {
-    return (
-      <Flex
-        color={"primary"}
-        alignItems="center"
-        justify="center"
-        height="100vh"
-        fontWeight="700"
-        fontSize="30px"
-      >
-        جاري التحميل ...
-      </Flex>
+  const showFavorites = () => {
+    const storedFavorites = localStorage.getItem('favorites');
+    const parsedFavorites = storedFavorites ? JSON.parse(storedFavorites) : [];
+    const favoriteTools = aiTools.filter((tool) =>
+      parsedFavorites.includes(tool.tool_id ?? 0) 
     );
+  
+    setFilteredTools(favoriteTools); 
+  };
+  
+  
+  
+  if (loading) {
+    return <Flex align="center" justify="center" height="100vh" fontWeight="700" fontSize="30px">جاري التحميل ...</Flex>;
   }
 
   return (
@@ -106,7 +115,7 @@ export default function AiToolsList() {
       mx="auto" 
       pb={10} 
       px={5} py={10} 
-    //  border="1px solid red"
+
       >
       <Flex
 
@@ -116,20 +125,22 @@ export default function AiToolsList() {
       wrap="nowrap" 
     >
         <ButtonAC
+          onClick={showFavorites}
+
           mb="30px"
           mr="100px" 
           pr="10px"
           pl="0px"
   size="lg"
-  color="#783BA2" // لون النص
-  bg="white" // لون الخلفية أبيض
-  text="المفضلة" // نص الزر
+  color="#783BA2"
+  bg="white" 
+  text="المفضلة" 
   fontSize={{ lg: 17, sm: 10 }}
   icon={
     <Image
-      src={heartlogo} // تأكد من المسار الصحيح للصورة
+      src={heartlogo} 
       alt="Favorite Icon"
-        //  style={{   width:"100px", height:"20px" }}
+      
         style={{   width:"100", height:"20" }}
     />
   }
@@ -137,67 +148,67 @@ export default function AiToolsList() {
     width: '140px',
     height: '44px',
     boxShadow: '0 2px 8px rgba(0, 0, 0, 0.35)',
-  //  display: 'flex',
-    flexDirection: 'row-reverse', // هذا يقوم بجعل الأيقونة على اليسار والنص على اليمين
-    //alignItems: 'center',
-  //  justifyContent: 'center',
-    gap: '7px' // مسافة بين الأيقونة والنص
+  
+    flexDirection: 'row-reverse', 
+
+    gap: '7px' 
   }}
 />
 <Box
-ml="-73px"
+
 mt="-30px"
 
-  flexGrow={1} // تمدد لملء المساحة المتاحة
-  mb="30px" // الهامش السفلي إذا لزم الأمر
+  flexGrow={1}
+  mb="30px"
 >
           <SearchBar
             placeholder="chatgpt...."
     
-            onSearch={(value) => setSearchQuery(value)} // تحديث حالة البحث عند إدخال النص
+            onSearch={(value) => setSearchQuery(value)} 
       
     />
     </Box>
   
-    
     </Flex>
-        {filteredTools.length === 0 ? ( // التحقق إذا لم تكن هناك نتائج
-          <Flex
-            justify="center"
-            align="center"
-            mt="60px"
-            fontSize="30px"
-            fontWeight="bold"
-            color="primary"
-          >
-            العنصر غير متوفر
-          </Flex>
-        ) : (
-          <InfiniteScroll
-            dataLength={currentIndex}
-            next={loadMore}
-            hasMore={hasMore}
-            loader={<Box>جاري التحميل...</Box>}
-          >
-            <Grid
-              mt={12}
-              justifyItems="center"
-              alignItems="center"
-              templateColumns={{
-                base: "1fr",
-                sm: "1fr",
-                md: "repeat(2, 1fr)",
-                lg: "repeat(4, 1fr)",
-              }}
-              gap={5}
-            >
-              {filteredTools?.slice(0, currentIndex).map((tool) => (
-                <AiToolsCard tool={tool} key={tool.tool_id} />
-              ))}
-            </Grid>
-          </InfiniteScroll>
-        )}
-      </Box>
-    </>
-  );
+
+{filteredTools.length === 0 ? (
+  <Flex
+    justify="center"
+    align="center"
+    mt="60px"
+    fontSize="30px"
+    fontWeight="bold"
+    color="primary"
+  >
+    العنصر غير متوفر
+  </Flex>
+) : (
+  <InfiniteScroll
+    dataLength={currentIndex}
+    next={loadMore}
+    hasMore={hasMore}
+    loader={<Box>جاري التحميل...</Box>}
+  >
+    <Grid
+      mt={12}
+      justifyItems="center"
+      alignItems="center"
+      templateColumns={{
+        base: "1fr",
+        sm: "1fr",
+        md: "repeat(2, 1fr)",
+        lg: "repeat(4, 1fr)",
+      }}
+      gap={5}
+    >
+      {filteredTools?.slice(0, currentIndex).map((tool) => (
+        <AiToolsCard tool={tool} key={tool.tool_id} />
+      ))}
+    </Grid>
+  </InfiniteScroll>
+)}
+
+</Box>
+</>
+);
 }

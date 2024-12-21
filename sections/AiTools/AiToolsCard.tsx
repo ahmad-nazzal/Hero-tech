@@ -11,15 +11,31 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
   const words = description.split(" ");
   const truncatedDescription = words.slice(0, 5).join(" ") + "...";
   const bg = useColorModeValue("white", "gray.800"); 
-  const [isFavorited, setIsFavorited] = useState(false); // حالة لتتبع إذا كان القلب مفضلًا
+  const [isFavorited, setIsFavorited] = useState(false); 
 
-  const toggleFavorite = () => setIsFavorited(!isFavorited); // تغيير حالة القلب
+  const toggleFavorite = (toolId: number) => {
+    const storedFavorites = localStorage.getItem('favorites');
+    const parsedFavorites = storedFavorites ? JSON.parse(storedFavorites) : [];
+    setIsFavorited((prevState) => !prevState); 
+
+    let updatedFavorites;
+    if (parsedFavorites.includes(toolId)) {
+      updatedFavorites = parsedFavorites.filter((id: number) => id !== toolId); 
+    } else {
+      updatedFavorites = [...parsedFavorites, toolId]; 
+    }
+  
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+  };
+  
+  
+  
 
   return (
     <Box
       shadow="lg"
-      width="400px" // تم تعديل العرض إلى 400px
-      height="528.3px" // تم تعديل الارتفاع إلى 528.3px
+      width="400px" 
+      height="528.3px" 
       rounded="sm"
       transition={"all 0.3s ease-in-out"}
       cursor={"pointer"}
@@ -27,7 +43,7 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
     >
     
       <Flex direction="column" gap={4} h="full">
-        {/* تحديد ارتفاع ثابت للصورة */}
+      
         <Box position="relative" width="100%" height="193px">
         
           <Image
@@ -40,9 +56,9 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
         aria-label="Add to favorites"
         icon={
           <Image
-          src={isFavorited ? heartlogo : empHeartlogo}// تأكد من المسار الصحيح للصورة
+          src={isFavorited ? heartlogo : empHeartlogo}
             alt="Favorite Icon"
-              //  style={{   width:"100px", height:"20px" }}
+            
               style={{   width:"100", height:"20" }}
           />
         }
@@ -54,12 +70,12 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
       
         bg={bg}
         boxShadow= '0 2px 8px rgba(0, 0, 0, 0.35)'
-        onClick={toggleFavorite} // إضافة الوظيفة لتغيير الحالة عند النقر
+        onClick={() => toggleFavorite(tool.tool_id!)} 
 
     />
         </Box>
 
-        {/* صندوق المحتوى */}
+    
         <Box
           p={4}
           display="flex"
@@ -68,7 +84,7 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
           height="calc(100% - 193px)"
         >
           
-          {/* العنوان */}
+    
           <Box
             fontWeight="700"
             fontSize="23px"
@@ -82,7 +98,7 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
             {title}
           </Box>
 
-          {/* التصنيفات */}
+
           <Box
             fontWeight="700"
             fontSize="18px"
@@ -96,7 +112,7 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
             {tags}
           </Box>
 
-          {/* الوصف */}
+
           <Box
             fontWeight="500"
             color={"primary"}
@@ -105,12 +121,12 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
             mb={3}
             noOfLines={2}
             isTruncated
-            flexShrink={0} // منع تغير الحجم عند تجاوز النص
+            flexShrink={0}
           >
             {truncatedDescription}
           </Box>
 
-          {/* الزر */}
+        
           <ButtonAC
             mx="auto"
             text="المزيد"
