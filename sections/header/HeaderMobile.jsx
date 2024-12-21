@@ -56,6 +56,7 @@ const HeaderMobile = () => {
       justifyContent="space-between"
       height="55px"
       display={{ base: "flex", sm: "none" }}
+      
     >
       <ChakraImage
         src="/images/8e6c847871186b9180f5ae9f99b6bcbc.png"
@@ -64,16 +65,7 @@ const HeaderMobile = () => {
         alt="Logo"
         marginRight={9}
       />
-       {status === "authenticated" && (
-          <Box display="flex" alignItems="center">
-            <Box width={{ sm: "30px", lg: "40px" }} height={{ sm: "30px", lg: "40px" }}>
-              <Image src={vector1} alt="Vector 1" />
-            </Box>
-            <Box width={{ sm: "30px", lg: "40px" }} height={{ sm: "30px", lg: "40px" }}>
-              <Image src={group46} alt="Group 46" />
-            </Box>
-          </Box>
-        )}
+      
         <IconButton
           onClick={toggleMenu}
           icon={
@@ -90,8 +82,22 @@ const HeaderMobile = () => {
           }
           variant="ghost"
           aria-label="Toggle Navigation"
-          marginLeft="44px"
+          marginLeft="-44px"
         />
+           {status === "authenticated" && (
+          <Box display="flex" alignItems="center" 
+        
+          ml="45px"
+          gap="10px">
+              <Box width={{base:"40px"}} height={{base:"40px"}}>
+              <Image src={group46} alt="Group 46" />
+            </Box>
+            <Box width={{base:"20px"}} height={{base:"20px"}}>
+              <Image src={vector1} alt="Vector 1" />
+            </Box>
+          
+          </Box>
+        )}
       </Flex>
 
       <Collapse in={menuOpen} animateOpacity>
