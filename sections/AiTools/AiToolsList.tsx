@@ -5,7 +5,10 @@ import { useEffect, useState } from "react";
 import { AiToolsCardProps } from "./types";
 import { AiToolsCard } from "./AiToolsCard";
 import InfiniteScroll from "react-infinite-scroll-component";
-import HeaderDesktop from "../header/HeaderDesktop";
+import Header from "../header/header";
+import ButtonAC from "../../components/ButtonAC";
+import Image from "next/image";
+import heartlogo from "../../public/images/emp-heart.png";
 
 export default function AiToolsList() {
   const [loading, setLoading] = useState(true);
@@ -98,15 +101,66 @@ export default function AiToolsList() {
 
   return (
     <>
-      <HeaderDesktop />
-      <Box mx="auto" pb={10} px={5} py={10}>
-        <Box>
-          <SearchBar
-            placeholder="...ابحث"
-            onSearch={(value) => setSearchQuery(value)} // تحديث حالة البحث عند إدخال النص
-          />
-        </Box>
+      <Header/>
+      <Box 
+      mx="auto" 
+      pb={10} 
+      px={5} py={10} 
+    //  border="1px solid red"
+      >
+      <Flex
 
+      direction={{ base: "column",sm: "column",md: "column", lg: "row" }}
+
+        align="flex-end"
+      wrap="nowrap" 
+    >
+        <ButtonAC
+          mb="30px"
+          mr="100px" 
+          pr="10px"
+          pl="0px"
+  size="lg"
+  color="#783BA2" // لون النص
+  bg="white" // لون الخلفية أبيض
+  text="المفضلة" // نص الزر
+  fontSize={{ lg: 17, sm: 10 }}
+  icon={
+    <Image
+      src={heartlogo} // تأكد من المسار الصحيح للصورة
+      alt="Favorite Icon"
+        //  style={{   width:"100px", height:"20px" }}
+        style={{   width:"100", height:"20" }}
+    />
+  }
+  sx={{
+    width: '140px',
+    height: '44px',
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.35)',
+  //  display: 'flex',
+    flexDirection: 'row-reverse', // هذا يقوم بجعل الأيقونة على اليسار والنص على اليمين
+    //alignItems: 'center',
+  //  justifyContent: 'center',
+    gap: '7px' // مسافة بين الأيقونة والنص
+  }}
+/>
+<Box
+ml="-73px"
+mt="-30px"
+
+  flexGrow={1} // تمدد لملء المساحة المتاحة
+  mb="30px" // الهامش السفلي إذا لزم الأمر
+>
+          <SearchBar
+            placeholder="chatgpt...."
+    
+            onSearch={(value) => setSearchQuery(value)} // تحديث حالة البحث عند إدخال النص
+      
+    />
+    </Box>
+  
+    
+    </Flex>
         {filteredTools.length === 0 ? ( // التحقق إذا لم تكن هناك نتائج
           <Flex
             justify="center"
