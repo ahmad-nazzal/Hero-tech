@@ -1,81 +1,67 @@
-import { Box, Flex, IconButton, useColorModeValue  } from "@chakra-ui/react";
+import { Box, Flex, IconButton, useColorModeValue } from "@chakra-ui/react";
 import Image from "next/image";
 import masedLogo from "../../public/images/circled_outline.png";
 import ButtonAC from "../../components/ButtonAC";
 import { AiToolsCardProps } from "./types";
 import empHeartlogo from "../../public/images/emp-heart.png";
 import heartlogo from "../../public/images/heart.png";
-import { useState } from 'react';
-export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
-  const { title, description, tags } = tool;
+
+interface AiToolsCardComponentProps {
+  tool: AiToolsCardProps;
+  isFavorite: boolean;
+  onToggleFavorite: (toolId: number) => void;
+}
+
+export function AiToolsCard({ tool, isFavorite, onToggleFavorite }: AiToolsCardComponentProps) {
+  const { tool_id, title, description, tags } = tool;
   const words = description.split(" ");
   const truncatedDescription = words.slice(0, 5).join(" ") + "...";
-  const bg = useColorModeValue("white", "gray.800"); 
-  const [isFavorited, setIsFavorited] = useState(false); 
+  const bg = useColorModeValue("white", "gray.800");
 
-  const toggleFavorite = (toolId: number) => {
-    const storedFavorites = localStorage.getItem('favorites');
-    const parsedFavorites = storedFavorites ? JSON.parse(storedFavorites) : [];
-    setIsFavorited((prevState) => !prevState); 
-
-    let updatedFavorites;
-    if (parsedFavorites.includes(toolId)) {
-      updatedFavorites = parsedFavorites.filter((id: number) => id !== toolId); 
-    } else {
-      updatedFavorites = [...parsedFavorites, toolId]; 
+  const handleFavoriteClick = () => {
+    if (tool_id) {
+      onToggleFavorite(tool_id);
     }
-  
-    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
-  
-  
-  
 
   return (
     <Box
       shadow="lg"
-      width="400px" 
-      height="528.3px" 
+      width="400px"
+      height="528.3px"
       rounded="sm"
-      transition={"all 0.3s ease-in-out"}
-      cursor={"pointer"}
+      transition="all 0.3s ease-in-out"
+      cursor="pointer"
       overflow="hidden"
     >
-    
       <Flex direction="column" gap={4} h="full">
-      
         <Box position="relative" width="100%" height="193px">
-        
           <Image
             src="https://via.placeholder.com/400x193"
             alt="AI Tool Image"
             layout="fill"
             objectFit="cover"
           />
-              <IconButton
-        aria-label="Add to favorites"
-        icon={
-          <Image
-          src={isFavorited ? heartlogo : empHeartlogo}
-            alt="Favorite Icon"
-            
-              style={{   width:"100", height:"20" }}
+          <IconButton
+            aria-label={isFavorite ? "إزالة من المفضلة" : "إضافة إلى المفضلة"}
+            icon={
+              <Image
+                src={isFavorite ? heartlogo : empHeartlogo}
+                alt="Favorite Icon"
+                style={{ width: "100", height: "20" }}
+              />
+            }
+            size="lg"
+            rounded="full"
+            position="absolute"
+            mt="15px"
+            left={4}
+            bg={bg}
+            boxShadow="0 2px 8px rgba(0, 0, 0, 0.35)"
+            onClick={handleFavoriteClick}
           />
-        }
-        size="lg"
-        rounded="full"
-        position="absolute"
-        mt="15px"
-        left={4}
-      
-        bg={bg}
-        boxShadow= '0 2px 8px rgba(0, 0, 0, 0.35)'
-        onClick={() => toggleFavorite(tool.tool_id!)} 
-
-    />
         </Box>
 
-    
         <Box
           p={4}
           display="flex"
@@ -83,8 +69,6 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
           justifyContent="space-between"
           height="calc(100% - 193px)"
         >
-          
-    
           <Box
             fontWeight="700"
             fontSize="23px"
@@ -97,7 +81,6 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
           >
             {title}
           </Box>
-
 
           <Box
             fontWeight="700"
@@ -112,10 +95,9 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
             {tags}
           </Box>
 
-
           <Box
             fontWeight="500"
-            color={"primary"}
+            color="primary"
             fontSize="17px"
             textAlign="start"
             mb={3}
@@ -126,7 +108,6 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
             {truncatedDescription}
           </Box>
 
-        
           <ButtonAC
             mx="auto"
             text="المزيد"
@@ -137,7 +118,6 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
             mb={2}
             icon={masedLogo}
           />
-        
         </Box>
       </Flex>
     </Box>

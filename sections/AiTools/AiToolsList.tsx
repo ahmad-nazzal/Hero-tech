@@ -9,90 +9,48 @@ import Header from "../header/header";
 import ButtonAC from "../../components/ButtonAC";
 import Image from "next/image";
 import heartlogo from "../../public/images/emp-heart.png";
-import useSWR from "swr";
-
-// تعريف fetcher function للاستخدام مع SWR
-const fetcher = async (url: string) => {
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error("فشل في جلب البيانات");
-  }
-  const data = await res.json();
-  return data?.data || [];
-};
+import { useAiTools } from "../../hooks/useAiTools";
+import { useFavorites } from "../../hooks/useFavorites";
+import { useUrlSearch } from "../../hooks/useUrlSearch";
 
 export default function AiToolsList() {
-  const [searchQuery, setSearchQuery] = useState("");
   const [filteredTools, setFilteredTools] = useState<AiToolsCardProps[]>([]);
   const [hasMore, setHasMore] = useState(true);
-  const itemsPerPage = 4;
   const [currentIndex, setCurrentIndex] = useState(12);
-  const [favorites, setFavorites] = useState<number[]>([]);
+  const itemsPerPage = 4;
 
-  // استخدام SWR لجلب البيانات
+  const { aiTools, error, isLoading } = useAiTools();
   const {
-    data: aiTools,
-    error,
-    isLoading,
-  } = useSWR(
-    "https://sitev2.arabcodeacademy.com/wp-json/aca/v1/aitools",
-    fetcher,
-    {
-      revalidateOnFocus: false,
-      revalidateOnReconnect: true,
-      refreshInterval: 300000,
-    }
-  );
-
-  // جلب المفضلة
-  useEffect(() => {
-    const loadUserFavorites = async () => {
-      try {
-        const storedFavorites = localStorage.getItem("favorites");
-
-        if (storedFavorites) {
-          setFavorites(JSON.parse(storedFavorites));
-        } else {
-          const response = await fetch(
-            "/api/getUserFavorites?email=marahsaadeh@gmail.com"
-          );
-          const data = await response.json();
-
-          if (data.success) {
-            const validIds = data.favorites
-              .map((id: string) => Number(id))
-              .filter(Number.isFinite);
-            setFavorites(validIds);
-            localStorage.setItem("favorites", JSON.stringify(validIds));
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching favorites:", error);
-      }
-    };
-
-    loadUserFavorites();
-  }, []);
-
-  // حفظ المفضلة في localStorage
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]);
+    favorites,
+    getFavoriteTools,
+    toggleFavorite,
+    isShowingFavorites,
+    setIsShowingFavorites,
+  } = useFavorites();
+  const { searchQuery, updateSearchQuery } = useUrlSearch();
 
   // تحديث الأدوات المفلترة عند تغيير البحث أو البيانات
   useEffect(() => {
     if (!aiTools) return;
 
+    let filtered = aiTools;
+
+    // تطبيق فلتر البحث
     if (searchQuery) {
-      const filtered = aiTools.filter((tool: AiToolsCardProps) =>
+      filtered = filtered.filter((tool: AiToolsCardProps) =>
         tool.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
-      setFilteredTools(filtered);
-    } else {
-      setFilteredTools(aiTools);
     }
+
+    // تطبيق فلتر المفضلة
+    if (isShowingFavorites) {
+      filtered = getFavoriteTools(filtered);
+    }
+
+    setFilteredTools(filtered);
     setCurrentIndex(12);
-  }, [searchQuery, aiTools]);
+    setHasMore(filtered.length > 12);
+  }, [searchQuery, aiTools, isShowingFavorites, favorites]);
 
   const loadMore = () => {
     const nextIndex = currentIndex + itemsPerPage;
@@ -103,19 +61,11 @@ export default function AiToolsList() {
     }
   };
 
-  const showFavorites = () => {
-    if (!aiTools) return;
-
-    const storedFavorites = localStorage.getItem("favorites");
-    const parsedFavorites = storedFavorites ? JSON.parse(storedFavorites) : [];
-    const favoriteTools = aiTools.filter((tool: AiToolsCardProps) =>
-      parsedFavorites.includes(tool.tool_id ?? 0)
-    );
-
-    setFilteredTools(favoriteTools);
+  const handleShowFavorites = () => {
+    setIsShowingFavorites((prev) => !prev);
   };
 
-  if (error) {
+  if (error)
     return (
       <Flex
         align="center"
@@ -127,9 +77,7 @@ export default function AiToolsList() {
         حدث خطأ في جلب البيانات
       </Flex>
     );
-  }
-
-  if (isLoading) {
+  if (isLoading)
     return (
       <Flex
         align="center"
@@ -141,7 +89,6 @@ export default function AiToolsList() {
         جاري التحميل ...
       </Flex>
     );
-  }
 
   return (
     <>
@@ -153,14 +100,14 @@ export default function AiToolsList() {
           wrap="nowrap"
         >
           <ButtonAC
-            onClick={showFavorites}
+            onClick={handleShowFavorites}
             mb="30px"
             mr="100px"
             pr="10px"
             pl="0px"
             size="lg"
-            color="#783BA2"
-            bg="white"
+            color={isShowingFavorites ? "white" : "#783BA2"}
+            bg={isShowingFavorites ? "#783BA2" : "white"}
             text="المفضلة"
             fontSize={{ lg: 17, sm: 10 }}
             icon={
@@ -179,10 +126,7 @@ export default function AiToolsList() {
             }}
           />
           <Box mt="-30px" flexGrow={1} mb="30px">
-            <SearchBar
-              placeholder="ابحث"
-              onSearch={(value) => setSearchQuery(value)}
-            />
+            <SearchBar placeholder="ابحث" onSearch={updateSearchQuery} />
           </Box>
         </Flex>
 
@@ -195,7 +139,9 @@ export default function AiToolsList() {
             fontWeight="bold"
             color="primary"
           >
-            العنصر غير متوفر
+            {isShowingFavorites
+              ? "لا توجد عناصر في المفضلة"
+              : "العنصر غير متوفر"}
           </Flex>
         ) : (
           <InfiniteScroll
@@ -217,7 +163,12 @@ export default function AiToolsList() {
               gap={5}
             >
               {filteredTools?.slice(0, currentIndex).map((tool) => (
-                <AiToolsCard tool={tool} key={tool.tool_id} />
+                <AiToolsCard
+                  tool={tool}
+                  key={tool.tool_id}
+                  isFavorite={favorites.includes(tool.tool_id ?? 0)}
+                  onToggleFavorite={() => toggleFavorite(tool.tool_id ?? 0)}
+                />
               ))}
             </Grid>
           </InfiniteScroll>
