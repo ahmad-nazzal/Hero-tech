@@ -1,30 +1,34 @@
 "use client";
+
 import { Box } from "@chakra-ui/react";
 import ReviewCard from "./ReviewCard";
 import { Navigation, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import ReviewCardProps from "./ReviewCardProps";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-// Import custom styles
 import "./ReviewList.css";
 import { useEffect, useState } from "react";
+import ReviewCardProps from "./ReviewCardProps";
 
 const ReviewList = () => {
+  const [reviews, setReviews] = useState<ReviewCardProps[]>([]);
+
+  // استدعاء البيانات مرة واحدة فقط عند تحميل المكون
   useEffect(() => {
     getReviews();
-  });
-  const [reviews, setReviews] = useState<ReviewCardProps[]>([]);
+  }, []); // مصفوفة التبعية فارغة
+
   async function getReviews() {
-    const res = await fetch("http://localhost:4000/reviews");
     try {
+      const res = await fetch(
+        "https://sitev2.arabcodeacademy.com/wp-json/aca/v1/reviews"
+      );
       const data = await res.json();
-      setReviews(data);
+      setReviews(data.reviews); // تحديث الحالة هنا
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching reviews:", error);
     }
   }
 
@@ -35,18 +39,10 @@ const ReviewList = () => {
         spaceBetween={0}
         navigation
         breakpoints={{
-          320: {
-            slidesPerView: 1,
-          },
-          480: {
-            slidesPerView: 1,
-          },
-          768: {
-            slidesPerView: 2,
-          },
-          1024: {
-            slidesPerView: 3,
-          },
+          320: { slidesPerView: 1 },
+          480: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
         }}
         style={{
           width: "100%",
@@ -55,11 +51,12 @@ const ReviewList = () => {
           paddingRight: "25px",
         }}
       >
-        {reviews.map((user) => (
-          <SwiperSlide key={user.id}>
+        {reviews.map((user, index) => (
+          <SwiperSlide key={index}>
             <ReviewCard
-              name={user.name}
-              review={user.review}
+              reviewerName={user.reviewerName}
+              reviewerLastName={user.reviewerLastName}
+              reviewText={user.reviewText}
               rating={user.rating}
               date={user.date}
             />
