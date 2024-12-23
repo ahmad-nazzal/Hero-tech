@@ -23,16 +23,20 @@ export function AiToolsCard({ tool, isFavorite, onToggleFavorite }: AiToolsCardC
       onToggleFavorite(tool_id);
     }
   };
-
+  
   return (
     <Box
       shadow="lg"
-      width="400px"
-      height="528.3px"
+      width={{ lg: "400px", md: "370px",sm:"270px" }} 
+      height={{lg:"528.3px" ,md:"528.3px",sm:"400px"}}
+
       rounded="sm"
       transition="all 0.3s ease-in-out"
       cursor="pointer"
       overflow="hidden"
+      sx={{
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.35)',
+      }}
     >
       <Flex direction="column" gap={4} h="full">
         <Box position="relative" width="100%" height="193px">
@@ -42,6 +46,7 @@ export function AiToolsCard({ tool, isFavorite, onToggleFavorite }: AiToolsCardC
             layout="fill"
             objectFit="cover"
           />
+
           <IconButton
             aria-label={isFavorite ? "إزالة من المفضلة" : "إضافة إلى المفضلة"}
             icon={
@@ -81,7 +86,6 @@ export function AiToolsCard({ tool, isFavorite, onToggleFavorite }: AiToolsCardC
           >
             {title}
           </Box>
-
           <Box
             fontWeight="700"
             fontSize="18px"
@@ -94,7 +98,6 @@ export function AiToolsCard({ tool, isFavorite, onToggleFavorite }: AiToolsCardC
           >
             {tags}
           </Box>
-
           <Box
             fontWeight="500"
             color="primary"
@@ -107,15 +110,19 @@ export function AiToolsCard({ tool, isFavorite, onToggleFavorite }: AiToolsCardC
           >
             {truncatedDescription}
           </Box>
-
           <ButtonAC
             mx="auto"
-            text="المزيد"
             size="sm"
+            text="المزيد"
+            fontSize={{ lg: 17,base:14 }}
             alignSelf="center"
             bg="secondary"
             textColor="white"
             mb={2}
+            sx={{
+              flexDirection: { lg: 'row-reverse', sm: 'row-reverse', md:'row-reverse' }
+              ,gap: '5px'
+            }}
             icon={masedLogo}
           />
         </Box>

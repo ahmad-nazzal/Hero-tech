@@ -86,18 +86,21 @@ const HeaderDesktop = () => {
         
             display="flex"
             justifyContent="left"
-            gap={{ lg: 5, md: 5, sm: 3 }}
+            gap={{ lg: 5, md: 5 }}
             marginLeft={{ lg: "75px", md: "20px", sm: "20px" }}
           >
             {status === "authenticated" ? (
-              <>
-                <Box  width={ "50px" } height={  "50px" } >
+              <Flex 
+               gap={{ lg: 5, md: 8, sm: 8 }}
+                ml={{ lg: "18px", md: "30px", sm: "30px" }}
+                >
+                <Box  width={ "50px" }ml={{lg:0,md:0,sm:-4}} height={  "50px" } >
                   <Image src={group46} alt="Group 46" />
                 </Box>
                 <Box  mt="6px" ml="-30px"  width={ "40px" } height={ "33.33px" }>
                   <Image src={vector1} alt="Vector 1" />
                 </Box>
-              </>
+              </Flex>
             ) : (
               <>
                 <ButtonAC

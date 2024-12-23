@@ -10,6 +10,7 @@ import {
   List,
   ListItem,
   Collapse,
+  useMediaQuery,
   Image as ChakraImage,
 } from "@chakra-ui/react";
 import { CloseIcon } from "@chakra-ui/icons";
@@ -23,6 +24,21 @@ const HeaderMobile = () => {
   const { status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLessThan370] = useMediaQuery('(max-width: 370px)');
+const [isMoreThan410] = useMediaQuery('(min-width: 410px)');
+let marginLeft;
+if (status === "authenticated") {
+  if (isLessThan370) {
+    marginLeft = "-10px";
+  } else if (isMoreThan410) {
+    marginLeft = "-80px";
+  } else {
+    marginLeft = "-44px";
+  }
+} else {
+  marginLeft = "0";
+}
+
   const sourceItems = [
     "المدونة",
     "المنتدى",
@@ -68,6 +84,8 @@ const HeaderMobile = () => {
       
         <IconButton
           onClick={toggleMenu}
+        //border="1px solid blue"
+      
           icon={
             menuOpen ? (
               <CloseIcon w={5} h={5} color="white" fontWeight="bold" />
@@ -82,8 +100,10 @@ const HeaderMobile = () => {
           }
           variant="ghost"
           aria-label="Toggle Navigation"
-          marginLeft={status === "authenticated" ? "-44px" : "0"}
-        />
+        //  marginLeft={status === "authenticated" ? "-44px" : "0"}
+        marginLeft={marginLeft}
+
+      />
            {status === "authenticated" && (
           <Box display="flex" alignItems="center" 
         
