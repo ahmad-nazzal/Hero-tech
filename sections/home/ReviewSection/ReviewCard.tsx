@@ -15,8 +15,9 @@ import Starempty from "../../../public/images/Starempty.png";
 import ReviewCardProps from "./ReviewCardProps";
 
 export default function ReviewCard({
-  name,
-  review,
+  reviewerName,
+  reviewerLastName,
+  reviewText,
   rating,
   date,
 }: ReviewCardProps) {
@@ -76,7 +77,8 @@ export default function ReviewCard({
             fontWeight="700"
             fontSize="19px"
           >
-            {name}
+            {reviewerName}
+            {""} {reviewerLastName}
           </Heading>
           <Text
             textAlign="center"
@@ -85,7 +87,7 @@ export default function ReviewCard({
             fontWeight="500"
             fontSize="18px"
           >
-            {review}
+            {reviewText}
           </Text>
         </CardBody>
 

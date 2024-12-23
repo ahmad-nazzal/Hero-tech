@@ -23,7 +23,8 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-paginate": "^8.2.0",
     "react-router-dom": "^6.28.1",
-    "swiper": "^11.1.14"
+    "swiper": "^11.1.14",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@types/node": "^20",
