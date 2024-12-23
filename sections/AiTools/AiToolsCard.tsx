@@ -23,13 +23,12 @@ export function AiToolsCard({ tool, isFavorite, onToggleFavorite }: AiToolsCardC
       onToggleFavorite(tool_id);
     }
   };
-  
+
   return (
     <Box
       shadow="lg"
       width={{ lg: "400px", md: "370px",sm:"270px" }} 
       height={{lg:"528.3px" ,md:"528.3px",sm:"400px"}}
-
       rounded="sm"
       transition="all 0.3s ease-in-out"
       cursor="pointer"
@@ -46,7 +45,6 @@ export function AiToolsCard({ tool, isFavorite, onToggleFavorite }: AiToolsCardC
             layout="fill"
             objectFit="cover"
           />
-
           <IconButton
             aria-label={isFavorite ? "إزالة من المفضلة" : "إضافة إلى المفضلة"}
             icon={
@@ -86,6 +84,7 @@ export function AiToolsCard({ tool, isFavorite, onToggleFavorite }: AiToolsCardC
           >
             {title}
           </Box>
+
           <Box
             fontWeight="700"
             fontSize="18px"
@@ -98,6 +97,7 @@ export function AiToolsCard({ tool, isFavorite, onToggleFavorite }: AiToolsCardC
           >
             {tags}
           </Box>
+
           <Box
             fontWeight="500"
             color="primary"
@@ -112,9 +112,9 @@ export function AiToolsCard({ tool, isFavorite, onToggleFavorite }: AiToolsCardC
           </Box>
           <ButtonAC
             mx="auto"
-            size="sm"
             text="المزيد"
             fontSize={{ lg: 17,base:14 }}
+            size="sm"
             alignSelf="center"
             bg="secondary"
             textColor="white"
