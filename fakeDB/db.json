@@ -23,6 +23,14 @@
       "lastName": "saadeh",
       "username": "marah saadeh",
       "country": "عُمان"
+    },
+    {
+      "email": "ahmad@gmail.com",
+      "password": "$2b$10$9zOHlurVWjyJtfyNFxn3JOuCaV305hvjHerA/BiEuqujh5S.AgehK",
+      "firstName": "Ahmad",
+      "lastName": "nazzal",
+      "username": "ahmad",
+      "country": "فلسطين"
     }
   ],
   "reviews": [
