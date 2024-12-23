@@ -16,7 +16,7 @@ export const authOptions = {
         // const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
 
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/fakeDB/db.json`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/db.json`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch the database.");
