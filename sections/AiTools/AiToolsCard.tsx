@@ -28,18 +28,18 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
   
-  
-  
-
   return (
     <Box
       shadow="lg"
-      width="400px" 
-      height="528.3px" 
+      width={{ lg: "400px", md: "370px",sm:"270px" }} 
+      height={{lg:"528.3px" ,md:"528.3px",sm:"400px"}}
       rounded="sm"
       transition={"all 0.3s ease-in-out"}
       cursor={"pointer"}
       overflow="hidden"
+      sx={{
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.35)',
+      }}
     >
     
       <Flex direction="column" gap={4} h="full">
@@ -58,24 +58,19 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
           <Image
           src={isFavorited ? heartlogo : empHeartlogo}
             alt="Favorite Icon"
-            
-              style={{   width:"100", height:"20" }}
+            style={{   width:"100", height:"20" }}
           />
         }
         size="lg"
         rounded="full"
         position="absolute"
         mt="15px"
-        left={4}
-      
+        left={4}      
         bg={bg}
         boxShadow= '0 2px 8px rgba(0, 0, 0, 0.35)'
         onClick={() => toggleFavorite(tool.tool_id!)} 
-
     />
         </Box>
-
-    
         <Box
           p={4}
           display="flex"
@@ -83,8 +78,6 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
           justifyContent="space-between"
           height="calc(100% - 193px)"
         >
-          
-    
           <Box
             fontWeight="700"
             fontSize="23px"
@@ -97,8 +90,6 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
           >
             {title}
           </Box>
-
-
           <Box
             fontWeight="700"
             fontSize="18px"
@@ -111,8 +102,6 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
           >
             {tags}
           </Box>
-
-
           <Box
             fontWeight="500"
             color={"primary"}
@@ -125,19 +114,21 @@ export function AiToolsCard({ tool }: { tool: AiToolsCardProps }) {
           >
             {truncatedDescription}
           </Box>
-
-        
           <ButtonAC
             mx="auto"
-            text="المزيد"
             size="sm"
+            text="المزيد"
+            fontSize={{ lg: 17,base:14 }}
             alignSelf="center"
             bg="secondary"
             textColor="white"
             mb={2}
+            sx={{
+              flexDirection: { lg: 'row-reverse', sm: 'row-reverse', md:'row-reverse' }
+              ,gap: '5px'
+            }}
             icon={masedLogo}
           />
-        
         </Box>
       </Flex>
     </Box>

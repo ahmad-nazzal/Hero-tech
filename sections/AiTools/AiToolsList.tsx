@@ -117,59 +117,51 @@ export default function AiToolsList() {
       px={5} py={10} 
 
       >
-      <Flex
-
-      direction={{ base: "column",sm: "column",md: "column", lg: "row" }}
-
-        align="flex-end"
-      wrap="nowrap" 
-    >
-        <ButtonAC
-          onClick={showFavorites}
-
-          mb="30px"
-          mr="100px" 
-          pr="10px"
-          pl="0px"
-  size="lg"
-  color="#783BA2"
-  bg="white" 
-  text="المفضلة" 
-  fontSize={{ lg: 17, sm: 10 }}
-  icon={
-    <Image
-      src={heartlogo} 
-      alt="Favorite Icon"
-      
-        style={{   width:"100", height:"20" }}
-    />
-  }
-  sx={{
-    width: '140px',
-    height: '44px',
-    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.35)',
-  
-    flexDirection: 'row-reverse', 
-
-    gap: '7px' 
-  }}
-/>
-<Box
-
-mt="-30px"
-
-  flexGrow={1}
-  mb="30px"
->
+    <Flex
+        direction={{ base: "column", md: "column", lg: "row" }}
+        align={{ base: "center", md: "center", lg: "flex-end" }}
+        wrap="nowrap"
+        mt={{lg:"0px",md:"80px",sm:"80px",base:"40px"}}
+        mb={{lg:"30px"}}
+        justifyContent={{ lg: "space-between" }}
+      >
+        <Box
+          flexGrow={1}
+          mt="-30px"
+          mb={{ base: 4, lg: 0 }} 
+          order={{ lg: 2 }} 
+        >
           <SearchBar
             placeholder="chatgpt...."
-    
-            onSearch={(value) => setSearchQuery(value)} 
-      
-    />
-    </Box>
-  
-    </Flex>
+            onSearch={(value) => setSearchQuery(value)}
+          />
+        </Box>
+        <ButtonAC
+          onClick={showFavorites}
+          size="lg"
+          color="#783BA2"
+          bg="white"
+          text="المفضلة"
+          fontSize={{ lg: 17, sm: 10 }}
+          icon={
+            <Image
+              src={heartlogo}
+              alt="Favorite Icon"
+              style={{ width: "100", height: "20" }}
+            />
+          }
+          sx={{
+            width: '140px',
+            height: '44px',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.35)',
+            flexDirection: 'row-reverse',
+            gap: '7px'
+          }}
+          ml={{ lg: 2 }} 
+          mr={{ lg: "100px" }} 
+          order={{ lg: 1 }} 
+        />
+      </Flex>
 
 {filteredTools.length === 0 ? (
   <Flex
@@ -190,12 +182,15 @@ mt="-30px"
     loader={<Box>جاري التحميل...</Box>}
   >
     <Grid
+
+    pl="100px"
+    pr="100px"
       mt={12}
       justifyItems="center"
       alignItems="center"
       templateColumns={{
         base: "1fr",
-        sm: "1fr",
+        sm: "repeat(2, 1fr)",
         md: "repeat(2, 1fr)",
         lg: "repeat(4, 1fr)",
       }}
