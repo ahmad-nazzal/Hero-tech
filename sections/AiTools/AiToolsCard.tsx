@@ -12,10 +12,14 @@ interface AiToolsCardComponentProps {
   onToggleFavorite: (toolId: number) => void;
 }
 
-export function AiToolsCard({ tool, isFavorite, onToggleFavorite }: AiToolsCardComponentProps) {
+export function AiToolsCard({
+  tool,
+  isFavorite,
+  onToggleFavorite,
+}: AiToolsCardComponentProps) {
   const { tool_id, title, description, tags } = tool;
   const words = description.split(" ");
-  const truncatedDescription = words.slice(0, 5).join(" ") + "...";
+  const truncatedDescription = words.slice(0, 20).join(" ") + "...";
   const bg = useColorModeValue("white", "gray.800");
 
   const handleFavoriteClick = () => {
@@ -27,14 +31,26 @@ export function AiToolsCard({ tool, isFavorite, onToggleFavorite }: AiToolsCardC
   return (
     <Box
       shadow="lg"
-      width={{ lg: "400px", md: "370px",base:"370px" }} 
-      height={{lg:"528.3px" ,md:"528.3px",base:"400px"}}
+      width={{
+        xl: "400px",
+        lg: "350px",
+        md: "350px",
+        base: "300px",
+        sm: "330px",
+      }}
+      height={{
+        xl: "528px",
+        lg: "450.3px",
+        md: "450.3px",
+        base: "400px",
+        sm: "400px",
+      }}
       rounded="sm"
       transition="all 0.3s ease-in-out"
       cursor="pointer"
       overflow="hidden"
       sx={{
-        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.35)',
+        boxShadow: "0 2px 8px rgba(0, 0, 0, 0.35)",
       }}
     >
       <Flex direction="column" gap={4} h="full">
@@ -113,15 +129,19 @@ export function AiToolsCard({ tool, isFavorite, onToggleFavorite }: AiToolsCardC
           <ButtonAC
             mx="auto"
             text="المزيد"
-            fontSize={{ lg: 17,base:14 }}
+            fontSize={{ lg: 17, base: 14 }}
             size="sm"
             alignSelf="center"
             bg="secondary"
             textColor="white"
             mb={2}
             sx={{
-              flexDirection: { lg: 'row-reverse', sm: 'row-reverse', md:'row-reverse' }
-              ,gap: '5px'
+              flexDirection: {
+                lg: "row-reverse",
+                sm: "row-reverse",
+                md: "row-reverse",
+              },
+              gap: "5px",
             }}
             icon={masedLogo}
           />

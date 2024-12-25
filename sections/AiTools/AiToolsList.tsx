@@ -153,8 +153,6 @@ export default function AiToolsList() {
               loader={<Box>جاري التحميل...</Box>}
             >
               <Grid
-                pl="100px"
-                pr="100px"
                 mt={12}
                 justifyItems="center"
                 alignItems="center"
