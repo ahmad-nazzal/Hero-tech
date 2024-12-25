@@ -23,7 +23,6 @@ export default function Home() {
         />
       </Box>
       <Header />
-
       <Hero />
       <Quiz />
       <AboutUs />
