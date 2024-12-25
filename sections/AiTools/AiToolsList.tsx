@@ -1,11 +1,12 @@
+
 "use client";
+import React, { Suspense, useState, useEffect } from "react";
 import { Box, Flex, Grid } from "@chakra-ui/react";
 import SearchBar from "../../components/SearchBar";
-import { useEffect, useState } from "react";
 import { AiToolsCardProps } from "./types";
 import { AiToolsCard } from "./AiToolsCard";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Header from "../header/header";
+//import Header from "../header/header";
 import ButtonAC from "../../components/ButtonAC";
 import Image from "next/image";
 import heartlogo from "../../public/images/emp-heart.png";
@@ -86,7 +87,7 @@ export default function AiToolsList() {
 
   return (
     <>
-      <Header />
+
       <Box mx="auto" pb={10} px={5} py={10}>
       <Flex
     
@@ -150,6 +151,7 @@ export default function AiToolsList() {
               : "العنصر غير متوفر"}
           </Flex>
         ) : (
+          <Suspense fallback={<Box>جاري التحميل...</Box>}>
           <InfiniteScroll
             dataLength={currentIndex}
             next={loadMore}
@@ -180,6 +182,7 @@ export default function AiToolsList() {
               ))}
             </Grid>
           </InfiniteScroll>
+          </Suspense>
         )}
       </Box>
     </>
