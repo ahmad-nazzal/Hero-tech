@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Tajawal } from "next/font/google";
 import { Providers } from "../components/Providers";
-import AuthProvider from "../app/providers/AuthProvider";
 
 const tajawal = Tajawal({
   weight: ["400", "700"],
@@ -42,9 +41,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${tajawal.className} antialiased`}
       >
-        <AuthProvider>
+  
         <Providers>{children}</Providers>
-        </AuthProvider>
+  
       </body>
     </html>
   );
