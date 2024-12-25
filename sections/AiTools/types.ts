@@ -5,7 +5,7 @@ export interface AiToolsCardProps {
    description: string;
    tags: string;
 }
-// types.ts
+
 export interface User {
   email: string;
   password: string;

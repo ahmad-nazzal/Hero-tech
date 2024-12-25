@@ -1,3 +1,6 @@
+// If a user sends their email, tool ID, and favorite status, the code checks if the user exists in the database.
+// If the user is found, it updates their list of favorite tools based on whether the tool should be added or removed.
+// The result is then saved back to the database file. Responses indicate success or failure of the operation.
 import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";

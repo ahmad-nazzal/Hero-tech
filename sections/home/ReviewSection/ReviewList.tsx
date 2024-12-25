@@ -1,5 +1,6 @@
-"use client";
+// this code Fetches review data asynchronously from an API and stores it in the local state.
 
+"use client";
 import { Box } from "@chakra-ui/react";
 import ReviewCard from "./ReviewCard";
 import { Navigation, Scrollbar, A11y } from "swiper/modules";
@@ -12,13 +13,12 @@ import "./ReviewList.css";
 import { useEffect, useState } from "react";
 import ReviewCardProps from "./ReviewCardProps";
 
-const ReviewList = () => {
-  const [reviews, setReviews] = useState<ReviewCardProps[]>([]);
-
-  // استدعاء البيانات مرة واحدة فقط عند تحميل المكون
-  useEffect(() => {
+  const ReviewList = () => {
+    const [reviews, setReviews] = useState<ReviewCardProps[]>([]);
+  
+    useEffect(() => {  
     getReviews();
-  }, []); // مصفوفة التبعية فارغة
+  }, []);  
 
   async function getReviews() {
     try {
@@ -26,7 +26,7 @@ const ReviewList = () => {
         "https://sitev2.arabcodeacademy.com/wp-json/aca/v1/reviews"
       );
       const data = await res.json();
-      setReviews(data.reviews); // تحديث الحالة هنا
+      setReviews(data.reviews); 
     } catch (error) {
       console.error("Error fetching reviews:", error);
     }

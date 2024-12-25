@@ -1,4 +1,6 @@
+// this code Shows different header based on user login status (isAuthenticated).
 "use client";
+
 import ButtonAC from "../../components/ButtonAC";
 import Image from "next/image";
 import registerlogo_mobile from "../../public/images/profile_circled__mobile.png";

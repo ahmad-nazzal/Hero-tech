@@ -1,4 +1,6 @@
+// this code Shows different header based on user login status (isAuthenticated).
 "use client"
+
 import {
   Flex,
   Grid,

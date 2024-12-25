@@ -1,4 +1,4 @@
-// hooks/useAiTools.ts
+
 import useSWR from "swr";
 
 const fetcher = async (url: string) => {

@@ -1,3 +1,4 @@
+
 import { Box, Flex, IconButton, useColorModeValue } from "@chakra-ui/react";
 import Image from "next/image";
 import masedLogo from "../../public/images/circled_outline.png";

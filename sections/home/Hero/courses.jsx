@@ -1,3 +1,4 @@
+// this code Fetches courses data asynchronously from an API and stores it in the local state.
 import React, { useState, useEffect } from "react";
 import ButtonAC from "../../../components/ButtonAC";
 import Loading from "./loading";
@@ -13,105 +14,105 @@ import "swiper/css/scrollbar";
 import CustomCard from "../../../components/CustomCard";
 import { Tooltip } from "@chakra-ui/react";
 import { Text, Box, Grid, GridItem } from "@chakra-ui/react";
-
-const Courses = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [slidesPerView, setSlidesPerView] = useState(1);
-  const [showWhiteLayer, setShowWhiteLayer] = useState(true);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://sitev2.arabcodeacademy.com/wp-json/aca/v1/courses"
-        );
-        const result = await response.json();
-        const formattedData = result.courses.map((course) => ({
-          id: course.id,
-          name: course.title,
-          price: `$${course.price}`,
-          image: course.imageURL,
-          duration: `${course.total_videos} فيديو، ${course.total_duration}`,
-          trainer: course.trainers
-            .filter((trainer) => trainer.leader)
-            .map((trainer) => `${trainer.first_name} ${trainer.last_name}`)
-            .join(", "),
-          description: `السعر الأصلي: ${course.original_price} ${course.currency}`,
-          level: "غير محدد",
-          isComingSoon: course.status === "coming_soon",
-        }));
-        setData(formattedData);
-      } catch (error) {
-        console.error("خطأ أثناء جلب البيانات:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const updateSlidesPerView = () => {
-      const width = window.innerWidth;
-      if (width >= 2200) {
-        setSlidesPerView(5);
-      } else if (width >= 1740) {
-        setSlidesPerView(4);
-      } else if (width >= 1380) {
-        setSlidesPerView(3);
-      } else if (width >= 1030) {
-        setSlidesPerView(2);
+import "./hero.css";
+ const Courses = () => {
+   const [data, setData] = useState(null);
+   const [loading, setLoading] = useState(true);
+   const [slidesPerView, setSlidesPerView] = useState(1);
+   const [showWhiteLayer, setShowWhiteLayer] = useState(true);
+   useEffect(() => {
+     const fetchData = async () => {
+       try {
+         const response = await fetch(
+           "https://sitev2.arabcodeacademy.com/wp-json/aca/v1/courses"
+         );
+         const result = await response.json();
+         const formattedData = result.courses.map((course) => ({
+           id: course.id,
+           name: course.title,
+           price: `$${course.price}`,
+           image: course.imageURL,
+           duration: `${course.total_videos} فيديو، ${course.total_duration}`,
+           trainer: course.trainers
+             .filter((trainer) => trainer.leader)
+             .map((trainer) => `${trainer.first_name} ${trainer.last_name}`)
+             .join(", "),
+           description: `السعر الأصلي: ${course.original_price} ${course.currency}`,
+           level: "غير محدد",
+           isComingSoon: course.status === "coming_soon",
+         }));
+         setData(formattedData);
+       } catch (error) {
+         console.error("خطأ أثناء جلب البيانات:", error);
+       } finally {
+         setLoading(false);
+       }
+     };
+ 
+     fetchData();
+   }, []);
+ 
+   useEffect(() => {
+     const updateSlidesPerView = () => {
+       const width = window.innerWidth;
+       if (width >= 2200) {
+         setSlidesPerView(5);
+        } else if (width >= 1740) {
+          setSlidesPerView(4);
+        } else if (width >= 1380) {
+          setSlidesPerView(3);
+        } else if (width >= 1030) {
+          setSlidesPerView(2);
+        } else {
+          setSlidesPerView(1);
+        }
+      };
+      updateSlidesPerView();
+      window.addEventListener("resize", updateSlidesPerView);
+      return () => {
+        window.removeEventListener("resize", updateSlidesPerView);
+      };
+    }, []);
+  
+    const handleSlideChange = (swiper) => {
+      if (swiper.activeIndex > 0) {
+        setShowWhiteLayer(false);
       } else {
-        setSlidesPerView(1);
+        setShowWhiteLayer(true);
       }
     };
-    updateSlidesPerView();
-    window.addEventListener("resize", updateSlidesPerView);
-    return () => {
-      window.removeEventListener("resize", updateSlidesPerView);
-    };
-  }, []);
-
-  const handleSlideChange = (swiper) => {
-    if (swiper.activeIndex > 0) {
-      setShowWhiteLayer(false);
-    } else {
-      setShowWhiteLayer(true);
-    }
-  };
-
-  if (loading) return <Loading />;
-  return (
-    <Box
-      marginBottom={112}
-      paddingTop={2}
-      paddingBottom={2}
-      paddingLeft={3}
-      marginLeft="31px"
-      marginRight="67px"
-    >
-      <Swiper
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween="-200px"
-        navigation={true}
-        onSlideChange={handleSlideChange}
-        breakpoints={{
-          320: {
-            slidesPerView: 1,
-          },
-          1030: {
-            slidesPerView: 2,
-          },
-          1380: {
-            slidesPerView: 3,
-          },
-          1740: {
-            slidesPerView: 4,
-          },
-          2200: { slidesPerView: 5 },
-        }}
+  
+    if (loading) return <Loading />;
+    return (
+      <Box
+        marginBottom={112}
+        paddingTop={2}
+        paddingBottom={2}
+        paddingLeft={3}
+        marginLeft="31px"
+        marginRight="67px"
       >
+        <Swiper
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          spaceBetween="-200px"
+          navigation={true}
+          onSlideChange={handleSlideChange}
+          breakpoints={{
+           320: {
+             slidesPerView: 1,
+           },
+           1030: {
+             slidesPerView: 2,
+           },
+           1380: {
+             slidesPerView: 3,
+           },
+           1740: {
+             slidesPerView: 4,
+           },
+           2200: { slidesPerView: 5 },
+         }}
+       >
         {data &&
           data
             .filter((item) => item.isComingSoon === false)
@@ -309,88 +310,6 @@ const Courses = () => {
               ))}
         </Swiper>
       </Box>
-      <style>
-        {`
-    .swiper-button-prev, .swiper-button-next {
-      width: 70px;
-      height: 70px;
-      border: 6px solid #713488;
-      border-radius: 50%;
-      background: transparent;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .swiper-button-prev::after, .swiper-button-next::after {
-      content: '';
-      display: block;
-      width: 20px;
-      height: 20px;
-      background: none;
-      font-size: 0;
-      color: transparent;
-      border: none;
-    }
-
-    .swiper-button-prev::after {
-      width: 20px;
-      height: 20px;
-      border-left: 6px solid #713488;
-      border-bottom: 6px solid #713488;
-      transform: rotate(225deg);
-    }
-
-    .swiper-button-next::after {
-      width: 20px;
-      height: 20px;
-      border-right: 6px solid #713488;
-      border-top: 6px solid #713488;
-      transform: rotate(225deg);
-    }
-
-    @media (max-width: 480px) { 
-    
-      .swiper-button-prev, .swiper-button-next {
-        width: 40px; 
-        height: 40px; 
-        border: 3px solid #713488; 
-        border-radius: 50%; 
-  background: transparent; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-        }
-
-      .swiper-button-prev::after, .swiper-button-next::after {
-  content: '';
-  display: block;
-  width: 15px;
-  height: 15px;
-  background: none;
-  font-size: 0;
-  color: transparent;
-  border: none;
-}
-    .swiper-button-prev::after {
-  border-left: 3px solid #713488;
-  border-bottom: 3px solid #713488;
-}
-
-.swiper-button-next::after {
-  border-right: 3px solid #713488;
-  border-top: 3px solid #713488;
-}
-      .swiper-button-prev {
-        right: 0px !important; 
-      }
-
-      .swiper-button-next {
-        left: 2px !important; 
-      }
-    }
-  `}
-      </style>
     </Box>
   );
 };

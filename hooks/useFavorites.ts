@@ -1,4 +1,4 @@
-// hooks/useFavorites.ts
+
 import { useState, useEffect } from "react";
 import { AiToolsCardProps } from "../sections/AiTools/types";
 

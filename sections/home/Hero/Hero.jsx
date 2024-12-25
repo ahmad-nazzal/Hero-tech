@@ -11,7 +11,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Suspense } from "react";
-import "./hero.css";
 import Courses from "./courses.jsx";
 import Loading from "./loading.jsx";
 import { Service } from "../ServiceSection/Service";
@@ -260,9 +259,9 @@ export default function Hero() {
       <SearchBar placeholder="..... مقدمة لمحرك الألعاب اليونتي" />
     </GridItem>
   </Grid>
-        <Suspense fallback={<Loading />}>
-          <Courses />
-        </Suspense>
+  <Suspense fallback={<Loading />}>
+        <Courses />
+      </Suspense>
       </main>
 
     </>

@@ -1,12 +1,11 @@
-
 "use client";
+
 import React, { Suspense, useState, useEffect } from "react";
 import { Box, Flex, Grid } from "@chakra-ui/react";
 import SearchBar from "../../components/SearchBar";
 import { AiToolsCardProps } from "./types";
 import { AiToolsCard } from "./AiToolsCard";
 import InfiniteScroll from "react-infinite-scroll-component";
-//import Header from "../header/header";
 import ButtonAC from "../../components/ButtonAC";
 import Image from "next/image";
 import heartlogo from "../../public/images/emp-heart.png";

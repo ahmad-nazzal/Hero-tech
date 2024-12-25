@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Tajawal } from "next/font/google";
-import { Providers } from "../components/Providers";
+ import { Providers } from "../components/Providers";
 
 const tajawal = Tajawal({
   weight: ["400", "700"],
@@ -42,7 +42,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${tajawal.className} antialiased`}
       >
   
-        <Providers>{children}</Providers>
+     <Providers>{children}</Providers>
   
       </body>
     </html>
