@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   Flex,
   Grid,
@@ -15,7 +15,7 @@ import loginlogo from "../../public/images/log_in.png";
 import registerlogo from "../../public/images/profile_circled.png";
 import dropdownicon from "../../public/images/Polygon 2.png";
 import logo from "../../public/images/8e6c847871186b9180f5ae9f99b6bcbc.png";
-import vector1 from"../../public/images/Vector (1).png";
+import vector1 from "../../public/images/Vector (1).png";
 import group46 from "../../public/images/Group 46.png";
 import { useEffect, useState } from "react";
 
@@ -24,18 +24,18 @@ const HeaderDesktop = () => {
   useEffect(() => {
     const checkAuthStatus = () => {
       const loggedIn = localStorage.getItem("loggedIn");
-      console.log("loggedIn:", loggedIn); 
+      console.log("loggedIn:", loggedIn);
       setIsAuthenticated(loggedIn === "true");
-      console.log("isAuthenticated:", isAuthenticated); 
+      console.log("isAuthenticated:", isAuthenticated);
     };
-  
+
     checkAuthStatus();
     window.addEventListener("load", checkAuthStatus);
     return () => {
       window.removeEventListener("load", checkAuthStatus);
     };
   }, []);
-  
+
   return (
     <Box>
       <Flex
@@ -78,7 +78,12 @@ const HeaderDesktop = () => {
               }}
             >
               <ListItem>
-                <Link href="/sources" display="flex" alignItems="center" gap="4px">
+                <Link
+                  href="/sources"
+                  display="flex"
+                  alignItems="center"
+                  gap="4px"
+                >
                   <Box
                     marginTop="5px"
                     width={{ sm: "9px", md: "12px", lg: "12px" }}
@@ -98,21 +103,24 @@ const HeaderDesktop = () => {
             </List>
           </GridItem>
           <GridItem
-        
             display="flex"
             justifyContent="left"
             gap={{ lg: 5, md: 5 }}
             marginLeft={{ lg: "75px", md: "20px", sm: "20px" }}
           >
-          {isAuthenticated ? (
-              <Flex 
-               gap={{ lg: 5, md: 8, sm: 8 }}
+            {true ? (
+              <Flex
+                gap={{ lg: 5, md: 8, sm: 8 }}
                 ml={{ lg: "18px", md: "30px", sm: "30px" }}
+              >
+                <Box
+                  width={"50px"}
+                  ml={{ lg: 0, md: 0, sm: -4 }}
+                  height={"50px"}
                 >
-                <Box  width={ "50px" }ml={{lg:0,md:0,sm:-4}} height={  "50px" } >
                   <Image src={group46} alt="Group 46" />
                 </Box>
-                <Box  mt="6px" ml="-30px"  width={ "40px" } height={ "33.33px" }>
+                <Box mt="6px" ml="-30px" width={"40px"} height={"33.33px"}>
                   <Image src={vector1} alt="Vector 1" />
                 </Box>
               </Flex>

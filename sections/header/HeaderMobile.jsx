@@ -15,12 +15,11 @@ import {
 } from "@chakra-ui/react";
 import { CloseIcon } from "@chakra-ui/icons";
 import Link from "next/link";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import vector1 from "../../public/images/Vector (1).png";
 import group46 from "../../public/images/Group 46.png";
 
 const HeaderMobile = () => {
-
   const [isOpen, setIsOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -34,25 +33,24 @@ const HeaderMobile = () => {
     window.addEventListener("load", checkAuthStatus);
     return () => window.removeEventListener("load", checkAuthStatus);
   }, []);
-  
 
-  const [isLessThan370] = useMediaQuery('(max-width: 370px)');
-const [isMoreThan410] = useMediaQuery('(min-width: 410px)');
-let marginLeft;
-if (!isAuthenticated) {
-  if (isLessThan370) {
-    marginLeft = "-10px";
-  } else if (isMoreThan410) {
-    marginLeft = "-80px";
+  const [isLessThan370] = useMediaQuery("(max-width: 370px)");
+  const [isMoreThan410] = useMediaQuery("(min-width: 410px)");
+  let marginLeft;
+  if (!isAuthenticated) {
+    if (isLessThan370) {
+      marginLeft = "-10px";
+    } else if (isMoreThan410) {
+      marginLeft = "-80px";
+    } else {
+      marginLeft = "-44px";
+    }
   } else {
-    marginLeft = "-44px";
+    marginLeft = "0";
   }
-} else {
-  marginLeft = "0";
-}
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const toggleCollapse = () => setIsOpen(!isOpen);
-  
+
   const sourceItems = [
     "المدونة",
     "المنتدى",
@@ -74,30 +72,27 @@ if (!isAuthenticated) {
       opacity="0.9"
     />
   );
-  
+
   return (
     <Box>
-    <Flex
-      bg="#783BA2"
-      color="white"
-      alignItems="center"
-      justifyContent="space-between"
-      height="55px"
-      display={{ base: "flex", sm: "none" }}
-      
-    >
-      <ChakraImage
-        src="/images/8e6c847871186b9180f5ae9f99b6bcbc.png"
-        width={150}
-        height={30.48}
-        alt="Logo"
-        marginRight={9}
-      />
-      
+      <Flex
+        bg="#783BA2"
+        color="white"
+        alignItems="center"
+        justifyContent="space-between"
+        height="55px"
+        display={{ base: "flex", sm: "none" }}
+      >
+        <ChakraImage
+          src="/images/8e6c847871186b9180f5ae9f99b6bcbc.png"
+          width={150}
+          height={30.48}
+          alt="Logo"
+          marginRight={9}
+        />
+
         <IconButton
           onClick={toggleMenu}
-    
-      
           icon={
             menuOpen ? (
               <CloseIcon w={5} h={5} color="white" fontWeight="bold" />
@@ -112,83 +107,76 @@ if (!isAuthenticated) {
           }
           variant="ghost"
           aria-label="Toggle Navigation"
-        marginLeft={marginLeft}
-
-      />
-            {!isAuthenticated ? (
-            
-          <Box display="flex" alignItems="center" 
-        
-          ml="45px"
-          gap="10px">
-              <Box width={{base:"40px"}} height={{base:"40px"}}>
+          marginLeft={marginLeft}
+        />
+        {true ? (
+          <Box display="flex" alignItems="center" ml="45px" gap="10px">
+            <Box width={{ base: "40px" }} height={{ base: "40px" }}>
               <Image src={group46} alt="Group 46" />
             </Box>
-            <Box width={{base:"20px"}} height={{base:"20px"}}>
+            <Box width={{ base: "20px" }} height={{ base: "20px" }}>
               <Image src={vector1} alt="Vector 1" />
             </Box>
-          
           </Box>
-
-            ) : (
-              <Collapse in={menuOpen} animateOpacity>
-              <Box
-                bg="#FFFFFF"
-                position="absolute"
-                top="55px"
-                left={0}
-                width="58%"
-                zIndex={10}
-                boxShadow="lg"
-                borderRadius="md"
-                display={{ sm: "none" }}
+        ) : (
+          <Collapse in={menuOpen} animateOpacity>
+            <Box
+              bg="#FFFFFF"
+              position="absolute"
+              top="55px"
+              left={0}
+              width="58%"
+              zIndex={10}
+              boxShadow="lg"
+              borderRadius="md"
+              display={{ sm: "none" }}
+            >
+              <List
+                textAlign="center"
+                boxShadow="0px 4px 8px rgba(0, 0, 0, 0.34)"
+                paddingBottom={5}
               >
-                <List
-                  textAlign="center"
-                  boxShadow="0px 4px 8px rgba(0, 0, 0, 0.34)"
-                  paddingBottom={5}
-                >
-                  <ListItem>
-                    <ButtonAC
-                      alignSelf="center"
-                      size="sm"
-                      color="#783BA2"
-                      bg="#FFFFFF"
-                      text="تسجيل الدخول"
-                      fontSize={16}
-                      fontWeight={500}
-                      icon={
-                        <Image
-                          src={loginlogo_mobile}
-                          alt="Login Icon"
-                          style={{ width: "25.71px", height: "30px" }}
-                        />
-                      }
-                      href="/signin"
-                      sx={{ width: "100%" }}
-                    />
-                  </ListItem>
-                  <Divider />
-                  <ListItem>
-                    <ButtonAC
-                      alignSelf="center"
-                      size="sm"
-                      color="#783BA2"
-                      bg="#FFFFFF"
-                      text="إنشاء حساب"
-                      fontSize={16}
-                      fontWeight={500}
-                      icon={
-                        <Image
-                          src={registerlogo_mobile}
-                          alt="Register Icon"
-                          style={{ width: "30px", height: "30px" }}
-                        />
-                      }
-                      href="/register"
-                      sx={{ width: "100%" }}
-                    />
-                  </ListItem>
+                <ListItem>
+                  <ButtonAC
+                    alignSelf="center"
+                    size="sm"
+                    color="#783BA2"
+                    bg="#FFFFFF"
+                    text="تسجيل الدخول"
+                    fontSize={16}
+                    fontWeight={500}
+                    icon={
+                      <Image
+                        src={loginlogo_mobile}
+                        alt="Login Icon"
+                        style={{ width: "25.71px", height: "30px" }}
+                      />
+                    }
+                    href="/signin"
+                    sx={{ width: "100%" }}
+                  />
+                </ListItem>
+                <Divider />
+                <ListItem>
+                  <ButtonAC
+                    alignSelf="center"
+                    size="sm"
+                    color="#783BA2"
+                    bg="#FFFFFF"
+                    text="إنشاء حساب"
+                    fontSize={16}
+                    fontWeight={500}
+                    icon={
+                      <Image
+                        src={registerlogo_mobile}
+                        alt="Register Icon"
+                        style={{ width: "30px", height: "30px" }}
+                      />
+                    }
+                    href="/register"
+                    sx={{ width: "100%" }}
+                  />
+                </ListItem>
                 <Divider />
                 {["المسارات التعليمية", "المصادر", "التواصل"].map(
                   (item, index, array) => (
@@ -216,7 +204,7 @@ if (!isAuthenticated) {
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
-      
+
                             gap: "3px",
                           }}
                         >
@@ -236,11 +224,7 @@ if (!isAuthenticated) {
                       )}
                       {item === "المصادر" && (
                         <Collapse in={isOpen}>
-                          <Box
-                            color="#713488"
-                            paddingBottom={1}
-                            bg="#F4EFF5"
-                          >
+                          <Box color="#713488" paddingBottom={1} bg="#F4EFF5">
                             <List
                               spacing="6px"
                               borderRadius="md"
@@ -272,9 +256,7 @@ if (!isAuthenticated) {
           </Collapse>
         )}
       </Flex>
-
-    
-  </Box>
+    </Box>
   );
 };
 
