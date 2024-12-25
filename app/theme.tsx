@@ -5,8 +5,7 @@ const theme = extendTheme({
     sm: "30em", // 480px
     md: "64em", // 1024px
     lg: "80em", // 1280px
-    xl: "90em", // 1440px
-    "2xl": "120em", // 1920px
+    xl: "100em", // 1600px
   },
   colors: {
     primary: "#462576", // Tekhelet

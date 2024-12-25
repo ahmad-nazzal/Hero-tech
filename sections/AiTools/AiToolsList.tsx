@@ -1,4 +1,3 @@
-
 "use client";
 import React, { Suspense, useState, useEffect } from "react";
 import { Box, Flex, Grid } from "@chakra-ui/react";
@@ -6,7 +5,6 @@ import SearchBar from "../../components/SearchBar";
 import { AiToolsCardProps } from "./types";
 import { AiToolsCard } from "./AiToolsCard";
 import InfiniteScroll from "react-infinite-scroll-component";
-//import Header from "../header/header";
 import ButtonAC from "../../components/ButtonAC";
 import Image from "next/image";
 import heartlogo from "../../public/images/emp-heart.png";
@@ -87,29 +85,25 @@ export default function AiToolsList() {
 
   return (
     <>
-
       <Box mx="auto" pb={10} px={5} py={10}>
-      <Flex
-    
-        direction={{ base: "column", md: "column", lg: "row" }}
-        align={{ base: "center", md: "center", lg: "flex-end" }}
-        wrap="nowrap"
-        mt={{lg:"0px",md:"80px",sm:"80px",base:"40px"}}
-        mb={{lg:"30px"}}
-        justifyContent={{ lg: "space-between" }}
-      >
-      
-          <Box 
-          mt="-30px"
-           flexGrow={1}
-           mb={{ base: 4, lg: 0 }} 
-           order={{ lg: 2 }} 
-           >
+        <Flex
+          direction={{ base: "column", md: "column", lg: "row" }}
+          align={{ base: "center", md: "center", lg: "flex-end" }}
+          wrap="nowrap"
+          mt={{ lg: "0px", md: "80px", sm: "80px", base: "40px" }}
+          mb={{ lg: "30px" }}
+          justifyContent={{ lg: "space-between" }}
+        >
+          <Box
+            mt="-30px"
+            flexGrow={1}
+            mb={{ base: 4, lg: 0 }}
+            order={{ lg: 2 }}
+          >
             <SearchBar placeholder="ابحث" onSearch={updateSearchQuery} />
           </Box>
           <ButtonAC
             onClick={handleShowFavorites}
-    
             pr="10px"
             pl="0px"
             size="lg"
@@ -131,9 +125,9 @@ export default function AiToolsList() {
               flexDirection: "row-reverse",
               gap: "7px",
             }}
-            ml={{ lg: 2 }} 
-            mr={{ lg: "100px" }} 
-            order={{ lg: 1 }} 
+            ml={{ lg: 2 }}
+            mr={{ lg: "100px" }}
+            order={{ lg: 1 }}
           />
         </Flex>
 
@@ -152,36 +146,36 @@ export default function AiToolsList() {
           </Flex>
         ) : (
           <Suspense fallback={<Box>جاري التحميل...</Box>}>
-          <InfiniteScroll
-            dataLength={currentIndex}
-            next={loadMore}
-            hasMore={hasMore}
-            loader={<Box>جاري التحميل...</Box>}
-          >
-            <Grid
-              pl="100px"
-              pr="100px"
-              mt={12}
-              justifyItems="center"
-              alignItems="center"
-              templateColumns={{
-                base: "1fr",
-                sm: "repeat(2, 1fr)",
-                md: "repeat(2, 1fr)",
-                lg: "repeat(4, 1fr)",
-              }}
-              gap={5}
+            <InfiniteScroll
+              dataLength={currentIndex}
+              next={loadMore}
+              hasMore={hasMore}
+              loader={<Box>جاري التحميل...</Box>}
             >
-              {filteredTools?.slice(0, currentIndex).map((tool) => (
-                <AiToolsCard
-                  tool={tool}
-                  key={tool.tool_id}
-                  isFavorite={favorites.includes(tool.tool_id ?? 0)}
-                  onToggleFavorite={() => toggleFavorite(tool.tool_id ?? 0)}
-                />
-              ))}
-            </Grid>
-          </InfiniteScroll>
+              <Grid
+                pl="100px"
+                pr="100px"
+                mt={12}
+                justifyItems="center"
+                alignItems="center"
+                templateColumns={{
+                  base: "1fr",
+                  sm: "repeat(2, 1fr)",
+                  md: "repeat(2, 1fr)",
+                  lg: "repeat(4, 1fr)",
+                }}
+                gap={5}
+              >
+                {filteredTools?.slice(0, currentIndex).map((tool) => (
+                  <AiToolsCard
+                    tool={tool}
+                    key={tool.tool_id}
+                    isFavorite={favorites.includes(tool.tool_id ?? 0)}
+                    onToggleFavorite={() => toggleFavorite(tool.tool_id ?? 0)}
+                  />
+                ))}
+              </Grid>
+            </InfiniteScroll>
           </Suspense>
         )}
       </Box>

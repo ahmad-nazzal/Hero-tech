@@ -27,8 +27,8 @@ export function AiToolsCard({ tool, isFavorite, onToggleFavorite }: AiToolsCardC
   return (
     <Box
       shadow="lg"
-      width={{ lg: "400px", md: "370px",sm:"270px" }} 
-      height={{lg:"528.3px" ,md:"528.3px",sm:"400px"}}
+      width={{ lg: "400px", md: "370px",base:"370px" }} 
+      height={{lg:"528.3px" ,md:"528.3px",base:"400px"}}
       rounded="sm"
       transition="all 0.3s ease-in-out"
       cursor="pointer"
