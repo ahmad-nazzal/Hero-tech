@@ -11,7 +11,7 @@ import { Box } from "@chakra-ui/react";
 import { SessionProvider } from "next-auth/react";
 import { Session } from "next-auth";
 interface HomeProps {
-  session: Session | null; 
+  session: Session | null;
 }
 export default function Home({ session }: HomeProps) {
   const startDate = "2024-10-20T10:00:00";
@@ -19,23 +19,22 @@ export default function Home({ session }: HomeProps) {
 
   return (
     <>
-        <SessionProvider session={session}>
-      <Box dir={"rtl"}>
-        <DiscountBanner
-          startDate={startDate}
-          endDate={endDate}
-          promotionMessage="خصومات بنسبة 20% على الكورسات"
-        />
-      </Box>
-      <Header/>
+      <SessionProvider session={session}>
+        <Box dir={"rtl"}>
+          <DiscountBanner
+            startDate={startDate}
+            endDate={endDate}
+            promotionMessage="خصومات بنسبة 20% على الكورسات"
+          />
+        </Box>
+        <Header />
 
-    
-      <Hero/>
-      <Quiz/>
-      <AboutUs/>
-      <ContactUs/>
-      <ReviewList/>
-      <Footer/>
+        <Hero />
+        <Quiz />
+        <AboutUs />
+        <ContactUs />
+        <ReviewList />
+        <Footer />
       </SessionProvider>
     </>
   );
