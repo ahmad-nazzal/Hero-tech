@@ -1,26 +1,26 @@
 "use client";
-import { signIn, signOut, useSession } from "next-auth/react";
 import {
-  VStack,
   FormControl,
   FormLabel,
   Input,
   Button,
   Box,
+  VStack,
   Heading,
   ChakraProvider,
   Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react"; 
 
 const LoginForm = () => {
   const router = useRouter();
-  const {status } = useSession();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);  // تعريف المتغير هنا
 
   const validate = () => {
     if (!email) {
@@ -51,21 +51,22 @@ const LoginForm = () => {
       redirect: false,
     });
 
-    console.log("***********res***********");
-    console.log(res);
-    if (!res.ok) {
-      setError("البريد الإلكتروني أو كلمة المرور غير صحيحة.");
-    } else if (res?.error) {
-      setError("بيانات تسجيل الدخول غير صحيحة. حاول مرة أخرى.");
-    } else {
+    if (res.ok) {
+      setIsAuthenticated(true); // تحديث حالة التوثيق
       alert("تم تسجيل الدخول بنجاح!");
-      if (router)   router.push("/aiToolsPage"); 
+      localStorage.setItem("loggedIn", "true");
+      router.push("/aiToolsPage"); // توجيه المستخدم بعد النجاح
+    } else {
+      setError("بيانات تسجيل الدخول غير صحيحة. حاول مرة أخرى.");
     }
-
     setLoading(false);
   };
 
-
+  const handleLogout = () => {
+    setIsAuthenticated(false); // تحديث حالة التوثيق
+    localStorage.removeItem("loggedIn");
+    router.push("/signin"); // توجيه المستخدم إلى صفحة تسجيل الدخول
+  };
 
   return (
     <ChakraProvider>
@@ -89,24 +90,9 @@ const LoginForm = () => {
         >
           <VStack spacing={4} align="stretch">
             <Heading as="h2" size="md" textAlign="center" color="purple.600">
-              {status === "authenticated" ? "مرحبًا، تم تسجيل الدخول!" : "تسجيل الدخول"}
+              {isAuthenticated ? "مرحبًا، تم تسجيل الدخول!" : "تسجيل الدخول"}
             </Heading>
-
-            {status === "authenticated" ? (
-              <>
-                <Text fontSize="xs" color="gray.500" mt={3}>
-                  {`حالة الجلسة: ${status}`}
-                </Text>
-                <Button
-                  colorScheme="red"
-                  w="100%"
-                  size="sm"
-                  onClick={() => signOut({ redirect: false })}
-                >
-                  تسجيل الخروج
-                </Button>
-              </>
-            ) : (
+            {!isAuthenticated ? (
               <>
                 <FormControl isRequired isInvalid={!!error}>
                   <FormLabel fontSize="sm">البريد الإلكتروني</FormLabel>
@@ -119,7 +105,6 @@ const LoginForm = () => {
                     borderColor="purple.300"
                   />
                 </FormControl>
-
                 <FormControl isRequired>
                   <FormLabel fontSize="sm">كلمة المرور</FormLabel>
                   <Input
@@ -131,13 +116,11 @@ const LoginForm = () => {
                     borderColor="purple.300"
                   />
                 </FormControl>
-
                 {error && (
                   <Text fontSize="xs" color="red.500" mt={1}>
                     {error}
                   </Text>
                 )}
-
                 <Button
                   colorScheme="teal"
                   w="100%"
@@ -149,6 +132,15 @@ const LoginForm = () => {
                   تسجيل الدخول
                 </Button>
               </>
+            ) : (
+              <Button
+                colorScheme="red"
+                w="100%"
+                size="sm"
+                onClick={handleLogout}
+              >
+                تسجيل الخروج
+              </Button>
             )}
           </VStack>
         </Box>

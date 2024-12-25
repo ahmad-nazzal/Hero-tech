@@ -1,14 +1,6 @@
 {
   "users": [
     {
-      "email": "samasaadeh@gmail.com",
-      "password": "123456789",
-      "firstName": "Sma",
-      "lastName": "Saadeh",
-      "username": "Sma Saadeh",
-      "country": "فلسطين"
-    },
-    {
       "email": "test@gmail.com",
       "password": "$2b$10$J1a3ZdQ9/iuerOuWkc3upO.pt7Y76dpeS2Ym87KsME/kJo834XnIy",
       "firstName": "test",
