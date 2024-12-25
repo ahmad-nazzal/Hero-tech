@@ -50,7 +50,6 @@ const Dad = () => {
         />
         <p>متصفحك لا يدعم تشغيل الفيديوهات. يرجى التحديث!</p>
       </video>
-
       <Box>
         <Grid templateColumns={{ base: "1fr", lg: "1fr 1fr" }} gap={4}>
           <GridItem>
