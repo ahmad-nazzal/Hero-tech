@@ -109,7 +109,7 @@ const HeaderMobile = () => {
           aria-label="Toggle Navigation"
           marginLeft={marginLeft}
         />
-        {!isAuthentecated ? (
+        {!isAuthenticated ? (
           <Box display="flex" alignItems="center" ml="45px" gap="10px">
             <Box width={{ base: "40px" }} height={{ base: "40px" }}>
               <Image src={group46} alt="Group 46" />
