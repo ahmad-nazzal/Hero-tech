@@ -60,6 +60,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSearch }) => {
         </InputLeftElement>
 
         <Input
+          w={{ sm: "400px", md: "500px", lg: "600px" }}
           height="4rem"
           border="2px"
           borderColor="primary"
@@ -69,7 +70,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSearch }) => {
           paddingLeft="2.5rem"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              onSearch((e.target as HTMLInputElement).value); 
+              onSearch((e.target as HTMLInputElement).value);
             }
           }}
           _focus={{
