@@ -38,13 +38,6 @@ export function AiToolsCard({
         base: "300px",
         sm: "330px",
       }}
-      height={{
-        xl: "528px",
-        lg: "450.3px",
-        md: "450.3px",
-        base: "400px",
-        sm: "400px",
-      }}
       rounded="sm"
       transition="all 0.3s ease-in-out"
       cursor="pointer"
