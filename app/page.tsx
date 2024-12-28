@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import DiscountBanner from "../sections/DiscountBanner/DiscountBanner";
 import AboutUs from "../sections/home/AboutUs/AboutUs";
 import ContactUs from "../sections/home/ContactUs/ContactUs";
@@ -26,8 +26,8 @@ export default function Home() {
       </Box>
       <Header />
       <Hero />
-      <Service></Service>
-      <Dad></Dad>
+      <Service />
+      <Dad />
       <CoursesSecion />
       <Quiz />
       <AboutUs />

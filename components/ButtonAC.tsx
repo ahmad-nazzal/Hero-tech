@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Button as ChakraButton, ButtonProps } from "@chakra-ui/react";
 import IconWrapper from "./IconWrapper";
