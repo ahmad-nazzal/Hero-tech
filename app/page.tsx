@@ -8,7 +8,9 @@ import Hero from "../sections/home/Hero/Hero";
 import Header from "../sections/header/header";
 import Quiz from "../sections/home/Quiz/Quiz";
 import { Box } from "@chakra-ui/react";
-
+import { Service } from "../sections/home/ServiceSection/Service";
+import Dad from "../sections/home/DadSection/Dad";
+import CoursesSecion from "../sections/home/CoursesSection/CoursesSection";
 export default function Home() {
   const startDate = "2024-10-20T10:00:00";
   const endDate = "2024-11-25T23:59:59";
@@ -24,6 +26,9 @@ export default function Home() {
       </Box>
       <Header />
       <Hero />
+      <Service></Service>
+      <Dad></Dad>
+      <CoursesSecion />
       <Quiz />
       <AboutUs />
       <ContactUs />

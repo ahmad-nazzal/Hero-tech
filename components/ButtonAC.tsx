@@ -7,6 +7,7 @@ interface CustomButtonProps extends ButtonProps {
   size?: "sm" | "md" | "lg";
   text?: string;
   icon?: React.ReactNode | string | StaticImageData;
+  href?: string;
 }
 
 const ButtonAC: React.FC<CustomButtonProps> = ({
@@ -33,6 +34,7 @@ const ButtonAC: React.FC<CustomButtonProps> = ({
 
   return (
     <ChakraButton
+      onClick={() => (window.location.href = `${rest.href}`)}
       borderRadius="10px"
       padding="0 16px"
       _hover={{ opacity: 0.9 }}
