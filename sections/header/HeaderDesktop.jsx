@@ -18,7 +18,6 @@ import logo from "../../public/images/8e6c847871186b9180f5ae9f99b6bcbc.png";
 import vector1 from "../../public/images/Vector (1).png";
 import group46 from "../../public/images/Group 46.png";
 import { useEffect, useState } from "react";
-
 const HeaderDesktop = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
