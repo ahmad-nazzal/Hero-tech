@@ -11,8 +11,8 @@ import Search from "../public/images/Search.svg";
 
 interface SearchBarProps {
   placeholder: string;
-  onSearch: (value: string) => void;
-  searchQuery: string;
+  onSearch?: (value: string) => void;
+  searchQuery?: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -76,7 +76,9 @@ const SearchBar: React.FC<SearchBarProps> = ({
           paddingLeft="2.5rem"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              onSearch((e.target as HTMLInputElement).value);
+              if (onSearch) {
+                onSearch((e.target as HTMLInputElement).value);
+              }
             }
           }}
           _focus={{
