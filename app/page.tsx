@@ -1,8 +1,7 @@
-// "use client";
 import DiscountBanner from "../sections/DiscountBanner/DiscountBanner";
 import AboutUs from "../sections/home/AboutUs/AboutUs";
 import ContactUs from "../sections/home/ContactUs/ContactUs";
-import ReviewList from "../sections/home/ReviewSection/ReviewList";
+import ReviewSection from "../sections/home/ReviewSection/ReviewSection";
 import Footer from "../sections/Footer/Footer";
 import Hero from "../sections/home/Hero/Hero";
 import Header from "../sections/header/header";
@@ -32,7 +31,7 @@ export default function Home() {
       <Quiz />
       <AboutUs />
       <ContactUs />
-      <ReviewList />
+      <ReviewSection />
       <Footer />
     </>
   );
