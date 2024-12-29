@@ -1,5 +1,4 @@
-// pages/courses/index.js
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { Grid, GridItem, Text } from "@chakra-ui/react";
 import Loading from "./loading";
 import SearchBar from "../../../components/SearchBar";
@@ -35,13 +34,37 @@ interface FormattedCourse {
   level: string;
   isComingSoon: boolean;
 }
+export const revalidate = 2 * 24 * 60 * 60;
 
-interface CoursesSectionProps {
-  courses: FormattedCourse[];
+export async function fetchCoursesData(): Promise<FormattedCourse[]> {
+  try {
+    const response = await fetch(
+      "https://sitev2.arabcodeacademy.com/wp-json/aca/v1/courses"
+    );
+    const result = await response.json();
+
+    return result.courses.map((course: Course) => ({
+      id: course.id,
+      name: course.title,
+      price: `$${course.price}`,
+      image: course.imageURL,
+      duration: `${course.total_videos} فيديو، ${course.total_duration}`,
+      trainer: course.trainers
+        .filter((trainer) => trainer.leader)
+        .map((trainer) => `${trainer.first_name} ${trainer.last_name}`)
+        .join(", "),
+      description: `السعر الأصلي: ${course.original_price} ${course.currency}`,
+      level: "غير محدد",
+      isComingSoon: course.status === "coming_soon",
+    }));
+  } catch (error) {
+    console.error("Error fetching courses:", error);
+    return [];
+  }
 }
 
-const CoursesSection: React.FC<CoursesSectionProps> = ({ courses }) => {
-  console.log(courses);
+const CoursesPage = async () => {
+  const courses = await fetchCoursesData();
 
   return (
     <main style={{ margin: "0", width: "100%", overflow: "hidden" }}>
@@ -82,45 +105,4 @@ const CoursesSection: React.FC<CoursesSectionProps> = ({ courses }) => {
   );
 };
 
-export const getStaticProps = async () => {
-  try {
-    const response = await fetch(
-      "https://sitev2.arabcodeacademy.com/wp-json/aca/v1/courses"
-    );
-    const result = await response.json();
-
-    const formattedData: FormattedCourse[] = result.courses.map(
-      (course: Course) => ({
-        id: course.id,
-        name: course.title,
-        price: `$${course.price}`,
-        image: course.imageURL,
-        duration: `${course.total_videos} فيديو، ${course.total_duration}`,
-        trainer: course.trainers
-          .filter((trainer: Trainer) => trainer.leader)
-          .map(
-            (trainer: Trainer) => `${trainer.first_name} ${trainer.last_name}`
-          )
-          .join(", "),
-        description: `السعر الأصلي: ${course.original_price} ${course.currency}`,
-        level: "غير محدد",
-        isComingSoon: course.status === "coming_soon",
-      })
-    );
-
-    return {
-      props: {
-        courses: formattedData,
-      },
-      revalidate: 2 * 24 * 60 * 60,
-    };
-  } catch (error) {
-    console.error("Error fetching courses:", error);
-    return {
-      props: { courses: [] },
-      revalidate: 2 * 24 * 60 * 60,
-    };
-  }
-};
-
-export default CoursesSection;
+export default CoursesPage;
