@@ -25,6 +25,7 @@ export const ToolsGridLayout: React.FC<ToolsGridLayoutProps> = ({
       lg: "repeat(4, 1fr)",
     }}
     gap={5}
+    paddingBottom={5}
   >
     {tools.map((tool: AiToolsCardProps) => (
       <AiToolsCard
