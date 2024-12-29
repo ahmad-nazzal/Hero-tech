@@ -1,4 +1,10 @@
-import { Box, Flex, IconButton, useColorModeValue } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  IconButton,
+  useColorModeValue,
+  Text,
+} from "@chakra-ui/react";
 import Image from "next/image";
 import masedLogo from "../../public/images/circled_outline.png";
 import ButtonAC from "../../components/ButtonAC";
@@ -33,17 +39,10 @@ export function AiToolsCard({
       shadow="lg"
       width={{
         xl: "400px",
-        lg: "350px",
-        md: "350px",
+        lg: "330px",
+        md: "400px",
+        sm: "250px",
         base: "300px",
-        sm: "330px",
-      }}
-      height={{
-        xl: "528px",
-        lg: "450.3px",
-        md: "450.3px",
-        base: "400px",
-        sm: "400px",
       }}
       rounded="sm"
       transition="all 0.3s ease-in-out"
@@ -100,32 +99,33 @@ export function AiToolsCard({
           >
             {title}
           </Box>
+          <Flex direction={"column"} justifyContent="start" height={"120px"}>
+            <Box
+              fontWeight="700"
+              fontSize="18px"
+              textAlign="end"
+              textColor="primary"
+              mb={2}
+              noOfLines={1}
+              isTruncated
+              flexShrink={0}
+            >
+              {tags}
+            </Box>
 
-          <Box
-            fontWeight="700"
-            fontSize="18px"
-            textAlign="end"
-            textColor="primary"
-            mb={2}
-            noOfLines={1}
-            isTruncated
-            flexShrink={0}
-          >
-            {tags}
-          </Box>
+            <Text
+              fontWeight="500"
+              color="primary"
+              fontSize="17px"
+              textAlign="start"
+              mb={3}
+              noOfLines={3}
+              flexShrink={0}
+            >
+              {truncatedDescription}
+            </Text>
+          </Flex>
 
-          <Box
-            fontWeight="500"
-            color="primary"
-            fontSize="17px"
-            textAlign="start"
-            mb={3}
-            noOfLines={2}
-            isTruncated
-            flexShrink={0}
-          >
-            {truncatedDescription}
-          </Box>
           <ButtonAC
             mx="auto"
             text="المزيد"

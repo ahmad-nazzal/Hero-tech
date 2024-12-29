@@ -1,23 +1,21 @@
 "use client";
-import React, { Suspense, useState, useEffect } from "react";
-import { Box, Flex, Grid } from "@chakra-ui/react";
-import SearchBar from "../../components/SearchBar";
-import { AiToolsCardProps } from "./types";
-import { AiToolsCard } from "./AiToolsCard";
+
+import React, { Suspense } from "react";
+import { Box, Flex } from "@chakra-ui/react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import ButtonAC from "../../components/ButtonAC";
-import Image from "next/image";
-import heartlogo from "../../public/images/emp-heart.png";
+
+import { AiToolsCardProps } from "./types";
 import { useAiTools } from "../../hooks/useAiTools";
 import { useFavorites } from "../../hooks/useFavorites";
 import { useUrlSearch } from "../../hooks/useUrlSearch";
+import { LoadingMessage } from "./LoadingMessage";
+import { ToolsHeader } from "./ToolsHeader";
+import { NoToolsMessage } from "./NoToolsMessage";
+import { ToolsGridLayout } from "./ToolsGridLayout";
 
-export default function AiToolsList() {
-  const [filteredTools, setFilteredTools] = useState<AiToolsCardProps[]>([]);
-  const [hasMore, setHasMore] = useState(true);
-  const [currentIndex, setCurrentIndex] = useState(12);
-  const itemsPerPage = 4;
-  const { aiTools, error, isLoading } = useAiTools();
+export default function AiToolsList(): JSX.Element {
+  const { aiTools, error, isLoading, loadMore, hasMore, isValidating } =
+    useAiTools();
   const {
     favorites,
     getFavoriteTools,
@@ -26,10 +24,12 @@ export default function AiToolsList() {
     setIsShowingFavorites,
   } = useFavorites();
   const { searchQuery, updateSearchQuery } = useUrlSearch();
-  useEffect(() => {
-    if (!aiTools) return;
 
-    let filtered = aiTools;
+  const filteredTools: AiToolsCardProps[] = React.useMemo(() => {
+    if (!aiTools) return [];
+
+    let filtered: AiToolsCardProps[] = aiTools;
+
     if (searchQuery) {
       filtered = filtered.filter((tool: AiToolsCardProps) =>
         tool.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -40,25 +40,10 @@ export default function AiToolsList() {
       filtered = getFavoriteTools(filtered);
     }
 
-    setFilteredTools(filtered);
-    setCurrentIndex(12);
-    setHasMore(filtered.length > 12);
-  }, [searchQuery, aiTools, isShowingFavorites, favorites]);
+    return filtered;
+  }, [searchQuery, aiTools, isShowingFavorites, getFavoriteTools]);
 
-  const loadMore = () => {
-    const nextIndex = currentIndex + itemsPerPage;
-    if (nextIndex >= filteredTools.length) {
-      setHasMore(false);
-    } else {
-      setCurrentIndex(nextIndex);
-    }
-  };
-
-  const handleShowFavorites = () => {
-    setIsShowingFavorites((prev) => !prev);
-  };
-
-  if (error)
+  if (error) {
     return (
       <Flex
         align="center"
@@ -70,113 +55,39 @@ export default function AiToolsList() {
         حدث خطأ في جلب البيانات
       </Flex>
     );
-  if (isLoading)
-    return (
-      <Flex
-        align="center"
-        justify="center"
-        height="100vh"
-        fontWeight="700"
-        fontSize="30px"
-      >
-        جاري التحميل ...
-      </Flex>
-    );
+  }
+
+  if (isLoading) {
+    return <LoadingMessage />;
+  }
 
   return (
-    <>
-      <Box mx="auto" pb={10} px={5} py={10}>
-        <Flex
-          direction={{ base: "column", md: "column", lg: "row" }}
-          align={{ base: "center", md: "center", lg: "flex-end" }}
-          wrap="nowrap"
-          mt={{ lg: "0px", md: "80px", sm: "80px", base: "40px" }}
-          mb={{ lg: "30px" }}
-          justifyContent={{ lg: "space-between" }}
-        >
-          <Box
-            mt="-30px"
-            flexGrow={1}
-            mb={{ base: 4, lg: 0 }}
-            order={{ lg: 2 }}
-          >
-            <SearchBar placeholder="ابحث" onSearch={updateSearchQuery} />
-          </Box>
-          <ButtonAC
-            onClick={handleShowFavorites}
-            pr="10px"
-            pl="0px"
-            size="lg"
-            color={isShowingFavorites ? "white" : "#783BA2"}
-            bg={isShowingFavorites ? "#783BA2" : "white"}
-            text="المفضلة"
-            fontSize={{ lg: 17, sm: 10 }}
-            icon={
-              <Image
-                src={heartlogo}
-                alt="Favorite Icon"
-                style={{ width: "100", height: "20" }}
-              />
-            }
-            sx={{
-              width: "140px",
-              height: "44px",
-              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.35)",
-              flexDirection: "row-reverse",
-              gap: "7px",
-            }}
-            ml={{ lg: 2 }}
-            mr={{ lg: "100px" }}
-            order={{ lg: 1 }}
-          />
-        </Flex>
+    <Box mx="auto" pb={10} px={5} py={10}>
+      <ToolsHeader
+        onSearch={updateSearchQuery}
+        isShowingFavorites={isShowingFavorites}
+        onToggleFavorites={() => setIsShowingFavorites((prev) => !prev)}
+      />
 
-        {filteredTools.length === 0 ? (
-          <Flex
-            justify="center"
-            align="center"
-            mt="60px"
-            fontSize="30px"
-            fontWeight="bold"
-            color="primary"
+      {filteredTools.length === 0 ? (
+        <NoToolsMessage isShowingFavorites={isShowingFavorites} />
+      ) : (
+        <Suspense fallback={<LoadingMessage />}>
+          <InfiniteScroll
+            dataLength={filteredTools.length}
+            next={loadMore}
+            hasMore={!isShowingFavorites && hasMore}
+            loader={isValidating && <LoadingMessage />}
+            scrollThreshold="90%"
           >
-            {isShowingFavorites
-              ? "لا توجد عناصر في المفضلة"
-              : "العنصر غير متوفر"}
-          </Flex>
-        ) : (
-          <Suspense fallback={<Box>جاري التحميل...</Box>}>
-            <InfiniteScroll
-              dataLength={currentIndex}
-              next={loadMore}
-              hasMore={hasMore}
-              loader={<Box>جاري التحميل...</Box>}
-            >
-              <Grid
-                mt={12}
-                justifyItems="center"
-                alignItems="center"
-                templateColumns={{
-                  base: "1fr",
-                  sm: "repeat(2, 1fr)",
-                  md: "repeat(2, 1fr)",
-                  lg: "repeat(4, 1fr)",
-                }}
-                gap={5}
-              >
-                {filteredTools?.slice(0, currentIndex).map((tool) => (
-                  <AiToolsCard
-                    tool={tool}
-                    key={tool.tool_id}
-                    isFavorite={favorites.includes(tool.tool_id ?? 0)}
-                    onToggleFavorite={() => toggleFavorite(tool.tool_id ?? 0)}
-                  />
-                ))}
-              </Grid>
-            </InfiniteScroll>
-          </Suspense>
-        )}
-      </Box>
-    </>
+            <ToolsGridLayout
+              tools={filteredTools}
+              favorites={favorites}
+              onToggleFavorite={toggleFavorite}
+            />
+          </InfiniteScroll>
+        </Suspense>
+      )}
+    </Box>
   );
 }
