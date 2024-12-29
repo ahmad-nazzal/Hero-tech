@@ -13,9 +13,13 @@ import { ToolsHeader } from "./ToolsHeader";
 import { NoToolsMessage } from "./NoToolsMessage";
 import { ToolsGridLayout } from "./ToolsGridLayout";
 
-export default function AiToolsList(): JSX.Element {
+export default function AiToolsList({
+  initialAiTools,
+}: {
+  initialAiTools: AiToolsCardProps[];
+}): JSX.Element {
   const { aiTools, error, isLoading, loadMore, hasMore, isValidating } =
-    useAiTools();
+    useAiTools(initialAiTools);
   const {
     favorites,
     getFavoriteTools,
@@ -26,10 +30,7 @@ export default function AiToolsList(): JSX.Element {
   const { searchQuery, updateSearchQuery } = useUrlSearch();
 
   const filteredTools: AiToolsCardProps[] = React.useMemo(() => {
-    if (!aiTools) return [];
-
-    let filtered: AiToolsCardProps[] = aiTools;
-
+    let filtered: AiToolsCardProps[] = [...aiTools];
     if (searchQuery) {
       filtered = filtered.filter((tool: AiToolsCardProps) =>
         tool.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -64,6 +65,7 @@ export default function AiToolsList(): JSX.Element {
   return (
     <Box mx="auto" pb={10} px={5} py={10}>
       <ToolsHeader
+        searchQuery={searchQuery}
         onSearch={updateSearchQuery}
         isShowingFavorites={isShowingFavorites}
         onToggleFavorites={() => setIsShowingFavorites((prev) => !prev)}

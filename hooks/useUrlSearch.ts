@@ -7,26 +7,26 @@ export const useUrlSearch = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    const query = searchParams?.get("q") || "";
+    const query = searchParams?.get("query") || "";
     setSearchQuery(query);
   }, [searchParams]);
 
   const updateSearchQuery = (query: string) => {
     setSearchQuery(query);
-    
+
     // Update URL
     const newParams = new URLSearchParams(searchParams?.toString());
     if (query) {
-      newParams.set("q", query);
+      newParams.set("query", query);
     } else {
-      newParams.delete("q");
+      newParams.delete("query");
     }
-    
+
     router.push(`?${newParams.toString()}`);
   };
 
   return {
     searchQuery,
-    updateSearchQuery
+    updateSearchQuery,
   };
 };

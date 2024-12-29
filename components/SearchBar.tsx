@@ -12,9 +12,14 @@ import Search from "../public/images/Search.svg";
 interface SearchBarProps {
   placeholder: string;
   onSearch: (value: string) => void;
+  searchQuery: string;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSearch }) => {
+const SearchBar: React.FC<SearchBarProps> = ({
+  placeholder,
+  onSearch,
+  searchQuery,
+}) => {
   const inputWidth = useBreakpointValue({
     base: "100%",
     md: "100%",
@@ -66,6 +71,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSearch }) => {
           borderColor="primary"
           rounded="full"
           type="search"
+          defaultValue={searchQuery}
           placeholder={placeholder}
           paddingLeft="2.5rem"
           onKeyDown={(e) => {
