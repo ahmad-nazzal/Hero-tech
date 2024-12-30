@@ -1,3 +1,8 @@
+/*
+The query paramter task is done from the previous task 
+we fix the issue of the search query not updating in the search field when the user copy and paste the url with query parameters.
+
+*/
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 

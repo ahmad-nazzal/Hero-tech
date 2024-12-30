@@ -1,3 +1,12 @@
+/*
+  Refactored the Infinite Scroll feature in the AI Tools page: 
+- Applied the Single Responsibility Principle (SRP) by dividing the code into smaller, reusable components. 
+- Created a dedicated API utility for fetching data. 
+- Added a separate component to handle rendering individual tool items. 
+- Improved the Infinite Scroll logic for better performance and readability.
+
+*/
+
 "use client";
 
 import React, { Suspense } from "react";
