@@ -5,7 +5,6 @@
 - Added a separate component to handle rendering individual tool items. 
 - Improved the Infinite Scroll logic for better performance and readability.
 
-
 */
 
 "use client";
