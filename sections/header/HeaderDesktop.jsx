@@ -60,7 +60,9 @@ const HeaderDesktop = () => {
             height={{ sm: 34.2, lg: 61.79 }}
             marginRight={{ lg: 97, sm: 5 }}
           >
-            <ChakraImage src={logo} alt="Logo" />
+            <Link href="/">
+              <ChakraImage src={logo} alt="Logo" />
+            </Link>
           </GridItem>
           <GridItem display="flex" justifyContent="center" alignItems="center">
             <List

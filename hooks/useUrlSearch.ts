@@ -1,30 +1,46 @@
-/*
-The query paramter task is done from the previous task 
-we fix the issue of the search query not updating in the search field when the user copy and paste the url with query parameters.
+"use client";
 
-*/
+import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 
 export const useUrlSearch = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
+  const [pricing, setPricing] = useState<string>("");
 
   useEffect(() => {
-    const query = searchParams?.get("query") || "";
+    const query = searchParams?.get("search") || "";
     setSearchQuery(query);
+
+    const fav = searchParams?.get("isFav") === "true";
+    setIsFavorite(fav);
+
+    const pricingParam = searchParams?.get("pricing") || "";
+    setPricing(pricingParam);
   }, [searchParams]);
 
   const updateSearchQuery = (query: string) => {
     setSearchQuery(query);
-
-    // Update URL
     const newParams = new URLSearchParams(searchParams?.toString());
+
     if (query) {
-      newParams.set("query", query);
+      newParams.set("search", query);
     } else {
-      newParams.delete("query");
+      newParams.delete("search");
+    }
+
+    if (isFavorite) {
+      newParams.set("isFav", "true");
+    } else {
+      newParams.delete("isFav");
+    }
+
+    if (pricing) {
+      newParams.set("pricing", pricing);
+    } else {
+      newParams.delete("pricing");
     }
 
     router.push(`?${newParams.toString()}`);
@@ -32,6 +48,8 @@ export const useUrlSearch = () => {
 
   return {
     searchQuery,
+    isFavorite,
+    pricing,
     updateSearchQuery,
   };
 };

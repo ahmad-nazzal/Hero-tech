@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
-import Header from "../../sections/header/header";
 import AiToolsList from "../../sections/AiTools/AiToolsList";
 import { AiToolsCardProps } from "../../sections/AiTools/types";
+import { LoadingMessage } from "../../sections/AiTools/LoadingMessage";
 
 export const dynamic = "force-dynamic";
 
@@ -25,8 +25,7 @@ async function fetchInitialAiTools(): Promise<AiToolsCardProps[]> {
 export default async function AiToolPage() {
   const initialAiTools = await fetchInitialAiTools();
   return (
-    <Suspense fallback={<div>جاري التحميل...</div>}>
-      <Header />
+    <Suspense fallback={<LoadingMessage />}>
       <AiToolsList initialAiTools={initialAiTools} />
     </Suspense>
   );

@@ -38,7 +38,6 @@ export const useFavorites = () => {
         ? [...prev, toolId]
         : prev.filter((id) => id !== toolId);
 
-
       const addToastId = `add-toast-${toolId}`;
       const removeToastId = `remove-toast-${toolId}`;
 
@@ -46,18 +45,20 @@ export const useFavorites = () => {
         if (!toast.isActive(addToastId)) {
           toast.success(" !تمت الإضافة إلى المفضلة", {
             toastId: addToastId,
-            style:{
-              color:"#462576" , fontWeight:"bold"
-             }
+            style: {
+              color: "#462576",
+              fontWeight: "bold",
+            },
           });
         }
       } else {
         if (!toast.isActive(removeToastId)) {
           toast.warn("!تمت الإزالة من المفضلة", {
             toastId: removeToastId,
-            style:{
-              color:"#462576" , fontWeight:"bold"
-             }
+            style: {
+              color: "#462576",
+              fontWeight: "bold",
+            },
           });
         }
       }

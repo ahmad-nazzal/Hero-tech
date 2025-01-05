@@ -2,9 +2,7 @@ import DiscountBanner from "../sections/DiscountBanner/DiscountBanner";
 import AboutUs from "../sections/home/AboutUs/AboutUs";
 import ContactUs from "../sections/home/ContactUs/ContactUs";
 import ReviewSection from "../sections/home/ReviewSection/ReviewSection";
-import Footer from "../sections/Footer/Footer";
 import Hero from "../sections/home/Hero/Hero";
-import Header from "../sections/header/header";
 import Quiz from "../sections/home/Quiz/Quiz";
 import { Box } from "@chakra-ui/react";
 import { Service } from "../sections/home/ServiceSection/Service";
@@ -23,7 +21,6 @@ export default function Home() {
           promotionMessage="خصومات بنسبة 20% على الكورسات"
         />
       </Box>
-      <Header />
       <Hero />
       <Service />
       <Dad />
@@ -32,7 +29,6 @@ export default function Home() {
       <AboutUs />
       <ContactUs />
       <ReviewSection />
-      <Footer />
     </>
   );
 }

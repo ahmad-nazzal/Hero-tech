@@ -23,6 +23,7 @@ const ReviewList = ({ reviews }: { reviews: ReviewCardProps[] }) => {
           480: { slidesPerView: 1 },
           768: { slidesPerView: 2 },
           1024: { slidesPerView: 3 },
+          1724: { slidesPerView: 4 },
         }}
         style={{
           width: "100%",
