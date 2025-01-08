@@ -16,8 +16,11 @@ export default function AiToolsList({
 }: {
   initialAiTools: AiToolsCardProps[];
 }): JSX.Element {
+  // Fetch AI tools data with pagination and filtering
+
   const { aiTools, error, isLoading, loadMore, hasMore, isValidating } =
     useAiTools(initialAiTools);
+  // Manage favoriteAiTools
 
   const {
     favorites,
@@ -26,8 +29,10 @@ export default function AiToolsList({
     setIsShowingFavorites,
     getFavoriteTools,
   } = useFavorites();
+  // Handle search query and URL updates
 
   const { searchQuery, updateSearchQuery } = useUrlSearch();
+  // Determine displayed tools based on favorites filter
 
   const displayedTools = isShowingFavorites
     ? getFavoriteTools(aiTools)
@@ -51,6 +56,7 @@ export default function AiToolsList({
   if (isLoading) {
     return <LoadingMessage />;
   }
+  // Check for empty results
 
   const showNoFavoritesMessage =
     isShowingFavorites && displayedTools.length === 0;

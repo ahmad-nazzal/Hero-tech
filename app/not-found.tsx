@@ -1,6 +1,6 @@
 import { Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
-import notfound from "../public/images/notfound.png";
+import notfound from "../public/images/not-found.png";
 export default function NotFound() {
   return (
     <>

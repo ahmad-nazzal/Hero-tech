@@ -6,6 +6,8 @@ export const useFavorites = () => {
   const [favorites, setFavorites] = useState<number[]>([]);
   const [isShowingFavorites, setIsShowingFavorites] = useState(false);
 
+  //  Load user favorites from local storage or API
+
   const loadUserFavorites = async () => {
     try {
       const storedFavorites = localStorage.getItem("favorites");
@@ -30,9 +32,12 @@ export const useFavorites = () => {
       console.error("Error fetching favorites:", error);
     }
   };
+  //   Toggle a tool as a favorite
 
   const toggleFavorite = (toolId: number) => {
     setFavorites((prev) => {
+      // Create a new array of favorites with the tool added or removed
+
       const isAdding = !prev.includes(toolId);
       const newFavorites = isAdding
         ? [...prev, toolId]

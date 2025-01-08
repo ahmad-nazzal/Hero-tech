@@ -15,6 +15,8 @@ export const useAiTools = (initialAiTools: AiToolsCardProps[]) => {
   const { searchQuery, isFavorite, pricing } = useUrlSearch();
   const PAGE_SIZE = 12;
 
+  //Function to construct API request URL with filters
+
   const getKey = (pageIndex: number, previousPageData: unknown[]) => {
     // If we've reached the end of the data, stop requesting
     if (previousPageData && previousPageData.length === 0) return null;
@@ -25,7 +27,7 @@ export const useAiTools = (initialAiTools: AiToolsCardProps[]) => {
 
     baseUrl.searchParams.set("page", (pageIndex + 1).toString());
     baseUrl.searchParams.set("page_size", PAGE_SIZE.toString());
-
+    // Add filters from URL search params
     if (searchQuery) baseUrl.searchParams.set("search", searchQuery);
     if (isFavorite) baseUrl.searchParams.set("isFav", "true");
     if (pricing) baseUrl.searchParams.set("pricing", pricing);

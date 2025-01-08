@@ -9,6 +9,7 @@ export const useUrlSearch = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [pricing, setPricing] = useState<string>("");
+  // Extract search parameters from the URL on initial render and whenever searchParams change
 
   useEffect(() => {
     const query = searchParams?.get("search") || "";
@@ -20,6 +21,7 @@ export const useUrlSearch = () => {
     const pricingParam = searchParams?.get("pricing") || "";
     setPricing(pricingParam);
   }, [searchParams]);
+  // Update URL search parameters based on changes in searchQuery, isFavorite, and pricing
 
   const updateSearchQuery = (query: string) => {
     setSearchQuery(query);
