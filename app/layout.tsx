@@ -3,6 +3,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Tajawal } from "next/font/google";
 import { Providers } from "../components/Providers";
+import { ToastContainer } from "react-toastify";
+import Footer from "../sections/Footer/Footer";
+import Header from "./../sections/header/header";
 
 const tajawal = Tajawal({
   weight: ["400", "700"],
@@ -41,9 +44,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${tajawal.className} antialiased`}
       >
-  
-        <Providers>{children}</Providers>
-  
+        <ToastContainer position="bottom-center" />
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

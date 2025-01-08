@@ -1,4 +1,6 @@
 import useSWRInfinite from "swr/infinite";
+import { AiToolsCardProps } from "../sections/AiTools/types";
+import { useUrlSearch } from "./useUrlSearch";
 
 const fetcher = async (url: string) => {
   const res = await fetch(url);
@@ -9,26 +11,44 @@ const fetcher = async (url: string) => {
   return data?.data || [];
 };
 
-export const useAiTools = () => {
+export const useAiTools = (initialAiTools: AiToolsCardProps[]) => {
+  const { searchQuery, isFavorite, pricing } = useUrlSearch();
+  const PAGE_SIZE = 12;
+
+  //Function to construct API request URL with filters
+
   const getKey = (pageIndex: number, previousPageData: unknown[]) => {
-    // إذا لم تكن هناك صفحات أخرى، أوقف الطلب
+    // If we've reached the end of the data, stop requesting
     if (previousPageData && previousPageData.length === 0) return null;
-    return `https://sitev2.arabcodeacademy.com/wp-json/aca/v1/aitools?page=${pageIndex + 1}`;
+
+    const baseUrl = new URL(
+      "https://sitev2.arabcodeacademy.com/wp-json/aca/v1/aitools"
+    );
+
+    baseUrl.searchParams.set("page", (pageIndex + 1).toString());
+    baseUrl.searchParams.set("page_size", PAGE_SIZE.toString());
+    // Add filters from URL search params
+    if (searchQuery) baseUrl.searchParams.set("search", searchQuery);
+    if (isFavorite) baseUrl.searchParams.set("isFav", "true");
+    if (pricing) baseUrl.searchParams.set("pricing", pricing);
+
+    return baseUrl.toString();
   };
 
-  const {
-    data,
-    error,
-    size,
-    setSize,
-    isValidating,
-  } = useSWRInfinite(getKey, fetcher, {
-    revalidateOnFocus: false,
-    revalidateOnReconnect: true,
-  });
+  const { data, error, size, setSize, isValidating } = useSWRInfinite(
+    getKey,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: true,
+      fallbackData: [initialAiTools],
+    }
+  );
+  // Aggregating data from all pages
 
   const aiTools = data ? [].concat(...data) : [];
-  const hasMore = data?.[data.length - 1]?.length > 0;
+
+  const hasMore = data ? data[data.length - 1]?.length === PAGE_SIZE : false;
 
   return {
     aiTools,
@@ -37,5 +57,7 @@ export const useAiTools = () => {
     loadMore: () => setSize(size + 1),
     hasMore,
     isValidating,
+    currentPage: size,
+    pageSize: PAGE_SIZE,
   };
 };
