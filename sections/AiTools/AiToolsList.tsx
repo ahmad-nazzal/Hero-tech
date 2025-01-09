@@ -1,49 +1,45 @@
 "use client";
-
 import React, { Suspense } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import InfiniteScroll from "react-infinite-scroll-component";
-
 import { AiToolsCardProps } from "./types";
-import { useAiTools } from "../../hooks/useAiTools";
 import { useFavorites } from "../../hooks/useFavorites";
 import { useUrlSearch } from "../../hooks/useUrlSearch";
 import { LoadingMessage } from "./LoadingMessage";
 import { ToolsHeader } from "./ToolsHeader";
 import { NoToolsMessage } from "./NoToolsMessage";
 import { ToolsGridLayout } from "./ToolsGridLayout";
+import { useAiTools } from "../../hooks/useAiTools";
 
-export default function AiToolsList(): JSX.Element {
+export default function AiToolsList({
+  initialAiTools,
+}: {
+  initialAiTools: AiToolsCardProps[];
+}): JSX.Element {
+  // Fetch AI tools data with pagination and filtering
+
   const { aiTools, error, isLoading, loadMore, hasMore, isValidating } =
-    useAiTools();
+    useAiTools(initialAiTools);
+  // Manage favoriteAiTools
+
   const {
     favorites,
-    getFavoriteTools,
     toggleFavorite,
     isShowingFavorites,
     setIsShowingFavorites,
+    getFavoriteTools,
   } = useFavorites();
+  // Handle search query and URL updates
+
   const { searchQuery, updateSearchQuery } = useUrlSearch();
+  // Determine displayed tools based on favorites filter
 
-  const filteredTools: AiToolsCardProps[] = React.useMemo(() => {
-    if (!aiTools) return [];
-
-    let filtered: AiToolsCardProps[] = aiTools;
-
-    if (searchQuery) {
-      filtered = filtered.filter((tool: AiToolsCardProps) =>
-        tool.title.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
-    if (isShowingFavorites) {
-      filtered = getFavoriteTools(filtered);
-    }
-
-    return filtered;
-  }, [searchQuery, aiTools, isShowingFavorites, getFavoriteTools]);
+  const displayedTools = isShowingFavorites
+    ? getFavoriteTools(aiTools)
+    : aiTools;
 
   if (error) {
+    console.error("Error loading tools:", error);
     return (
       <Flex
         align="center"
@@ -60,28 +56,40 @@ export default function AiToolsList(): JSX.Element {
   if (isLoading) {
     return <LoadingMessage />;
   }
+  // Check for empty results
+
+  const showNoFavoritesMessage =
+    isShowingFavorites && displayedTools.length === 0;
+  const showNoToolsMessage = !isShowingFavorites && aiTools.length === 0;
 
   return (
     <Box mx="auto" pb={10} px={5} py={10}>
       <ToolsHeader
+        searchQuery={searchQuery}
         onSearch={updateSearchQuery}
         isShowingFavorites={isShowingFavorites}
-        onToggleFavorites={() => setIsShowingFavorites((prev) => !prev)}
+        onToggleFavorites={() => {
+          setIsShowingFavorites((prev) => !prev);
+        }}
       />
 
-      {filteredTools.length === 0 ? (
-        <NoToolsMessage isShowingFavorites={isShowingFavorites} />
+      {showNoFavoritesMessage || showNoToolsMessage ? (
+        <Flex align="center" justify="center" height="50vh">
+          <Box textAlign="center">
+            <NoToolsMessage isShowingFavorites={isShowingFavorites} />
+          </Box>
+        </Flex>
       ) : (
         <Suspense fallback={<LoadingMessage />}>
           <InfiniteScroll
-            dataLength={filteredTools.length}
+            dataLength={displayedTools.length}
             next={loadMore}
             hasMore={!isShowingFavorites && hasMore}
             loader={isValidating && <LoadingMessage />}
-            scrollThreshold="90%"
+            scrollThreshold="70%"
           >
             <ToolsGridLayout
-              tools={filteredTools}
+              tools={displayedTools}
               favorites={favorites}
               onToggleFavorite={toggleFavorite}
             />

@@ -56,9 +56,11 @@ const HeaderDesktop = () => {
             height={{ sm: 34.2, lg: 61.79 }}
             marginRight={{ lg: 97, sm: 5 }}
           >
+
             <a href="/">
               <ChakraImage src={logo} alt="Logo" />
             </a>
+
           </GridItem>
 
           <GridItem display="flex" justifyContent="center" alignItems="center">
@@ -106,7 +108,9 @@ const HeaderDesktop = () => {
             gap={{ lg: 5, md: 5 }}
             marginLeft={{ lg: "75px", md: "20px", sm: "20px" }}
           >
+
             {status === "authenticated" ? (
+
               <Flex
                 gap={{ lg: 5, md: 8, sm: 8 }}
                 ml={{ lg: "18px", md: "30px", sm: "30px" }}

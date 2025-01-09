@@ -1,14 +1,13 @@
-"use client";
 import DiscountBanner from "../sections/DiscountBanner/DiscountBanner";
 import AboutUs from "../sections/home/AboutUs/AboutUs";
 import ContactUs from "../sections/home/ContactUs/ContactUs";
-import ReviewList from "../sections/home/ReviewSection/ReviewList";
-import Footer from "../sections/Footer/Footer";
+import ReviewSection from "../sections/home/ReviewSection/ReviewSection";
 import Hero from "../sections/home/Hero/Hero";
-import Header from "../sections/header/header";
 import Quiz from "../sections/home/Quiz/Quiz";
 import { Box } from "@chakra-ui/react";
-
+import { Service } from "../sections/home/ServiceSection/Service";
+import Dad from "../sections/home/DadSection/Dad";
+import CoursesSecion from "../sections/home/CoursesSection/CoursesSection";
 export default function Home() {
   const startDate = "2024-10-20T10:00:00";
   const endDate = "2024-11-25T23:59:59";
@@ -22,13 +21,14 @@ export default function Home() {
           promotionMessage="خصومات بنسبة 20% على الكورسات"
         />
       </Box>
-      <Header />
       <Hero />
+      <Service />
+      <Dad />
+      <CoursesSecion />
       <Quiz />
       <AboutUs />
       <ContactUs />
-      <ReviewList />
-      <Footer />
+      <ReviewSection />
     </>
   );
 }

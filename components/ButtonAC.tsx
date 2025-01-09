@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Button as ChakraButton, ButtonProps } from "@chakra-ui/react";
 import IconWrapper from "./IconWrapper";
@@ -34,7 +35,9 @@ const ButtonAC: React.FC<CustomButtonProps> = ({
 
   return (
     <ChakraButton
+
     onClick={() => (window.location.href = `${rest.href}`)}
+
       borderRadius="10px"
       padding="0 16px"
       _hover={{ opacity: 0.9 }}
