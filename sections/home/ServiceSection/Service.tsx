@@ -1,17 +1,16 @@
 "use client";
-import { Box, IconButton, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Box, IconButton, useBreakpointValue } from "@chakra-ui/react";
 import { useState } from "react";
-import ButtonAC from "../../../components/ButtonAC";
 import transparentBookIcon from "../../../public/icons/transparent-book-icon-open-blank-book-pages-icon-education-ico-5f9bad3ade7008 1.png";
 import EducationLogo from "../../../public/icons/kisspng-education-logo-image-e-learning-5cce15891e7a39 1.png";
 import transparentQuizIcon from "../../../public/icons/transparent-test-quiz-icon-my-classroom-icon-check-icon-5dd1c17b65bb03 1.png";
 import Image from "next/image";
 import angleLeftIcon from "../../../public/icons/angle-left.svg";
 import angleRightIcon from "../../../public/icons/angle-right.svg";
-import circled_outline from "../../../public/images/circled_outline.png";
 import serviceSection1 from "../../../public/icons/serviceSection1.svg";
 import serviceSection2 from "../../../public/icons/serviceSection2.svg";
 import serviceSection3 from "../../../public/icons/serviceSection3.svg";
+import ServiceCard from "../../../components/ServiceCard";
 export const Service = () => {
   const cards = [
     {
@@ -66,97 +65,65 @@ export const Service = () => {
 
   return (
     <>
-    
       <Box
         position="relative"
         display="flex"
         justifyContent="center"
-        maxH={{ sm: 258, md: 364, lg: 337 }}
+        maxH={{ base: 258, md: 364, lg: 337 }}
         zIndex={2}
       >
         <Box
           boxShadow="0px 1px 20px 3px #00000040"
           display={"flex"}
-          minHeight={{ sm: 297, md: 433, lg: 450 }}
-          width={{ sm: 260, md: 720, lg: 900 }}
+          minHeight={{ base: 297, md: 433, lg: 450 }}
+          width={{ base: 200, sm: 260, md: 720, lg: 900 }}
           borderRadius="md"
-          px={{ sm: "28px", md: "80px", lg: 67 }}
-          py={{ sm: 17, md: 27, lg: 65 }}
-          gap={{ sm: "", md: 100, lg: 83 }}
+          px={{ base: 28, md: 80, lg: 67 }}
+          py={{ base: 17, md: 27, lg: 65 }}
+          gap={{ base: 0, md: 100, lg: 83 }}
           bg={"white"}
           transform={{
-            sm: "translateY(-6%)",
+            base: "translateY(-6%)",
             md: "translateY(-8%)",
             lg: "translateY(-12%)",
           }}
           justifyContent={"center"}
         >
           {visibleCards.map((card) => (
-            <Box
-              width={{ sm: 150, md: 220, lg: 200 }}
+            <ServiceCard
               key={card.id}
-              display="flex"
-              flexDirection="column"
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            >
-              <Box
-                bg="#783BA2"
-                borderRadius="full"
-                width={{ sm: 120, md: 173, lg: 130 }}
-                minH={{ sm: 110, md: 173, lg: 130 }}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                <Image
-                  src={card.icon}
-                  alt={card.title}
-                  width={imageWidth}
-                  height={imageHeight}
-                />
-              </Box>
-              <Text
-                fontWeight="bold"
-                textAlign={"center"}
-                fontSize={{ sm: 18, md: 25, lg: 23 }}
-                color="#713488"
-              >
-                {card.title}
-              </Text>
-              <ButtonAC
-                bg="secondary"
-                text="المزيد ..."
-                icon={circled_outline}
-                color="white"
-              />
-            </Box>
+              card={card}
+              imageWidth={imageWidth}
+              imageHeight={imageHeight}
+            />
           ))}
         </Box>
 
         <IconButton
-          icon={<Image src={angleLeftIcon} alt="Previous" />}
-          onClick={handlePrev}
-          position="absolute"
-          left={{ sm: 30, md: 100, lg: 50 }}
-          top="50%"
-          transform="translateY(-50%)"
-          isDisabled={currentIndex === 0}
-          zIndex={2}
-          aria-label="Previous"
-          bg={"transparent"}
-          _hover={{ bg: "transparent" }}
-        />
-        <IconButton
-          icon={<Image src={angleRightIcon} alt="Next" />}
+          width={{ base: "10", sm: 12, lg: 16 }}
+          icon={<Image src={angleLeftIcon} alt="Next" />}
           onClick={handleNext}
           position="absolute"
-          right={{ sm: 30, md: 100, lg: 50 }}
+          left={{ base: 5, sm: 30, md: 85, lg: 50 }}
           top="50%"
           transform="translateY(-50%)"
           isDisabled={currentIndex + cardsPerSlide >= cards.length}
           zIndex={2}
           aria-label="Next"
+          bg={"transparent"}
+          _hover={{ bg: "transparent" }}
+        />
+        <IconButton
+          width={{ base: "10", sm: 12, lg: 16 }}
+          icon={<Image src={angleRightIcon} alt="Previous" />}
+          onClick={handlePrev}
+          position="absolute"
+          right={{ base: 5, sm: 30, md: 85, lg: 50 }}
+          top="50%"
+          transform="translateY(-50%)"
+          zIndex={2}
+          isDisabled={currentIndex === 0}
+          aria-label="Previous"
           bg={"transparent"}
           _hover={{ bg: "transparent" }}
         />
