@@ -1,14 +1,6 @@
 {
   "users": [
     {
-      "email": "test@gmail.com",
-      "password": "$2b$10$J1a3ZdQ9/iuerOuWkc3upO.pt7Y76dpeS2Ym87KsME/kJo834XnIy",
-      "firstName": "test",
-      "lastName": "test",
-      "username": "test test",
-      "country": "تونس"
-    },
-    {
       "email": "marahsaadeh@gmail.com",
       "password": "$2b$10$rSi6IYQGYOe4KCX3IQ4yiu5fS8mE4rRfo7RDx5nhio6Eilr7jbzy6",
       "firstName": "marah",
@@ -23,8 +15,14 @@
       "lastName": "nazzal",
       "username": "ahmad",
       "country": "فلسطين"
+    },
+    {
+      "email": "test@gmail.com",
+      "password": "$2b$10$BQjX.Ck/Qybb2WfQDsx/R.N2XcHdOwZGuDi9Znn3E0zTYa/uXfFF2",
+      "firstName": "Test",
+      "lastName": "Test",
+      "username": "Test",
+      "country": "ليبيا"
     }
   ]
-
- 
 }
