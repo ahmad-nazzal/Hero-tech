@@ -1,65 +1,87 @@
-## Hero Tech
+# Arab Code Academy
 
-![image](https://github.com/user-attachments/assets/2091d904-368b-4d34-a048-1bb4cea1cf1d)
+This project is a part of the React.js and Next.js Training Program at Gaza Sky Geeks.
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/2091d904-368b-4d34-a048-1bb4cea1cf1d" alt="Centered Image">
+</div>
 
-## Team Leader: Marah Saadeh
+## Team Members:
 
+- Marah Saadeh (Team Leader)
+- Ahmad Nazzal
+- Reema Zakout
 
+## Project Overview
 
-## Run JSON Server
+Arab Code Academy is a learning platform designed to provide educational resources in Arabic. The platform leverages modern technologies like React.js and Next.js to deliver an engaging and responsive user experience. The project also includes a JSON Server for a mock API, enabling the platform to manage and simulate data operations effectively.
 
-To use the API with **JSON Server**, please follow these steps:
+---
 
-1. Make sure **JSON Server** is installed. If not, you can install it with this command:
-   ```bash
-   npm install -g json-server
-   ```
+## Features
 
-2. Run JSON Server with this command:
-   ```bash
-   json-server --watch ./fakeDB/db.json --port 4000
-   ```
-   This command will start the server on port `4000` and will watch for changes in the `db.json` file located at `./fakeDB/`.
+- Educational content in Arabic, including lessons, quizzes, and tools.
+- Responsive design powered by Next.js and Chakra UI.
+- Carousel navigation for browsing educational categories.
+- Fully integrated JSON Server for backend simulation.
 
-3. After starting JSON Server, you can access the API at:
-   ```
-   http://localhost:4000
-   ```
-   **Note:** Make sure to update this path if it is different in your project.
-
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Ensure you have the following installed on your machine:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js (v16 or higher)
+- npm or yarn package manager
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Setup Instructions
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone the Repository:**
+
+   ```
+   git clone https://github.com/ahmad-nazzal/hero-tech.git
+   cd arab-code-academy
+   ```
+
+2. **Install Dependencies:**
+
+   ```
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Start the Development Server:**
+
+   ```
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+   Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to view the app.
+
+---
+
+## Deployment
+This is the last deployment <a href="https://hero-tech-two.vercel.app/" target="_blank">Demo</a>
+
+
+---
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To dive deeper into the technologies used in this project:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs) - Learn about Next.js features and API.
+- [React.js Documentation](https://reactjs.org/docs/getting-started.html) - Learn React fundamentals.
+- [Chakra UI Documentation](https://chakra-ui.com/docs) - Explore the UI framework used.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Acknowledgements
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is proudly developed as part of the Gaza Sky Geeks React.js and Next.js Training Program.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Arab Code Academy** - Empowering Arabic learners through technology.
