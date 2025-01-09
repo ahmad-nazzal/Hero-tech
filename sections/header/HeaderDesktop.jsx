@@ -17,23 +17,19 @@ import dropdownicon from "../../public/images/Polygon 2.png";
 import logo from "../../public/images/8e6c847871186b9180f5ae9f99b6bcbc.png";
 import vector1 from "../../public/images/Vector (1).png";
 import group46 from "../../public/images/Group 46.png";
-import { useEffect, useState } from "react";
-const HeaderDesktop = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  useEffect(() => {
-    const checkAuthStatus = () => {
-      const loggedIn = localStorage.getItem("loggedIn");
-      console.log("loggedIn:", loggedIn);
-      setIsAuthenticated(loggedIn === "true");
-      console.log("isAuthenticated:", isAuthenticated);
-    };
+import { useSession, signOut } from "next-auth/react";
 
-    checkAuthStatus();
-    window.addEventListener("load", checkAuthStatus);
-    return () => {
-      window.removeEventListener("load", checkAuthStatus);
-    };
-  }, []);
+const HeaderDesktop = () => {
+  const { status } = useSession();
+
+  const handleLogout = async () => {
+    await signOut({
+      redirect: true,
+      callbackUrl: "/",
+    });
+    localStorage.removeItem("loggedIn");
+    localStorage.removeItem("user");
+  };
 
   return (
     <Box>
@@ -60,10 +56,13 @@ const HeaderDesktop = () => {
             height={{ sm: 34.2, lg: 61.79 }}
             marginRight={{ lg: 97, sm: 5 }}
           >
-            <Link href="/">
+
+            <a href="/">
               <ChakraImage src={logo} alt="Logo" />
-            </Link>
+            </a>
+
           </GridItem>
+
           <GridItem display="flex" justifyContent="center" alignItems="center">
             <List
               display="flex"
@@ -109,7 +108,9 @@ const HeaderDesktop = () => {
             gap={{ lg: 5, md: 5 }}
             marginLeft={{ lg: "75px", md: "20px", sm: "20px" }}
           >
-            {isAuthenticated ? (
+
+            {status === "authenticated" ? (
+
               <Flex
                 gap={{ lg: 5, md: 8, sm: 8 }}
                 ml={{ lg: "18px", md: "30px", sm: "30px" }}
@@ -121,7 +122,13 @@ const HeaderDesktop = () => {
                 >
                   <Image src={group46} alt="Group 46" />
                 </Box>
-                <Box mt="6px" ml="-30px" width={"40px"} height={"33.33px"}>
+                <Box
+                  mt="6px"
+                  ml="-30px"
+                  width={"40px"}
+                  height={"33.33px"}
+                  onClick={handleLogout}
+                >
                   <Image src={vector1} alt="Vector 1" />
                 </Box>
               </Flex>

@@ -27,7 +27,7 @@ export async function POST(request) {
           user.favorites.push(toolId);
         }
       } else {
-
+//remove fav
         user.favorites = user.favorites.filter(id => id !== toolId);
       }
 

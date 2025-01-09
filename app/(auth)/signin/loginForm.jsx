@@ -11,16 +11,13 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react"; 
-
+import { signIn } from "next-auth/react";
 const LoginForm = () => {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);  // تعريف المتغير هنا
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const validate = () => {
     if (!email) {
@@ -52,20 +49,14 @@ const LoginForm = () => {
     });
 
     if (res.ok) {
-      setIsAuthenticated(true); // تحديث حالة التوثيق
+      setIsAuthenticated(true);
       alert("تم تسجيل الدخول بنجاح!");
       localStorage.setItem("loggedIn", "true");
-      router.push("/aiToolsPage"); // توجيه المستخدم بعد النجاح
+      localStorage.setItem("user", email.toString());
     } else {
       setError("بيانات تسجيل الدخول غير صحيحة. حاول مرة أخرى.");
     }
     setLoading(false);
-  };
-
-  const handleLogout = () => {
-    setIsAuthenticated(false); // تحديث حالة التوثيق
-    localStorage.removeItem("loggedIn");
-    router.push("/signin"); // توجيه المستخدم إلى صفحة تسجيل الدخول
   };
 
   return (
@@ -133,20 +124,16 @@ const LoginForm = () => {
                 </Button>
               </>
             ) : (
-              <Button
-                colorScheme="red"
-                w="100%"
-                size="sm"
-                onClick={handleLogout}
-              >
-                تسجيل الخروج
-              </Button>
+              <Text fontSize="md" color="green.500" mt={1}>
+                مرحبًا، تم تسجيل الدخول بنجاح!
+              </Text>
             )}
           </VStack>
         </Box>
       </Box>
     </ChakraProvider>
-  );
+);
+
 };
 
 export default LoginForm;

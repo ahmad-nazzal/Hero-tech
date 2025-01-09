@@ -3,9 +3,11 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Tajawal } from "next/font/google";
 import { Providers } from "../components/Providers";
+import AuthProvider from "../app/providers/AuthProvider"
 import { ToastContainer } from "react-toastify";
 import Footer from "../sections/Footer/Footer";
 import Header from "./../sections/header/header";
+
 
 const tajawal = Tajawal({
   weight: ["400", "700"],
@@ -36,7 +38,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
+   return (
     <html lang="ar" dir="rtl">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,12 +46,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${tajawal.className} antialiased`}
       >
+       
         <ToastContainer position="bottom-center" />
-        <Providers>
-          <Header />
-          {children}
-          <Footer />
-        </Providers>
+        <AuthProvider>
+          <Providers>
+            <Header />
+            {children}
+            <Footer />
+          </Providers>
+        </AuthProvider>
       </body>
     </html>
   );

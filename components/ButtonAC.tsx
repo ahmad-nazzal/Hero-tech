@@ -35,7 +35,9 @@ const ButtonAC: React.FC<CustomButtonProps> = ({
 
   return (
     <ChakraButton
-      onClick={() => (window.location.href = `${rest.href}`)}
+
+    onClick={() => (window.location.href = `${rest.href}`)}
+
       borderRadius="10px"
       padding="0 16px"
       _hover={{ opacity: 0.9 }}
@@ -46,7 +48,7 @@ const ButtonAC: React.FC<CustomButtonProps> = ({
       {...sizeStyles[size]}
       {...rest}
     >
-      <IconWrapper icon={icon} size={size} /> {/* using IconWrapper */}
+      <IconWrapper icon={icon} size={size} />
       {text || children}
     </ChakraButton>
   );
