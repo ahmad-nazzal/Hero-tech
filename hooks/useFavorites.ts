@@ -1,13 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import { AiToolsCardProps } from "../sections/AiTools/types";
 
 export const useFavorites = () => {
   const [favorites, setFavorites] = useState<number[]>([]);
   const [isShowingFavorites, setIsShowingFavorites] = useState(false);
+  // Ref to prevent multiple initializations during development and hydration
+  const initialized = useRef(false);
+  // Ref for managing toast debouncing
+  const toastDebounceRef = useRef<NodeJS.Timeout>();
 
-  //  Load user favorites from local storage or API
-
+  /**
+   * Loads user favorites from localStorage or API
+   * Prioritizes localStorage for faster loading and offline support
+   */
   const loadUserFavorites = async () => {
     try {
       const storedFavorites = localStorage.getItem("favorites");
@@ -30,56 +36,79 @@ export const useFavorites = () => {
       }
     } catch (error) {
       console.error("Error fetching favorites:", error);
+      setFavorites([]);
     }
   };
-  //   Toggle a tool as a favorite
+
+  /**
+   * Initialize favorites on component mount
+   * Checks for window to prevent SSR issues
+   */
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !initialized.current) {
+      initialized.current = true;
+      loadUserFavorites();
+    }
+  }, []);
+
+  const showToast = (message: string, type: 'success' | 'warning') => {
+    // Clear any existing pending toast
+    if (toastDebounceRef.current) {
+      clearTimeout(toastDebounceRef.current);
+    }
+
+    // Debounce new toast to prevent multiple renders
+    toastDebounceRef.current = setTimeout(() => {
+      const toastFn = type === 'success' ? toast.success : toast.warn;
+      toastFn(message, {
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        style: {
+          color: "#462576",
+          fontWeight: "bold",
+          direction: "rtl"
+        }
+      });
+    }, 100);
+  };
+
+
+  //Toggles a tool's favorite status
 
   const toggleFavorite = (toolId: number) => {
     setFavorites((prev) => {
-      // Create a new array of favorites with the tool added or removed
-
+      // Check if adding or removing from favorites
       const isAdding = !prev.includes(toolId);
       const newFavorites = isAdding
         ? [...prev, toolId]
         : prev.filter((id) => id !== toolId);
 
-      const addToastId = `add-toast-${toolId}`;
-      const removeToastId = `remove-toast-${toolId}`;
+      // Only update localStorage and show toast on client side
+      if (typeof window !== 'undefined') {
+        localStorage.setItem("favorites", JSON.stringify(newFavorites));
 
-      if (isAdding) {
-        if (!toast.isActive(addToastId)) {
-          toast.success(" !تمت الإضافة إلى المفضلة", {
-            toastId: addToastId,
-            style: {
-              color: "#462576",
-              fontWeight: "bold",
-            },
-          });
-        }
-      } else {
-        if (!toast.isActive(removeToastId)) {
-          toast.warn("!تمت الإزالة من المفضلة", {
-            toastId: removeToastId,
-            style: {
-              color: "#462576",
-              fontWeight: "bold",
-            },
-          });
+        // Show appropriate toast message
+        if (isAdding) {
+          showToast(" !تمت الإضافة إلى المفضلة", 'success');
+        } else {
+          showToast("!تمت الإزالة من المفضلة", 'warning');
         }
       }
 
-      localStorage.setItem("favorites", JSON.stringify(newFavorites));
       return newFavorites;
     });
   };
 
+
+  // Filters AI tools to return only favorited ones
+
   const getFavoriteTools = (aiTools: AiToolsCardProps[]) => {
     return aiTools.filter((tool) => favorites.includes(tool.tool_id ?? 0));
   };
-
-  useEffect(() => {
-    loadUserFavorites();
-  }, []);
 
   return {
     favorites,
