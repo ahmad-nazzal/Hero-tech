@@ -23,6 +23,14 @@
       "lastName": "Test",
       "username": "Test",
       "country": "ليبيا"
+    },
+    {
+      "email": "ahmad1@gmail.com",
+      "password": "$2b$10$5LJfic44pVD3xKMZmjAQ2.7vqHNQwN48NNfNTwafUUwNu2hnqC1qq",
+      "firstName": "ahmad",
+      "lastName": "nazzal",
+      "username": "aa4455",
+      "country": "العراق"
     }
   ]
 }
