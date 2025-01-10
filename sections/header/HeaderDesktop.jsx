@@ -7,6 +7,7 @@ import {
   ListItem,
   Link,
   Box,
+  Text,
 } from "@chakra-ui/react";
 import ChakraImage from "next/image";
 import ButtonAC from "../../components/ButtonAC";
@@ -20,17 +21,15 @@ import group46 from "../../public/images/Group 46.png";
 import { useSession, signOut } from "next-auth/react";
 
 const HeaderDesktop = () => {
-  const { status } = useSession();
+  const { status, data } = useSession();
 
   const handleLogout = async () => {
     await signOut({
       redirect: true,
       callbackUrl: "/",
     });
-    localStorage.removeItem("loggedIn");
-    localStorage.removeItem("user");
   };
-
+  if (status === "loading") return null;
   return (
     <Box>
       <Flex
@@ -56,11 +55,9 @@ const HeaderDesktop = () => {
             height={{ sm: 34.2, lg: 61.79 }}
             marginRight={{ lg: 97, sm: 5 }}
           >
-
             <a href="/">
               <ChakraImage src={logo} alt="Logo" />
             </a>
-
           </GridItem>
 
           <GridItem display="flex" justifyContent="center" alignItems="center">
@@ -108,26 +105,38 @@ const HeaderDesktop = () => {
             gap={{ lg: 5, md: 5 }}
             marginLeft={{ lg: "75px", md: "20px", sm: "20px" }}
           >
-
             {status === "authenticated" ? (
-
               <Flex
+                alignItems="center"
                 gap={{ lg: 5, md: 8, sm: 8 }}
                 ml={{ lg: "18px", md: "30px", sm: "30px" }}
               >
-                <Box
-                  width={"50px"}
-                  ml={{ lg: 0, md: 0, sm: -4 }}
-                  height={"50px"}
-                >
-                  <Image src={group46} alt="Group 46" />
-                </Box>
+                <Flex alignItems="center" direction="column">
+                  <Box
+                    width={"50px"}
+                    ml={{ lg: 0, md: 0, sm: -4 }}
+                    height={"50px"}
+                  >
+                    <Image src={group46} alt="Group 46" />
+                  </Box>
+                  <Text
+                    fontSize={{
+                      lg: "24px",
+                      md: "16px",
+                      sm: "10px",
+                      base: "10px",
+                    }}
+                  >
+                    {data.user.name}
+                  </Text>
+                </Flex>
                 <Box
                   mt="6px"
                   ml="-30px"
                   width={"40px"}
                   height={"33.33px"}
                   onClick={handleLogout}
+                  cursor={"pointer"}
                 >
                   <Image src={vector1} alt="Vector 1" />
                 </Box>

@@ -1,41 +1,44 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
+import path from "path";
+import fs from "fs/promises";
+
+const fakeDBPath = path.join(process.cwd(), "fakeDB", "db.json");
 
 const authOptions = {
   providers: [
     CredentialsProvider({
-      name: "Credentials",
-      credentials: {},
+      id: "signIn",
       async authorize(credentials) {
         const { email, password } = credentials;
 
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/db.json`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch the database.");
-        }
+        try {
+          const fileContent = await fs.readFile(fakeDBPath, "utf-8");
+          const data = JSON.parse(fileContent);
 
-        const data = await response.json();
-        const user = data.users.find((user) => user.email === email);
+          const user = data.users.find((user) => user.email === email);
 
-        if (!user) {
-          console.log("المستخدم غير موجود.");
+          if (!user) {
+            console.log("User not found.");
+            return null;
+          }
+
+          const passwordMatches = await bcrypt.compare(password, user.password);
+
+          if (!passwordMatches) {
+            return null;
+          }
+
+          return {
+            id: user.email,
+            name: `${user.firstName} ${user.lastName}`,
+            email: user.email,
+          };
+        } catch (error) {
+          console.error("Error reading the database file:", error);
           return null;
         }
-
-        const passwordMatches = await bcrypt.compare(password, user.password);
-
-        if (!passwordMatches) {
-          return null;
-        }
-
-        return {
-          id: user.email,
-          name: `${user.firstName} ${user.lastName}`,
-          email: user.email,
-        };
       },
     }),
   ],
@@ -43,6 +46,26 @@ const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/signin",
+  },
+  session: {
+    strategy: "jwt",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.username = user.username;
+        token.email = user.email;
+      }
+      token.expires = Math.floor(Date.now() / 1000) + 1 * 24 * 60 * 60;
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.username = token.username;
+        session.user.email = token.email;
+      }
+      return session;
+    },
   },
 };
 

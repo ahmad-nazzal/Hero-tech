@@ -12,12 +12,13 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 const LoginForm = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const validate = () => {
     if (!email) {
@@ -42,17 +43,14 @@ const LoginForm = () => {
     if (!validate()) return;
     setLoading(true);
 
-    const res = await signIn("credentials", {
+    const res = await signIn("signIn", {
       email,
       password,
       redirect: false,
     });
 
     if (res.ok) {
-      setIsAuthenticated(true);
-      alert("تم تسجيل الدخول بنجاح!");
-      localStorage.setItem("loggedIn", "true");
-      localStorage.setItem("user", email.toString());
+      router.push("/");
     } else {
       setError("بيانات تسجيل الدخول غير صحيحة. حاول مرة أخرى.");
     }
@@ -81,59 +79,51 @@ const LoginForm = () => {
         >
           <VStack spacing={4} align="stretch">
             <Heading as="h2" size="md" textAlign="center" color="purple.600">
-              {isAuthenticated ? "مرحبًا، تم تسجيل الدخول!" : "تسجيل الدخول"}
+              {"تسجيل الدخول"}
             </Heading>
-            {!isAuthenticated ? (
-              <>
-                <FormControl isRequired isInvalid={!!error}>
-                  <FormLabel fontSize="sm">البريد الإلكتروني</FormLabel>
-                  <Input
-                    type="email"
-                    placeholder="أدخل بريدك الإلكتروني"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    size="sm"
-                    borderColor="purple.300"
-                  />
-                </FormControl>
-                <FormControl isRequired>
-                  <FormLabel fontSize="sm">كلمة المرور</FormLabel>
-                  <Input
-                    type="password"
-                    placeholder="أدخل كلمة المرور"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    size="sm"
-                    borderColor="purple.300"
-                  />
-                </FormControl>
-                {error && (
-                  <Text fontSize="xs" color="red.500" mt={1}>
-                    {error}
-                  </Text>
-                )}
-                <Button
-                  colorScheme="teal"
-                  w="100%"
-                  size="sm"
-                  onClick={handleLogin}
-                  isLoading={loading}
-                  loadingText="جارٍ تسجيل الدخول..."
-                >
-                  تسجيل الدخول
-                </Button>
-              </>
-            ) : (
-              <Text fontSize="md" color="green.500" mt={1}>
-                مرحبًا، تم تسجيل الدخول بنجاح!
+
+            <FormControl isRequired isInvalid={!!error}>
+              <FormLabel fontSize="sm">البريد الإلكتروني</FormLabel>
+              <Input
+                type="email"
+                placeholder="أدخل بريدك الإلكتروني"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                size="sm"
+                borderColor="purple.300"
+              />
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel fontSize="sm">كلمة المرور</FormLabel>
+              <Input
+                type="password"
+                placeholder="أدخل كلمة المرور"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                size="sm"
+                borderColor="purple.300"
+              />
+            </FormControl>
+            {error && (
+              <Text fontSize="xs" color="red.500" mt={1}>
+                {error}
               </Text>
             )}
+            <Button
+              colorScheme="teal"
+              w="100%"
+              size="sm"
+              onClick={handleLogin}
+              isLoading={loading}
+              loadingText="جارٍ تسجيل الدخول..."
+            >
+              تسجيل الدخول
+            </Button>
           </VStack>
         </Box>
       </Box>
     </ChakraProvider>
-);
-
+  );
 };
 
 export default LoginForm;
