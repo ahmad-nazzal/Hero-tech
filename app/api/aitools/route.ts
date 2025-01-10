@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const BASE_URL = "https://your-api-endpoint.com";
+const BASE_URL = "https://sitev2.arabcodeacademy.com/wp-json/aca/v1/aitools";
 
 export async function GET(request: Request) {
   try {
