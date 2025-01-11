@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Grid, GridItem, Text } from "@chakra-ui/react";
+import { Text,Flex } from "@chakra-ui/react";
 import Loading from "./loading";
 import SearchBar from "../../../components/SearchBar";
 import Courses from "./courses";
@@ -67,41 +67,46 @@ const CoursesPage = async () => {
   const courses = await fetchCoursesData();
 
   return (
-    <main style={{ margin: "0", width: "100%", overflow: "hidden" }}>
-      <Grid
-        templateColumns={{
-          base: "1fr",
-          sm: "1fr",
-          md: "1fr",
-          lg: "repeat(4, 1fr)",
-        }}
-        gap="4"
-      >
-        <GridItem colSpan={{ base: 1, lg: 1 }}>
-          <Text
-            className="recommended"
-            marginRight="237px"
-            marginBottom="84px"
-            paddingTop="153px"
-            color="#713488"
-            borderBottom="2px solid #713488"
-            width="208px"
-            fontWeight="bold"
-            fontSize="27px"
-          >
-            الدورات التدريبية
-          </Text>
-        </GridItem>
+    <>
+    <Flex
+    
+    direction={{ base: "column", md: "column", lg: "row-reverse" }} 
+    align={{ base: "center", md: "center", lg: "flex-end" }}
+    wrap="nowrap"
+    mt={{ lg: "0px", md: "80px", sm: "80px", base: "40px" }}
+    mb={{ lg: "30px" }}
+    w={{ lg: "90%" }}
+    mr="auto"
 
-        <GridItem colSpan={{ base: 1, lg: 3 }}>
-          <SearchBar placeholder="..... مقدمة لمحرك الألعاب اليونتي" />
-        </GridItem>
-      </Grid>
 
+>
+
+  <SearchBar  placeholder="..... مقدمة لمحرك الألعاب اليونتي"  />
+    <Text
+        color="#713488"
+        borderBottom="2px solid #713488"
+
+        width={{ base: "220px", sm: "220px", md: "220px", lg: "250px" }}
+
+mt={{ base: "30px", sm: "60px", md: "60px", lg: "0px" }}
+ml={{ base:0, sm: 270, md: 450, lg: 0 }}
+
+        fontWeight="bold"
+        fontSize={{ base: "20px", sm: "27px", md: "27px", lg: "27px" }}
+        textAlign={{ base: "center", sm: "inherit", md: "inherit", lg: "inherit" }}
+        paddingBottom={{ base: "10px", sm: "0", md: "0", lg: "0" }}
+    >
+        الدورات التدريبية
+    </Text>
+</Flex>
+
+
+
+      
       <Suspense fallback={<Loading />}>
         <Courses data={courses} />
       </Suspense>
-    </main>
+    </>
   );
 };
 

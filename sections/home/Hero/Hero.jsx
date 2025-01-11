@@ -41,14 +41,14 @@ export default function Hero() {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    fontSize: { base: "16px", sm: "25px", lg: "23px" },
+    fontSize: { base: "16px", sm: "18px", lg: "23px" },
     textAlign: { base: "center", sm: "center", lg: "right" },
     paddingTop: { lg: 162, sm: 7 },
     paddingRight: { lg: 95, md: 10 },
     paddingLeft: { lg: 10 },
     paddingBottom: { sm: 70, lg: 0 },
     marginTop: { lg: 202, sm: 20 },
-    marginBottom: { base: 20 },
+    marginBottom: { base: 20,sm:280 },
     sx: {
       "@media (min-width: 1280px) and (max-width: 1650px)": {
         width: "590px",
@@ -110,8 +110,8 @@ export default function Hero() {
 
                 <GridItem className="content" flexGrow={1} flexShrink={0}>
                   <Box {...sliderTextTwoStyles}>
-                    <Container {...commonContainerStyles}>
-                      {useBreakpointValue({
+                  <Container  {...commonContainerStyles}>
+                  {useBreakpointValue({
                         base: true,
                         sm: false,
                         lg: false,
