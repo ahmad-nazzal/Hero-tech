@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useState, useEffect } from "react";
 import ButtonAC from "../../../components/ButtonAC";
@@ -34,7 +33,16 @@ interface CoursesProps {
 const Courses: React.FC<CoursesProps> = ({ data }) => {
   const [slidesPerView, setSlidesPerView] = useState(1);
   const [showWhiteLayer, setShowWhiteLayer] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
+  useEffect(() => {
+    const checkIfMobile = () => setIsMobile(window.innerWidth <= 480);
+
+    checkIfMobile();
+
+    window.addEventListener("resize", checkIfMobile);
+    return () => window.removeEventListener("resize", checkIfMobile);
+  }, []);
   useEffect(() => {
     const updateSlidesPerView = () => {
       const width = window.innerWidth;
@@ -64,16 +72,8 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
       setShowWhiteLayer(true);
     }
   };
-
   return (
-    <Box
-      marginBottom={112}
-      paddingTop={2}
-      paddingBottom={2}
-      paddingLeft={3}
-      marginLeft="31px"
-      marginRight="67px"
-    >
+    <Box paddingTop={{ base: 8, sm: 8, md: 8, lg: 2 }}>
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween="-200px"
@@ -103,7 +103,8 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
                 key={item.id}
                 style={{
                   width: "300px",
-                  marginRight: index === 0 ? "115px" : "0",
+                  marginRight: isMobile ? "70px" : index === 0 ? "115px" : "0",
+
                   position: "relative",
                 }}
               >
@@ -132,10 +133,25 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
                       text="اقرأ المزيد"
                       icon={mazedlogo}
                       sx={{
-                        width: "143px",
-                        height: "44px",
+                        width: {
+                          base: "95px",
+                          sm: "143px",
+                          md: "143px",
+                          lg: "143px",
+                        },
+                        height: {
+                          base: "37px",
+                          sm: "44px",
+                          md: "44px",
+                          lg: "44px",
+                        },
                         fontWeight: "normal",
-                        fontSize: "17px",
+                        fontSize: {
+                          base: "13px",
+                          sm: "17px",
+                          md: "17px",
+                          lg: "17px",
+                        },
                       }}
                     />,
                     <ButtonAC
@@ -143,16 +159,30 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
                       borderRadius="6px"
                       alignSelf="center"
                       mb="30px"
-                      //  sizeVariant="lg"
                       color="white"
                       bg="tomato"
                       text="شراء"
                       icon={paylogo}
                       sx={{
-                        width: "143px",
-                        height: "44px",
+                        width: {
+                          base: "95px",
+                          sm: "143px",
+                          md: "143px",
+                          lg: "143px",
+                        },
+                        height: {
+                          base: "37px",
+                          sm: "44px",
+                          md: "44px",
+                          lg: "44px",
+                        },
                         fontWeight: "normal",
-                        fontSize: "17px",
+                        fontSize: {
+                          base: "13px",
+                          sm: "17px",
+                          md: "17px",
+                          lg: "17px",
+                        },
                       }}
                     />,
                   ]}
@@ -164,9 +194,11 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
                     left="0"
                     right="0"
                     bottom="0"
-                    backgroundColor="white"
+                    backgroundColor="#fff"
                     pointerEvents="none"
-                    marginRight={-5}
+                    style={{
+                      marginRight: isMobile ? "-1px" : "-5px",
+                    }}
                   />
                 )}
               </SwiperSlide>
@@ -176,17 +208,29 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
       <Grid templateColumns="repeat(4, 1fr)" gap="4">
         <GridItem colSpan={1}>
           <Text
-            className="recommended"
-            marginRight="170px"
-            marginBottom="69px"
+            marginRight={{
+              base: "150px",
+              sm: "120px",
+              md: "120px",
+              lg: "120px",
+            }}
+            marginBottom={{ base: "20px", sm: "20px", md: "20px", lg: "69px" }}
+            mt={{ base: "30px", sm: 10, md: 10, lg: 0 }}
             paddingTop="40px"
             color="#713488"
             borderBottom="2px solid #713488"
             width="70px"
             fontWeight="bold"
-            fontSize="27px"
+            fontSize={{ base: "20px", sm: "27px", md: "27px", lg: "27px" }}
+            textAlign={{
+              base: "center",
+              sm: "inherit",
+              md: "inherit",
+              lg: "inherit",
+            }}
+            paddingBottom={{ base: "10px", sm: "0", md: "0", lg: "0" }}
           >
-            قريباً{" "}
+            قريباً
           </Text>
         </GridItem>
 
@@ -223,7 +267,11 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
                   key={item.id}
                   style={{
                     width: "300px",
-                    marginRight: index === 0 ? "115px" : "0",
+                    marginRight: isMobile
+                      ? "70px"
+                      : index === 0
+                      ? "115px"
+                      : "0",
                     position: "relative",
                   }}
                 >
@@ -252,10 +300,25 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
                         text="اقرأ المزيد"
                         icon={mazedlogo}
                         sx={{
-                          width: "143px",
-                          height: "44px",
+                          width: {
+                            base: "95px",
+                            sm: "143px",
+                            md: "143px",
+                            lg: "143px",
+                          },
+                          height: {
+                            base: "37px",
+                            sm: "44px",
+                            md: "44px",
+                            lg: "44px",
+                          },
                           fontWeight: "normal",
-                          fontSize: "17px",
+                          fontSize: {
+                            base: "13px",
+                            sm: "17px",
+                            md: "17px",
+                            lg: "17px",
+                          },
                         }}
                       />,
                       <ButtonAC
@@ -268,10 +331,25 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
                         text="شراء"
                         icon={paylogo}
                         sx={{
-                          width: "143px",
-                          height: "44px",
+                          width: {
+                            base: "95px",
+                            sm: "143px",
+                            md: "143px",
+                            lg: "143px",
+                          },
+                          height: {
+                            base: "37px",
+                            sm: "44px",
+                            md: "44px",
+                            lg: "44px",
+                          },
                           fontWeight: "normal",
-                          fontSize: "17px",
+                          fontSize: {
+                            base: "13px",
+                            sm: "17px",
+                            md: "17px",
+                            lg: "17px",
+                          },
                         }}
                       />,
                     ]}
@@ -283,9 +361,11 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
                       left="0"
                       right="0"
                       bottom="0"
-                      backgroundColor="white"
+                      backgroundColor="#fff"
                       pointerEvents="none"
-                      marginRight={-5}
+                      style={{
+                        marginRight: isMobile ? "-1px" : "-5px",
+                      }}
                     />
                   )}
                 </SwiperSlide>
@@ -365,11 +445,11 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
   border-top: 3px solid #713488;
 }
       .swiper-button-prev {
-        right: 0px !important; 
+        right: 10px !important; 
       }
 
       .swiper-button-next {
-        left: 2px !important; 
+        left: 10px !important; 
       }
     }
   `}
