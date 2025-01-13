@@ -13,6 +13,7 @@ import "swiper/css/scrollbar";
 import CustomCard from "../../../components/CustomCard";
 import { Tooltip } from "@chakra-ui/react";
 import { Text, Box, Grid, GridItem } from "@chakra-ui/react";
+import { useTheme } from "../../../hooks/useTheme";
 
 interface FormattedCourse {
   id: number;
@@ -65,6 +66,7 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
     };
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSlideChange = (swiper: any) => {
     if (swiper.activeIndex > 0) {
       setShowWhiteLayer(false);
@@ -72,6 +74,8 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
       setShowWhiteLayer(true);
     }
   };
+  const { color } = useTheme();
+
   return (
     <Box paddingTop={{ base: 8, sm: 8, md: 8, lg: 2 }}>
       <Swiper
@@ -128,7 +132,7 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
                       key="read-more"
                       borderRadius="6px"
                       mb="30px"
-                      color="white"
+                      color={"white"}
                       bg="secondary"
                       text="اقرأ المزيد"
                       icon={mazedlogo}
@@ -159,7 +163,7 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
                       borderRadius="6px"
                       alignSelf="center"
                       mb="30px"
-                      color="white"
+                      color={"white"}
                       bg="tomato"
                       text="شراء"
                       icon={paylogo}
@@ -217,8 +221,8 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
             marginBottom={{ base: "20px", sm: "20px", md: "20px", lg: "69px" }}
             mt={{ base: "30px", sm: 10, md: 10, lg: 0 }}
             paddingTop="40px"
-            color="#713488"
-            borderBottom="2px solid #713488"
+            color={color}
+            borderBottom={"2px solid"}
             width="70px"
             fontWeight="bold"
             fontSize={{ base: "20px", sm: "27px", md: "27px", lg: "27px" }}
@@ -295,7 +299,7 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
                         key="read-more"
                         borderRadius="6px"
                         mb="30px"
-                        color="white"
+                        color={"white"}
                         bg="secondary"
                         text="اقرأ المزيد"
                         icon={mazedlogo}
