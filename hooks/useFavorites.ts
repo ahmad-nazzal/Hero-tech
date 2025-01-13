@@ -1,38 +1,39 @@
 import { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import { AiToolsCardProps } from "../sections/AiTools/types";
+import { useSession } from "next-auth/react"; // Import useSession from next-auth
 
 export const useFavorites = () => {
+  const { data: session } = useSession(); // Get session data, including the user's email
   const [favorites, setFavorites] = useState<number[]>([]);
   const [isShowingFavorites, setIsShowingFavorites] = useState(false);
+
   // Ref to prevent multiple initializations during development and hydration
   const initialized = useRef(false);
   // Ref for managing toast debouncing
   const toastDebounceRef = useRef<NodeJS.Timeout>();
 
   /**
-   * Loads user favorites from localStorage or API
-   * Prioritizes localStorage for faster loading and offline support
+   * Loads user favorites from the database (API)
+   * Directly fetching from the server to ensure it's always up-to-date.
    */
   const loadUserFavorites = async () => {
+    if (!session?.user?.email) {
+      console.error("No email found in session.");
+      return;
+    }
+
     try {
-      const storedFavorites = localStorage.getItem("favorites");
+      const response = await fetch(
+        `/api/userFavorites?email=${session.user.email}`
+      );
+      const data = await response.json();
 
-      if (storedFavorites) {
-        setFavorites(JSON.parse(storedFavorites));
+      if (data.success) {
+        setFavorites(data.favorites || []);
       } else {
-        const response = await fetch(
-          "/api/getUserFavorites?email=marahsaadeh@gmail.com"
-        );
-        const data = await response.json();
-
-        if (data.success) {
-          const validIds = data.favorites
-            .map((id: string) => Number(id))
-            .filter(Number.isFinite);
-          setFavorites(validIds);
-          localStorage.setItem("favorites", JSON.stringify(validIds));
-        }
+        console.error("Failed to load favorites.");
+        setFavorites([]);
       }
     } catch (error) {
       console.error("Error fetching favorites:", error);
@@ -42,16 +43,20 @@ export const useFavorites = () => {
 
   /**
    * Initialize favorites on component mount
-   * Checks for window to prevent SSR issues
+   * Checks for session to prevent SSR issues
    */
   useEffect(() => {
-    if (typeof window !== 'undefined' && !initialized.current) {
+    if (
+      typeof window !== "undefined" &&
+      !initialized.current &&
+      session?.user?.email
+    ) {
       initialized.current = true;
       loadUserFavorites();
     }
-  }, []);
+  }, [session?.user?.email]);
 
-  const showToast = (message: string, type: 'success' | 'warning') => {
+  const showToast = (message: string, type: "success" | "warning") => {
     // Clear any existing pending toast
     if (toastDebounceRef.current) {
       clearTimeout(toastDebounceRef.current);
@@ -59,7 +64,7 @@ export const useFavorites = () => {
 
     // Debounce new toast to prevent multiple renders
     toastDebounceRef.current = setTimeout(() => {
-      const toastFn = type === 'success' ? toast.success : toast.warn;
+      const toastFn = type === "success" ? toast.success : toast.warn;
       toastFn(message, {
         autoClose: 3000,
         hideProgressBar: false,
@@ -70,16 +75,18 @@ export const useFavorites = () => {
         style: {
           color: "#462576",
           fontWeight: "bold",
-          direction: "rtl"
-        }
+          direction: "rtl",
+        },
       });
     }, 100);
   };
 
+  const toggleFavorite = async (toolId: number) => {
+    if (!session?.user?.email) {
+      console.error("No email found in session.");
+      return;
+    }
 
-  //Toggles a tool's favorite status
-
-  const toggleFavorite = (toolId: number) => {
     setFavorites((prev) => {
       // Check if adding or removing from favorites
       const isAdding = !prev.includes(toolId);
@@ -87,24 +94,23 @@ export const useFavorites = () => {
         ? [...prev, toolId]
         : prev.filter((id) => id !== toolId);
 
-      // Only update localStorage and show toast on client side
-      if (typeof window !== 'undefined') {
-        localStorage.setItem("favorites", JSON.stringify(newFavorites));
-
-        // Show appropriate toast message
-        if (isAdding) {
-          showToast(" !تمت الإضافة إلى المفضلة", 'success');
-        } else {
-          showToast("!تمت الإزالة من المفضلة", 'warning');
-        }
+      if (isAdding) {
+        showToast(" !تمت الإضافة إلى المفضلة", "success");
+      } else {
+        showToast("!تمت الإزالة من المفضلة", "warning");
       }
+
+      fetch(`/api/userFavorites?email=${session?.user?.email}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ favorites: newFavorites }),
+      });
 
       return newFavorites;
     });
   };
-
-
-  // Filters AI tools to return only favorited ones
 
   const getFavoriteTools = (aiTools: AiToolsCardProps[]) => {
     return aiTools.filter((tool) => favorites.includes(tool.tool_id ?? 0));
