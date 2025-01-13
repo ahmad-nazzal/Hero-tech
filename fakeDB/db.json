@@ -14,7 +14,10 @@
       "firstName": "Ahmad",
       "lastName": "nazzal",
       "username": "ahmad",
-      "country": "فلسطين"
+      "country": "فلسطين",
+      "favorites": [
+        2
+      ]
     },
     {
       "email": "test@gmail.com",
