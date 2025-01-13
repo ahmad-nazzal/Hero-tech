@@ -19,6 +19,7 @@ import {
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@chakra-ui/react";
+import { signIn } from "next-auth/react";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -605,7 +606,6 @@ const RegisterForm = () => {
                 <HStack spacing={2} alignItems="center">
                   <Text>Facebook</Text>
                   <Box height="49px" width="0.5px" bg="white"></Box>{" "}
-                
                   <Image
                     src="./icons/facebook-f.svg"
                     alt="Facebook Icon"
@@ -621,7 +621,7 @@ const RegisterForm = () => {
                 w="155px"
                 fontSize="21px"
                 pr={-2}
-                onClick={() => handleSocialLogin("google")}
+                onClick={() => signIn("google", { callbackUrl: "/" })}
                 _hover={{ bg: "#b3362a" }}
                 borderRadius="10px"
                 boxShadow="0px 6px 4px -2px rgba(0, 0, 0, 0.3)"
@@ -629,7 +629,6 @@ const RegisterForm = () => {
                 <HStack spacing={2} alignItems="center">
                   <Text ml="8px">Google</Text>
                   <Box height="49px" width="0.5px" bg="white"></Box>{" "}
-                
                   <Image
                     ml={-7}
                     src="./icons/google-plus-g.svg"

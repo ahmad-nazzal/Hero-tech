@@ -117,7 +117,13 @@ const HeaderDesktop = () => {
                     ml={{ lg: 0, md: 0, sm: -4 }}
                     height={"50px"}
                   >
-                    <Image src={group46} alt="Group 46" />
+                    <Image
+                      src={data.user.image || group46}
+                      width={50}
+                      height={50}
+                      alt="Group 46"
+                      className="rounded-full"
+                    />
                   </Box>
                   <Text
                     fontSize={{
