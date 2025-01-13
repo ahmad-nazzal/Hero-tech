@@ -1,8 +1,9 @@
 import { Suspense } from "react";
-import { Text,Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import Loading from "./loading";
 import SearchBar from "../../../components/SearchBar";
 import Courses from "./courses";
+import CoursesText from "../../../components/CoursesText";
 
 interface Trainer {
   first_name: string;
@@ -68,41 +69,20 @@ const CoursesPage = async () => {
 
   return (
     <>
-    <Flex
-    
-    direction={{ base: "column", md: "column", lg: "row-reverse" }} 
-    align={{ base: "center", md: "center", lg: "flex-end" }}
-    wrap="nowrap"
-    mt={{ lg: "0px", md: "80px", sm: "80px", base: "40px" }}
-    mb={{ lg: "30px" }}
-    w={{ lg: "90%" }}
-    mr="auto"
+      <Flex
+        direction={{ base: "column", md: "column", lg: "row-reverse" }}
+        align={{ base: "center", md: "center", lg: "flex-end" }}
+        wrap="nowrap"
+        mt={{ lg: "0px", md: "80px", sm: "80px", base: "40px" }}
+        mb={{ lg: "30px" }}
+        w={{ lg: "90%" }}
+        mr="auto"
+      >
+        <SearchBar placeholder="..... مقدمة لمحرك الألعاب اليونتي" />
 
+        <CoursesText />
+      </Flex>
 
->
-
-  <SearchBar  placeholder="..... مقدمة لمحرك الألعاب اليونتي"  />
-    <Text
-        color="#713488"
-        borderBottom="2px solid #713488"
-
-        width={{ base: "220px", sm: "220px", md: "220px", lg: "250px" }}
-
-mt={{ base: "30px", sm: "60px", md: "60px", lg: "0px" }}
-ml={{ base:0, sm: 270, md: 450, lg: 0 }}
-
-        fontWeight="bold"
-        fontSize={{ base: "20px", sm: "27px", md: "27px", lg: "27px" }}
-        textAlign={{ base: "center", sm: "inherit", md: "inherit", lg: "inherit" }}
-        paddingBottom={{ base: "10px", sm: "0", md: "0", lg: "0" }}
-    >
-        الدورات التدريبية
-    </Text>
-</Flex>
-
-
-
-      
       <Suspense fallback={<Loading />}>
         <Courses data={courses} />
       </Suspense>
