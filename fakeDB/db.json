@@ -31,6 +31,28 @@
       "lastName": "nazzal",
       "username": "aa4455",
       "country": "العراق"
+    },
+    {
+      "email": "a@gmail.com",
+      "password": "$2b$10$jvEkn7STZWA/mpzd13bSauIMLJ6UbxCK2vSZPZyLlm4WOXUsr5N7e",
+      "firstName": "a",
+      "lastName": "aa",
+      "username": "aaa",
+      "country": "البحرين"
+    },
+    {
+      "email": "test1@gmail.com",
+      "password": "$2b$10$DcK3.QgkBI3hFZXF1l5Zmulczr1UZ/Ae2B5pCJ/KHuujTw0dxkxTW",
+      "firstName": "ahmad",
+      "lastName": "nazzal",
+      "username": "ahmad nazzal",
+      "country": "ليبيا"
+    },
+    {
+      "username": "احمد محمد صادق نزال",
+      "email": "s12027687@stu.najah.edu",
+      "image": "https://lh3.googleusercontent.com/a/ACg8ocKnacMGLyyyiA1MXn0JwPNi6iUgbrrtBOAR80AG19onkTZbhQ=s96-c",
+      "provider": "google"
     }
   ]
 }
