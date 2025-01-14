@@ -1,21 +1,13 @@
-import {
-  Box,
-  Flex,
-  IconButton,
-  useColorModeValue,
-  Text,
-  useDisclosure,
-} from "@chakra-ui/react";
-import { signIn, useSession } from "next-auth/react";
+"use client";
+import { Box, Flex, IconButton, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import masedLogo from "../../public/images/circled_outline.png";
 import ButtonAC from "../../components/ButtonAC";
+import { AiToolsCardProps } from "./types";
 import empHeartlogo from "../../public/images/emp-heart.png";
 import heartlogo from "../../public/images/heart.png";
 import ai from "../../public/images/ai.jpg";
-import { AuthRequiredModal } from "../../components/AuthRequiredModal";
-import { AiToolsCardProps } from "./types";
-
+import { useTheme } from "../../hooks/useTheme";
 interface AiToolsCardComponentProps {
   tool: AiToolsCardProps;
   isFavorite: boolean;
@@ -30,29 +22,17 @@ export function AiToolsCard({
   const { tool_id, title, description, tags } = tool;
   const words = description.split(" ");
   const truncatedDescription = words.slice(0, 20).join(" ") + "...";
-  const bg = useColorModeValue("white", "gray.800");
-
-  const { data: session } = useSession();
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const { bg, color } = useTheme();
   const handleFavoriteClick = () => {
-    if (!session) {
-      onOpen();
-      return;
-    }
-
     if (tool_id) {
       onToggleFavorite(tool_id);
     }
   };
 
-  const handleSignInRedirect = () => {
-    onClose();
-    signIn();
-  };
-
   return (
     <Box
+      bg={bg}
+      color={color}
       shadow="lg"
       width={{
         xl: "400px",
@@ -71,7 +51,13 @@ export function AiToolsCard({
     >
       <Flex direction="column" gap={4} h="full">
         <Box position="relative" width="100%" height="193px">
-          <Image src={ai} alt="AI Tool Image" layout="fill" objectFit="cover" />
+          <Image
+            // src="https://via.placeholder.com/400x193"
+            src={ai}
+            alt="AI Tool Image"
+            layout="fill"
+            objectFit="cover"
+          />
           <IconButton
             aria-label={isFavorite ? "إزالة من المفضلة" : "إضافة إلى المفضلة"}
             icon={
@@ -87,6 +73,7 @@ export function AiToolsCard({
             mt="15px"
             left={4}
             bg={bg}
+            color={color}
             boxShadow="0 2px 8px rgba(0, 0, 0, 0.35)"
             onClick={handleFavoriteClick}
           />
@@ -100,10 +87,10 @@ export function AiToolsCard({
           height="calc(100% - 193px)"
         >
           <Box
+            color={color}
             fontWeight="700"
             fontSize="23px"
             textAlign="end"
-            textColor="primary"
             mb={2}
             noOfLines={1}
             isTruncated
@@ -113,10 +100,10 @@ export function AiToolsCard({
           </Box>
           <Flex direction={"column"} justifyContent="start" height={"120px"}>
             <Box
+              color={color}
               fontWeight="700"
               fontSize="18px"
               textAlign="end"
-              textColor="primary"
               mb={2}
               noOfLines={1}
               isTruncated
@@ -127,7 +114,7 @@ export function AiToolsCard({
 
             <Text
               fontWeight="500"
-              color="primary"
+              color={color}
               fontSize="17px"
               textAlign="start"
               mb={3}
@@ -159,12 +146,6 @@ export function AiToolsCard({
           />
         </Box>
       </Flex>
-
-      <AuthRequiredModal
-        isOpen={isOpen}
-        onClose={onClose}
-        onSignIn={handleSignInRedirect}
-      />
     </Box>
   );
 }

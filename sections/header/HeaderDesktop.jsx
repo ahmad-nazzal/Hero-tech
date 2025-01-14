@@ -19,6 +19,7 @@ import logo from "../../public/images/8e6c847871186b9180f5ae9f99b6bcbc.png";
 import vector1 from "../../public/images/Vector (1).png";
 import group46 from "../../public/images/Group 46.png";
 import { useSession, signOut } from "next-auth/react";
+import DarkModeToggle from "../../components/DarkToggle";
 
 const HeaderDesktop = () => {
   const { status, data } = useSession();
@@ -74,6 +75,9 @@ const HeaderDesktop = () => {
                 textShadow: "2px 2px 4px rgba(0, 0, 0, 0.48)",
               }}
             >
+              <ListItem>
+                <DarkModeToggle />
+              </ListItem>
               <ListItem>
                 <Link
                   href="/sources"

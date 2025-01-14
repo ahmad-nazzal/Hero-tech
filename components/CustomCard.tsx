@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { ReactNode } from "react";
 import {
@@ -10,7 +11,9 @@ import {
   Text,
   Flex,
   Box,
+  useColorModeValue,
 } from "@chakra-ui/react";
+import { useTheme } from "../hooks/useTheme";
 interface CustomCardProps {
   title: string | ReactNode;
   price: string;
@@ -29,18 +32,21 @@ const CustomCard: React.FC<CustomCardProps> = ({
   buttons,
   applyFilter,
 }: CustomCardProps) => {
+  const { color, bg } = useTheme();
+  const bg2 = useColorModeValue("tomato", "#462576");
+
   return (
     <Card
       marginBottom="55px"
       boxShadow="0px 4px 12px rgba(0, 0, 0, 0.17)"
       borderRadius="11px"
-      bg="white"
+      bg={bg}
       width={{ base: "230px", sm: "350.03px", md: "350.03px", lg: "350.03px" }}
       height={{ base: "368px", sm: "510px", md: "510px", lg: "510px" }}
     >
       <CardHeader pt="0" pr="0">
         <Box
-          bg="#FF6542"
+          bg={bg2}
           p={{ base: 0, sm: 10, md: 10, lg: 10 }}
           pt={{ base: 8, sm: 10, md: 10, lg: 10 }}
           borderRadius="11px 11px 0 0"
@@ -69,7 +75,7 @@ const CustomCard: React.FC<CustomCardProps> = ({
             size="lg"
             fontWeight="bold"
             fontSize={{ base: "15px", sm: "23px", md: "23px", lg: "23px" }}
-            color="#713488"
+            color={color}
             paddingTop={1}
             textAlign="center"
           >
@@ -78,7 +84,7 @@ const CustomCard: React.FC<CustomCardProps> = ({
 
           <Spacer />
           <Text
-            color="#713488"
+            color={color}
             fontSize={{ base: "23px", sm: "30px", md: "30px", lg: "30px" }}
             fontWeight="bold"
           >
@@ -86,7 +92,7 @@ const CustomCard: React.FC<CustomCardProps> = ({
           </Text>
         </Flex>
         <Box
-          color="#713488"
+          color={color}
           fontSize={{ base: "13px", sm: "18px", md: "18px", lg: "18px" }}
           fontWeight="normal"
         >
