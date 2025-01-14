@@ -1,20 +1,6 @@
-import { extendTheme, StyleFunctionProps } from "@chakra-ui/react";
-import { mode } from "@chakra-ui/theme-tools";
+import { extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
-  config: {
-    initialColorMode: "system",
-    useSystemColorMode: true,
-  },
-  styles: {
-    global: (props: StyleFunctionProps) => ({
-      body: {
-        bg: mode("white", "gray.900")(props),
-        color: mode("primary", "white")(props),
-      },
-    }),
-  },
-
   breakpoints: {
     sm: "30em", // 480px
     md: "64em", // 1024px

@@ -1,10 +1,7 @@
-"use client";
-
 import { Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
-import { useTheme } from "../hooks/useTheme";
+import notfound from "../public/images/not-found.png";
 export default function NotFound() {
-  const { color } = useTheme();
   return (
     <>
       <Flex
@@ -14,7 +11,7 @@ export default function NotFound() {
         alignItems="center"
       >
         <Image
-          src={"/images/notfound.png"}
+          src={notfound}
           alt="404 page not found"
           width={250}
           height={250}
@@ -25,7 +22,7 @@ export default function NotFound() {
           fontWeight="bold"
           textAlign="center"
           mt="4"
-          color={color}
+          color={"primary"}
         >
           Error 404
         </Text>
@@ -33,7 +30,7 @@ export default function NotFound() {
           fontSize="2xl"
           fontWeight="semibold"
           textAlign="center"
-          color={color}
+          color={"primary"}
         >
           Page Not Found
         </Text>
