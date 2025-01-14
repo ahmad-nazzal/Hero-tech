@@ -1,9 +1,7 @@
-"use client";
 import { Box, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import ButtonAC from "./ButtonAC";
 import circled_outline from "../public/images/circled_outline.png";
-import { useTheme } from "../hooks/useTheme";
 
 interface ServiceCardProps {
   card: {
@@ -20,8 +18,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   imageWidth,
   imageHeight,
 }) => {
-  const { color } = useTheme();
-
   return (
     <Box
       width={{ sm: 150, md: 220, lg: 200 }}
@@ -50,7 +46,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         fontWeight="bold"
         textAlign="center"
         fontSize={{ base: 18, md: 25, lg: 23 }}
-        color={color}
+        color="#713488"
       >
         {card.title}
       </Text>

@@ -1,4 +1,3 @@
-"use client";
 import {
   Card,
   CardBody,
@@ -12,27 +11,22 @@ import {
 import Star1 from "../../../public/images/Star1.png";
 import Rectangle from "../../../public/images/Rectangle.png";
 import Starempty from "../../../public/images/Starempty.png";
-import personal from "../../../public/images/personal.png";
 
 import ReviewCardProps from "./ReviewCardProps";
-import { useTheme } from "../../../hooks/useTheme";
 
 export default function ReviewCard({
   reviewerName,
   reviewerLastName,
   reviewText,
   rating,
-  image,
   date,
 }: ReviewCardProps) {
   const stars = Array.from({ length: 5 }, (_, index) =>
     index < rating ? Star1.src : Starempty.src
   ).reverse();
-  const { color, bg } = useTheme();
 
   return (
     <Box
-      color={color}
       px={10}
       py={10}
       width="100%"
@@ -42,8 +36,6 @@ export default function ReviewCard({
       justifyContent="center"
     >
       <Card
-        bg={bg}
-        color={color}
         height="400px"
         width="100%"
         maxW="384px"
@@ -67,12 +59,11 @@ export default function ReviewCard({
         {/* User Image */}
         <Image
           mt={12}
-          src={image || personal.src}
+          src="https://via.placeholder.com/100"
           alt="صورة المستخدم"
           borderRadius="full"
           boxSize="100px"
           mx="auto"
-          bg="white"
           position="relative"
           zIndex={2}
         />
@@ -82,8 +73,7 @@ export default function ReviewCard({
             size="md"
             textAlign="center"
             mb={5}
-            bg={bg}
-            color={color}
+            color="primary"
             fontWeight="700"
             fontSize="19px"
           >
@@ -93,8 +83,7 @@ export default function ReviewCard({
           <Text
             textAlign="center"
             noOfLines={3}
-            bg={bg}
-            color={color}
+            color="primary"
             fontWeight="500"
             fontSize="18px"
           >
@@ -132,7 +121,7 @@ export default function ReviewCard({
           </Flex>
 
           {/* Date */}
-          <Box bg={bg} color={color} mx={5} fontSize="14px">
+          <Box mx={5} color="gray.500" fontSize="14px">
             {date}
           </Box>
         </CardFooter>

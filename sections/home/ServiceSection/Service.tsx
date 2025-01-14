@@ -6,7 +6,6 @@ import angleLeftIcon from "../../../public/icons/angle-left.svg";
 import angleRightIcon from "../../../public/icons/angle-right.svg";
 import ServiceCard from "../../../components/ServiceCard";
 import icons from "../../../public/icons";
-import { useTheme } from "../../../hooks/useTheme";
 
 const cards = [
   { id: 1, title: "دروس وأنماط الميدجوزي", icon: icons.transparentBookIcon },
@@ -22,8 +21,6 @@ const cards = [
 ];
 
 export const Service = () => {
-  const { color, bg } = useTheme();
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const cardsPerSlide = useBreakpointValue({ base: 1, md: 2, lg: 3 }) || 3;
@@ -56,8 +53,6 @@ export const Service = () => {
       zIndex={2}
     >
       <Box
-        color={color}
-        bg={bg}
         boxShadow="0px 1px 20px 3px #00000040"
         display={"flex"}
         minHeight={{ base: 297, md: 433, lg: 450 }}
@@ -66,6 +61,7 @@ export const Service = () => {
         px={{ base: 28, md: 80, lg: 67 }}
         py={{ base: 17, md: 27, lg: 65 }}
         gap={{ base: 0, md: 100, lg: 83 }}
+        bg={"white"}
         transform={{
           base: "translateY(-6%)",
           md: "translateY(-8%)",

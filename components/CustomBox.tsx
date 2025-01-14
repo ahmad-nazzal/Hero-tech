@@ -19,6 +19,7 @@ const CustomBox: React.FC<CustomBoxProps> = ({
       <Text
         fontSize="2xl"
         fontWeight="700"
+        color="primary"
         mb={{ base: "12px", md: "82px", lg: "90px" }}
       >
         {title}
@@ -26,6 +27,7 @@ const CustomBox: React.FC<CustomBoxProps> = ({
       <Text
         fontSize="19px"
         fontWeight="500"
+        color="primary"
         lineHeight={"30px"}
       >
         {description}
