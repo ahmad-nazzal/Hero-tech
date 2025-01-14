@@ -1,5 +1,6 @@
 "use client";
-import { Box, Flex, IconButton, Text } from "@chakra-ui/react";
+import { Box, Flex, IconButton, Text, useDisclosure } from "@chakra-ui/react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import masedLogo from "../../public/images/circled_outline.png";
 import ButtonAC from "../../components/ButtonAC";
@@ -8,6 +9,7 @@ import empHeartlogo from "../../public/images/emp-heart.png";
 import heartlogo from "../../public/images/heart.png";
 import ai from "../../public/images/ai.jpg";
 import { useTheme } from "../../hooks/useTheme";
+import { AuthRequiredModal } from "../../components/AuthRequiredModal";
 interface AiToolsCardComponentProps {
   tool: AiToolsCardProps;
   isFavorite: boolean;
@@ -23,12 +25,24 @@ export function AiToolsCard({
   const words = description.split(" ");
   const truncatedDescription = words.slice(0, 20).join(" ") + "...";
   const { bg, color } = useTheme();
+
+  const { data: session } = useSession();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const handleFavoriteClick = () => {
+    if (!session) {
+      onOpen();
+      return;
+    }
     if (tool_id) {
       onToggleFavorite(tool_id);
     }
   };
 
+  const handleSignInRedirect = () => {
+    onClose();
+    signIn();
+  };
   return (
     <Box
       bg={bg}
@@ -51,13 +65,7 @@ export function AiToolsCard({
     >
       <Flex direction="column" gap={4} h="full">
         <Box position="relative" width="100%" height="193px">
-          <Image
-            // src="https://via.placeholder.com/400x193"
-            src={ai}
-            alt="AI Tool Image"
-            layout="fill"
-            objectFit="cover"
-          />
+          <Image src={ai} alt="AI Tool Image" layout="fill" objectFit="cover" />
           <IconButton
             aria-label={isFavorite ? "إزالة من المفضلة" : "إضافة إلى المفضلة"}
             icon={
@@ -146,6 +154,11 @@ export function AiToolsCard({
           />
         </Box>
       </Flex>
+      <AuthRequiredModal
+        isOpen={isOpen}
+        onClose={onClose}
+        onSignIn={handleSignInRedirect}
+      />
     </Box>
   );
 }
