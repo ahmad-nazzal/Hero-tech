@@ -77,13 +77,12 @@ const RegisterForm = () => {
     } else {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        passwordConfirmError: undefined,
-      }));
-    }
-
-    return isValid;
-  };
-
+                passwordConfirmError: undefined,
+              }));
+            }
+        
+            return isValid;
+          };
   const handleNextAction = async () => {
     if (step === 1) {
       if (validate()) {
@@ -184,6 +183,7 @@ const RegisterForm = () => {
         p={5}
         borderRadius="lg"
         boxShadow="0 2px 8px rgba(0, 0, 0, 0.35)"
+        
       >
         <VStack spacing={10} w="full" align="right" mt="35px">
           <Heading
