@@ -60,6 +60,22 @@
       "favorites": [
         4
       ]
+    },
+    {
+      "email": "ibraheemsaadeh@gmail.com",
+      "password": "$2b$10$z.acMATdELiHE6GezeV.oeOivoVapA1zfdNXCag3enXEiipl2DLlC",
+      "firstName": "ibraheem",
+      "lastName": "saadeh",
+      "username": "ibraheem",
+      "country": "السودان"
+    },
+    {
+      "email": "saadeh@gmail.com",
+      "password": "$2b$10$Jl6qBfaWFvw8XQitSsGZhu1Xw1bhX/NCDc9/EAbRvbsmbyD41NYwC",
+      "firstName": "ibraheem",
+      "lastName": "saadeh",
+      "username": "eee",
+      "country": "السودان"
     }
   ]
 }

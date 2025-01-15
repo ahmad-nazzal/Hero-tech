@@ -39,50 +39,24 @@ const RegisterForm = () => {
   const validate = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/;
-    let isValid = true;
+    const newErrors = {};
 
     if (!emailRegex.test(email)) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        emailError: "الايميل غير صالح",
-      }));
-      isValid = false;
-    } else {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        emailError: undefined,
-      }));
+      newErrors.emailError = "الايميل غير صالح";
     }
 
     if (!passwordRegex.test(password)) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        passwordError:
-          "كلمة المرور يجب أن تحتوي على حرف كبير، رقم، وطول 6 أحرف على الأقل",
-      }));
-      isValid = false;
-    } else {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        passwordError: undefined,
-      }));
+      newErrors.passwordError =
+        "كلمة المرور يجب أن تحتوي على حرف كبير، رقم، وطول 6 أحرف على الأقل";
     }
 
     if (password !== passwordConfirm) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        passwordConfirmError: "لا يوجد تطابق في كلمة السر",
-      }));
-      isValid = false;
-    } else {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-                passwordConfirmError: undefined,
-              }));
-            }
-        
-            return isValid;
-          };
+      newErrors.passwordConfirmError = "لا يوجد تطابق في كلمة السر";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
   const handleNextAction = async () => {
     if (step === 1) {
       if (validate()) {
@@ -90,12 +64,12 @@ const RegisterForm = () => {
       }
     } else if (step === 2) {
       const newErrors = {};
-      if (!firstName) newErrors.firstName = "يرجى إدخال اسمك الأول.";
-      if (!lastName) newErrors.lastName = "يرجى إدخال اسم العائلة.";
-      if (!username) newErrors.username = "يرجى إدخال اسم المستخدم.";
-      if (!country) newErrors.country = "يرجى اختيار بلد الإقامة.";
+      if (!firstName) newErrors.firstName = "يرجى إدخال اسمك الأول";
+      if (!lastName) newErrors.lastName = "يرجى إدخال اسم العائلة";
+      if (!username) newErrors.username = "يرجى إدخال اسم المستخدم";
+      if (!country) newErrors.country = "يرجى اختيار بلد الإقامة";
       if (!privacyAccepted)
-        newErrors.privacyAccepted = "يرجى الموافقة على سياسة الخصوصية.";
+        newErrors.privacyAccepted = "يرجى الموافقة على سياسة الخصوصية";
 
       if (Object.keys(newErrors).length === 0) {
         setLoading(true);
@@ -145,7 +119,7 @@ const RegisterForm = () => {
           } else {
             toast({
               title: "خطأ في التسجيل",
-              description: "حدث خطئ اثناء عمليات الارسال.",
+              description: "حدث خطئ اثناء عمليات الارسال",
               status: "error",
               duration: 5000,
               isClosable: true,
@@ -160,12 +134,6 @@ const RegisterForm = () => {
   };
 
   const reset = () => {
-    setFirstName("");
-    setLastName("");
-    setUsername("");
-    setCountry("");
-    setPassword("");
-    setPasswordConfirm("");
     setPrivacyAccepted(false);
     setStep(1);
   };
@@ -183,7 +151,6 @@ const RegisterForm = () => {
         p={5}
         borderRadius="lg"
         boxShadow="0 2px 8px rgba(0, 0, 0, 0.35)"
-        
       >
         <VStack spacing={10} w="full" align="right" mt="35px">
           <Heading
@@ -205,7 +172,7 @@ const RegisterForm = () => {
             )}
           </Heading>
 
-          <VStack color="#783BA2" mt={9} spacing="44px" width="88%" mr={8}>
+          <VStack color="#783BA2" mt={9} spacing="10px" width="88%" mr={8}>
             {step === 1 ? (
               <>
                 <FormControl isInvalid={errors.emailError}>
@@ -238,11 +205,24 @@ const RegisterForm = () => {
                     color="#A067B6"
                     _placeholder={{ color: "#A067B6" }}
                   />
-                  {errors.emailError && (
-                    <FormErrorMessage color="#DB4A39">
-                      {errors.emailError}
-                    </FormErrorMessage>
-                  )}
+                  <Box minHeight="20px" mt="4px">
+                    {errors.emailError && (
+                      <FormErrorMessage color="#DB4A39" m={0} p={0}>
+                        {errors.emailError}
+                      </FormErrorMessage>
+                    )}
+                    {!errors.emailError && (
+                      <Text
+                        sx={{
+                          minHeight: "20px",
+                          color: "transparent",
+                          fontSize: "0.8em",
+                        }}
+                      >
+                        Placeholder
+                      </Text>
+                    )}
+                  </Box>
                 </FormControl>
 
                 <FormControl isInvalid={errors.passwordError}>
@@ -266,18 +246,33 @@ const RegisterForm = () => {
                     placeholder="قم بإنشاء كلمة مرور قوية"
                     rounded="md"
                     variant="outline"
-                    borderColor="#A64DC7"
-                    focusBorderColor="#783BA2"
+                    borderColor={errors.passwordError ? "#DB4A39" : "#A64DC7"}
+                    focusBorderColor="#A067B6"
+                    errorBorderColor="#DB4A39"
+                    borderWidth={errors.passwordError ? "0.0px" : "1px"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     color="#A067B6"
                     _placeholder={{ color: "#A067B6" }}
                   />
-                  {errors.passwordError && (
-                    <Text fontSize="xs" color="red.500" mt={1}>
-                      {errors.passwordError}
-                    </Text>
-                  )}
+                  <Box minHeight="20px" mt="4px">
+                    {errors.passwordError && (
+                      <FormErrorMessage color="#DB4A39" m={0} p={0}>
+                        {errors.passwordError}
+                      </FormErrorMessage>
+                    )}
+                    {!errors.passwordError && (
+                      <Text
+                        sx={{
+                          minHeight: "20px",
+                          color: "transparent",
+                          fontSize: "0.8em",
+                        }}
+                      >
+                        Placeholder
+                      </Text>
+                    )}
+                  </Box>
                 </FormControl>
 
                 <FormControl isInvalid={errors.passwordConfirmError}>
@@ -301,18 +296,36 @@ const RegisterForm = () => {
                     placeholder="أعد إدخال كلمة المرور الخاصة بك للتأكد من مطابقتها"
                     rounded="md"
                     variant="outline"
-                    borderColor="#A64DC7"
-                    focusBorderColor="#783BA2"
+                    borderColor={
+                      errors.passwordConfirmError ? "#DB4A39" : "#A64DC7"
+                    }
+                    focusBorderColor="#A067B6"
+                    errorBorderColor="#DB4A39"
+                    borderWidth={errors.passwordConfirmError ? "0.0px" : "1px"}
                     value={passwordConfirm}
                     onChange={(e) => setPasswordConfirm(e.target.value)}
                     color="#A067B6"
                     _placeholder={{ color: "#A067B6" }}
                   />
-                  {errors.passwordConfirmError && (
-                    <Text fontSize="xs" color="red.500" mt={1}>
-                      {errors.passwordConfirmError}
-                    </Text>
-                  )}
+
+                  <Box minHeight="20px" mt="4px">
+                    {errors.passwordConfirmError && (
+                      <FormErrorMessage color="#DB4A39" m={0} p={0}>
+                        {errors.passwordConfirmError}
+                      </FormErrorMessage>
+                    )}
+                    {!errors.passwordConfirmError && (
+                      <Text
+                        sx={{
+                          minHeight: "20px",
+                          color: "transparent",
+                          fontSize: "0.8em",
+                        }}
+                      >
+                        Placeholder
+                      </Text>
+                    )}
+                  </Box>
                 </FormControl>
               </>
             ) : (
@@ -339,18 +352,34 @@ const RegisterForm = () => {
                       placeholder="ادخل اسمك الأول"
                       rounded="md"
                       variant="outline"
-                      borderColor="#A64DC7"
-                      focusBorderColor="#783BA2"
+                      borderColor={errors.firstName ? "#DB4A39" : "#A64DC7"}
+                      focusBorderColor="#A067B6"
+                      errorBorderColor="#DB4A39"
+                      borderWidth={errors.firstName ? "0.0px" : "1px"}
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       color="#A067B6"
                       _placeholder={{ color: "#A067B6" }}
                     />
-                    {errors.firstName && (
-                      <Text fontSize="xs" color="red.500" mt={1}>
-                        {errors.firstName}
-                      </Text>
-                    )}
+
+                    <Box minHeight="20px" mt="4px">
+                      {errors.firstName && (
+                        <FormErrorMessage color="#DB4A39" m={0} p={0}>
+                          {errors.firstName}
+                        </FormErrorMessage>
+                      )}
+                      {!errors.firstName && (
+                        <Text
+                          sx={{
+                            minHeight: "20px",
+                            color: "transparent",
+                            fontSize: "0.8em",
+                          }}
+                        >
+                          Placeholder
+                        </Text>
+                      )}
+                    </Box>
                   </FormControl>
 
                   <FormControl isInvalid={errors.lastName}>
@@ -374,18 +403,34 @@ const RegisterForm = () => {
                       placeholder="ادخل اسمك الأخير"
                       rounded="md"
                       variant="outline"
-                      borderColor="#A64DC7"
-                      focusBorderColor="#783BA2"
+                      borderColor={errors.lastName ? "#DB4A39" : "#A64DC7"}
+                      focusBorderColor="#A067B6"
+                      errorBorderColor="#DB4A39"
+                      borderWidth={errors.lastName ? "0.0px" : "1px"}
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       color="#A067B6"
                       _placeholder={{ color: "#A067B6" }}
                     />
-                    {errors.lastName && (
-                      <Text fontSize="xs" color="red.500" mt={1}>
-                        {errors.lastName}
-                      </Text>
-                    )}
+
+                    <Box minHeight="20px" mt="4px">
+                      {errors.lastName && (
+                        <FormErrorMessage color="#DB4A39" m={0} p={0}>
+                          {errors.lastName}
+                        </FormErrorMessage>
+                      )}
+                      {!errors.lastName && (
+                        <Text
+                          sx={{
+                            minHeight: "20px",
+                            color: "transparent",
+                            fontSize: "0.8em",
+                          }}
+                        >
+                          Placeholder
+                        </Text>
+                      )}
+                    </Box>
                   </FormControl>
                 </HStack>
                 <FormControl isInvalid={errors.username}>
@@ -402,6 +447,7 @@ const RegisterForm = () => {
                       اسم المستخدم
                     </Box>
                   </FormLabel>
+
                   <Input
                     height="54px"
                     fontSize="16px"
@@ -409,18 +455,34 @@ const RegisterForm = () => {
                     placeholder="اختر اسم مستخدم فريداً"
                     rounded="md"
                     variant="outline"
-                    borderColor="#A64DC7"
-                    focusBorderColor="#783BA2"
+                    borderColor={errors.username ? "#DB4A39" : "#A64DC7"}
+                    focusBorderColor="#A067B6"
+                    errorBorderColor="#DB4A39"
+                    borderWidth={errors.username ? "0.0px" : "1px"}
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     color="#A067B6"
                     _placeholder={{ color: "#A067B6" }}
                   />
-                  {errors.username && (
-                    <Text fontSize="xs" color="red.500" mt={1}>
-                      {errors.username}
-                    </Text>
-                  )}
+
+                  <Box minHeight="20px" mt="4px">
+                    {errors.username && (
+                      <FormErrorMessage color="#DB4A39" m={0} p={0}>
+                        {errors.username}
+                      </FormErrorMessage>
+                    )}
+                    {!errors.username && (
+                      <Text
+                        sx={{
+                          minHeight: "20px",
+                          color: "transparent",
+                          fontSize: "0.8em",
+                        }}
+                      >
+                        Placeholder
+                      </Text>
+                    )}
+                  </Box>
                 </FormControl>
 
                 <FormControl isInvalid={errors.country}>
@@ -442,8 +504,10 @@ const RegisterForm = () => {
                       fontSize="16px"
                       rounded="md"
                       variant="outline"
-                      borderColor="#A64DC7"
-                      focusBorderColor="#783BA2"
+                      borderColor={errors.country ? "#DB4A39" : "#A64DC7"}
+                      focusBorderColor="#A067B6"
+                      errorBorderColor="#DB4A39"
+                      borderWidth={errors.country ? "0.0px" : "1px"}
                       color="#A067B6"
                       height="54px"
                       placeholder="اختر بلدك"
@@ -488,11 +552,24 @@ const RegisterForm = () => {
                     ></Box>
                   </Box>
 
-                  {errors.country && (
-                    <Text fontSize="xs" color="red.500" mt={1}>
-                      {errors.country}
-                    </Text>
-                  )}
+                  <Box minHeight="20px" mt="4px">
+                    {errors.country && (
+                      <FormErrorMessage color="#DB4A39" m={0} p={0}>
+                        {errors.countryr}
+                      </FormErrorMessage>
+                    )}
+                    {!errors.country && (
+                      <Text
+                        sx={{
+                          minHeight: "20px",
+                          color: "transparent",
+                          fontSize: "0.8em",
+                        }}
+                      >
+                        Placeholder
+                      </Text>
+                    )}
+                  </Box>
                 </FormControl>
 
                 <FormControl isRequired={errors.privacyAccepted}>
