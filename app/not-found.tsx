@@ -14,7 +14,7 @@ export default function NotFound() {
         alignItems="center"
       >
         <Image
-          src={"/images/notfound.png"}
+          src={"/images/not-found.png"}
           alt="404 page not found"
           width={250}
           height={250}
