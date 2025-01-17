@@ -115,7 +115,15 @@ const RegisterForm = () => {
               duration: 5000,
               isClosable: true,
             });
-            if (router) router.push("/signin");
+
+            const response = await signIn("signIn", {
+              email,
+              password,
+              redirect: false,
+            });
+            if (response.ok) {
+              router.push("/");
+            }
             reset();
           } else {
             toast({
