@@ -12,7 +12,10 @@ import {
   Image,
   ChakraProvider,
   Text,
+  Stack,
   Checkbox,
+  Divider,
+  Flex,
 } from "@chakra-ui/react";
 import ButtonAC from "../../../components/ButtonAC";
 
@@ -73,38 +76,72 @@ const LoginForm = () => {
     <ChakraProvider>
       <Box
         display="flex"
-        flexDirection="column"
+        flexDirection={{
+          base: "column",
+          sm: "column",
+          md: "column",
+          lg: "row",
+        }}
         alignItems="center"
         justifyContent="center"
-        h="100vh"
+        h={{ base: "100%", sm: "100vh", md: "100vh", lg: "100vh" }}
+        pt={5}
+        pb={5}
         w="100%"
       >
         <Box
-          w="100%"
-          maxW="980px"
+          w={{ base: "80%", sm: "50%", md: "50%", lg: "100%" }}
+          maxW={{ base: "700px", sm: "700px", md: "700px", lg: "980px" }}
           bg="white"
-          pr={6}
           boxShadow="0 2px 8px rgba(0, 0, 0, 0.35)"
           display="flex"
+          flexDirection={{
+            base: "column-reverse",
+            sm: "column-reverse",
+            md: "column-reverse",
+            lg: "row",
+          }}
           justifyContent="space-between"
           alignItems="center"
         >
-          <VStack m={5} 
-          ml={20} 
-    
-          spacing={5} align="stretch" color="#783BA2">
-            <Heading fontSize="20px" textAlign="right" fontWeight="normal">
+          <VStack
+            m={5}
+            ml={{ base: 5, sm: 0, md: 0, lg: 20 }}
+            w={{ base: "90%", sm: "90%", md: "90%", lg: "auto" }}
+            spacing={5}
+            align="stretch"
+            color="#783BA2"
+          >
+            <Heading
+              fontSize="20px"
+              textAlign="right"
+              fontWeight="normal"
+              display={{ base: "none", sm: "block", md: "block", lg: "block" }}
+            >
+              {" "}
               {"تسجيل الدخول"}
             </Heading>
 
-            <FormControl   isInvalid={!!errors.email} >
-              <FormLabel>
-                <Box fontSize="16px"  display="flex" alignItems="center">
+            <FormControl isInvalid={!!errors.email}>
+              <FormLabel
+                fontSize={{
+                  base: "12px",
+                  sm: "16px",
+                  md: "16px",
+                  lg: "16px",
+                }}
+              >
+                <Box display="flex" alignItems="center">
                   <Image
                     src="./icons/letter.svg"
                     alt="Email Icon"
-                    h="16px"
-                    w="20.7px"
+                    h={{ base: "11px", sm: "16px", md: "16px", lg: "16px" }}
+                    w={{
+                      base: "15.7px",
+                      sm: "20.7px",
+                      md: "20.7px",
+                      lg: "20.7px",
+                    }}
                     mr={2}
                     ml={1}
                   />
@@ -112,7 +149,6 @@ const LoginForm = () => {
                 </Box>
               </FormLabel>
               <Input
-            
                 type="email"
                 rounded="md"
                 variant="outline"
@@ -145,13 +181,25 @@ const LoginForm = () => {
               </Box>
             </FormControl>
             <FormControl isInvalid={!!errors.password} mt={-3}>
-              <FormLabel>
-                <Box fontSize="16px" display="flex" alignItems="center">
+              <FormLabel
+                fontSize={{
+                  base: "12px",
+                  sm: "16px",
+                  md: "16px",
+                  lg: "16px",
+                }}
+              >
+                <Box display="flex" alignItems="center">
                   <Image
                     src="./icons/key.svg"
                     alt="Pass Icon"
-                    h="20px"
-                    w="20px"
+                    h={{ base: "14px", sm: "20px", md: "20px", lg: "20px" }}
+                    w={{
+                      base: "15.7px",
+                      sm: "22px",
+                      md: "22px",
+                      lg: "22px",
+                    }}
                     mr={2}
                     ml={1}
                   />
@@ -198,14 +246,19 @@ const LoginForm = () => {
             )}
             <Text
               mt={-1}
-              fontSize="16px"
+              fontSize={{
+                base: "12px",
+                sm: "16px",
+                md: "16px",
+                lg: "16px",
+              }}
               textAlign="right"
               mr={2}
               cursor="pointer"
             >
               نسيت كلمة المرور؟
             </Text>
-            <HStack spacing={4} mt="-10px" mr="10px" mb="5px">
+            <HStack spacing={4} mt="-10px" mr="10px">
               <Checkbox
                 iconColor="#783BA2"
                 sx={{
@@ -214,6 +267,12 @@ const LoginForm = () => {
                     border: "0.1px solid #783BA2",
                   },
                   ".chakra-checkbox__label": {
+                    fontSize: {
+                      base: "14px",
+                      sm: "16px",
+                      md: "16px",
+                      lg: "16px",
+                    },
                     boxShadow: "none",
                   },
                 }}
@@ -221,7 +280,12 @@ const LoginForm = () => {
                 البقاء متصلاً
               </Checkbox>
             </HStack>
-            <HStack   w="328px" spacing={4} mt="-10px" mr="15px" mb={-1}>
+            <Stack
+              direction={{ base: "column", sm: "row", base: "row" }}
+              spacing={4}
+              mt="-10px"
+              mb={-1}
+            >
               <ButtonAC
                 isLoading={loading}
                 loadingText="جارٍ تسجيل الدخول..."
@@ -230,80 +294,88 @@ const LoginForm = () => {
                 mt={4}
                 onClick={handleLogin}
                 alignSelf="center"
-                size="lg"
+                size="sm"
                 color="white"
                 bg="#00BE98"
                 text="تسجيل الدخول"
-                fontSize={{ lg: 13, sm: 10 }}
+                fontSize={{ lg: 13, sm: 10, base: 10 }}
                 icon={
                   <Image
                     src="./images/log_in.png"
                     alt="login Icon"
-                    style={{ width: "23px", height: "26px" }}
+                    sx={{
+                      width: {
+                        base: "20px",
+                        sm: "23px",
+                        md: "23px",
+                        lg: "23px",
+                      },
+                      height: {
+                        base: "23px",
+                        sm: "26px",
+                        md: "26px",
+                        lg: "26px",
+                      },
+                    }}
                   />
                 }
                 href="/signin"
-                marginTop={{ lg: 0 }}
-                sx={{
-                  boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",
-                  width: { sm: "137px", lg: "200px" },
-                  height: { sm: "50px", lg: "50px" },
-                  "@media (max-width: 745px) and (min-width: 480px)": {
-                    width: "120px",
-                    height: "45px",
-                  },
-                }}
               />
               <ButtonAC
                 alignSelf="center"
-                size="lg"
+                size="sm"
                 bg="tomato"
                 color="white"
                 text="إنشاء حساب جديد"
                 variant="outline"
                 w="full"
                 mt={4}
-                fontSize={{ lg: 11, sm: 10 }}
+                fontSize={{ lg: 11, sm: 10, base: 10 }}
                 icon={
                   <Image
                     src="./images/profile_circled.png"
                     alt="Register Icon"
-  
                     style={{ width: "20px", height: "20px" }}
                   />
                 }
                 href="/register"
-                marginTop={{ lg: 0 }}
-                sx={{
-                  boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",
-                  width: { sm: "140px", lg: "200px" },
-                  height: { sm: "50px", lg: "50px" },
-                  "@media (max-width: 745px) and (min-width: 480px)": {
-                    width: "120px",
-                    height: "45px",
-                  },
-                }}
               />
-            </HStack>
-
-            <Text
-              color="#713488"
-              fontSize={{ lg: 15, sm: 10 }}
-              textAlign="center"
-              mb={3}
+            </Stack>
+            <Flex justifyContent="center" alignItems="center">
+              <Divider borderColor="#A067B6" />
+              <Text
+                color="#713488"
+                fontSize={{ lg: 15, sm: 10, base: 12 }}
+                textAlign="center"
+                mx={4}
+                fontWeight={{ base: "bold", sm: "normal", lg: "normal" }}
+                whiteSpace={"nowrap"}
+              >
+                يمكنك تسجيل الدخول باستخدام
+              </Text>
+              <Divider borderColor="#A067B6" />
+            </Flex>
+            <HStack
+              direction={{ base: "column", sm: "row" }}
+              spacing={{ base: 3, sm: 4, md: 4, lg: 4 }}
+              mt={{ base: "0px", sm: "-10px", md: "-10px", lg: "-10px" }}
+              mr={{ base: "0px", sm: "0px", md: "0px", lg: "15px" }}
+              //  border="1px solid blue"
             >
-              يمكنك تسجيل الدخول باستخدام
-            </Text>
-            <HStack   spacing={4} mt="-10px" mr="37px" >
               <Button
                 backgroundColor="#3566A5"
                 color="white"
-                h="45px"
-                w="135px"
-                fontSize="17px"
+                h={{ base: "45px", sm: "49px", md: "49px", lg: "49px" }}
+                w={{ base: "130px", sm: "155px", md: "155px", lg: "155px" }}
+                fontSize={{
+                  base: "default",
+                  sm: "21px",
+                  md: "21px",
+                  lg: "21px",
+                }}
                 onClick={() => handleSocialLogin("facebook")}
                 _hover={{ bg: "#2a4d7f" }}
-                borderRadius="5px"
+                borderRadius="10px"
                 boxShadow="0px 6px 4px -2px rgba(0, 0, 0, 0.3)"
               >
                 <HStack spacing={2} alignItems="center">
@@ -320,13 +392,18 @@ const LoginForm = () => {
               <Button
                 backgroundColor="#DB4A39"
                 color="white"
-                h="45px"
-                w="135px"
-                fontSize="17px"
+                h={{ base: "45px", sm: "49px", md: "49px", lg: "49px" }}
+                w={{ base: "130px", sm: "155px", md: "155px", lg: "155px" }}
+                fontSize={{
+                  base: "default",
+                  sm: "21px",
+                  md: "21px",
+                  lg: "21px",
+                }}
                 pr={-2}
                 onClick={() => signIn("google", { callbackUrl: "/" })}
                 _hover={{ bg: "#b3362a" }}
-                borderRadius="5px"
+                borderRadius="10px"
                 boxShadow="0px 6px 4px -2px rgba(0, 0, 0, 0.3)"
               >
                 <HStack spacing={2} alignItems="center">
@@ -343,7 +420,7 @@ const LoginForm = () => {
               </Button>
             </HStack>
           </VStack>
-          <Box h="100%"  mr="20px">
+          <Box h="100%" mr={{ base: "0px", sm: "0px", md: "0px", lg: "20px" }}>
             <Image
               src="/images/login-img.png"
               alt="Login Image"
