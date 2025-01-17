@@ -15,10 +15,7 @@
       "lastName": "nazzal",
       "username": "ahmad",
       "country": "فلسطين",
-      "favorites": [
-        2,
-        4
-      ]
+      "favorites": [2, 4]
     },
     {
       "email": "test@gmail.com",
@@ -60,14 +57,9 @@
       "favorites": [
         4
       ]
-    },
-    {
-      "email": "ibraheemsaadeh@gmail.com",
-      "password": "$2b$10$z.acMATdELiHE6GezeV.oeOivoVapA1zfdNXCag3enXEiipl2DLlC",
-      "firstName": "ibraheem",
-      "lastName": "saadeh",
-      "username": "ibraheem",
-      "country": "السودان"
     }
+    
+
+    
   ]
 }
