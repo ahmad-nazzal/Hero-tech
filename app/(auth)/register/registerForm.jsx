@@ -12,6 +12,7 @@ import {
   Box,
   Heading,
   HStack,
+  Stack,
   Image,
   ChakraProvider,
   Flex,
@@ -151,22 +152,27 @@ const RegisterForm = () => {
       <Box
         bg="#fff"
         w="full"
-        width="800px"
-        height="900px"
+        width={{ base: "300px", sm: "600px", md: "650px", lg: "800px" }}
+        height={{ base: "860px", sm: "875px", md: "900px", lg: "900px" }}
         mx="auto"
-        mt={290}
         mb={225}
         p={5}
         borderRadius="lg"
         boxShadow="0 2px 8px rgba(0, 0, 0, 0.35)"
+        mt={{ base: 10, sm: 20, md: 20, lg: 290 }}
       >
-        <VStack spacing={10} w="full" align="right" mt="35px">
+        <VStack
+          spacing={{ base: 0, sm: 10, md: 10, lg: 10 }}
+          w="full"
+          align="right"
+          mt={{ base: 0, sm: "35px", md: "35px", lg: "35px" }}
+        >
           <Heading
-            fontSize="23px"
+            fontSize={{ base: "18px", sm: "23px", md: "23px", lg: "23px" }}
             fontWeight="bold"
             color="#783BA2"
             textAlign="right"
-            mr={8}
+            mr={{ base: 0, sm: 8, md: 8, lg: 8 }}
           >
             {step === 1 ? (
               <Box textAlign="right">قم بإنشاء حسابك على الأكاديمية!</Box>
@@ -180,25 +186,48 @@ const RegisterForm = () => {
             )}
           </Heading>
 
-          <VStack color="#783BA2" mt={9} spacing="10px" width="88%" mr={8}>
+          <VStack
+            color="#783BA2"
+            mt={9}
+            spacing="10px"
+            width={{ base: "100%", sm: "88%", md: "88%", lg: "88%" }}
+            mr={{ base: 0, sm: 8, md: 8, lg: 8 }}
+          >
             {step === 1 ? (
               <>
                 <FormControl isInvalid={errors.emailError}>
-                  <FormLabel fontSize="18px">
+                  <FormLabel
+                    fontSize={{
+                      base: "14px",
+                      sm: "18px",
+                      md: "18px",
+                      lg: "18px",
+                    }}
+                  >
                     <Box display="flex" alignItems="center">
                       <Image
                         src="./icons/letter.svg"
                         alt="Email Icon"
-                        h="16px"
-                        w="20.7px"
-                        mr={2}
-                        ml={2}
+                        h={{ base: "11px", sm: "16px", md: "16px", lg: "16px" }}
+                        w={{
+                          base: "15.7px",
+                          sm: "20.7px",
+                          md: "20.7px",
+                          lg: "20.7px",
+                        }}
+                        mr={{ base: "45px", sm: 2, md: 2, lg: 2 }}
+                        ml={{ base: 0, sm: 2, md: 2, lg: 2 }}
                       />
                       عنوان البريد الإلكتروني
                     </Box>
                   </FormLabel>
                   <Input
-                    fontSize="16px"
+                    fontSize={{
+                      base: "12px",
+                      sm: "16px",
+                      md: "16px",
+                      lg: "16px",
+                    }}
                     type="email"
                     placeholder="لن نشارك بريدك الإلكتروني أبدًا مع أي شخص"
                     rounded="md"
@@ -234,21 +263,38 @@ const RegisterForm = () => {
                 </FormControl>
 
                 <FormControl isInvalid={errors.passwordError}>
-                  <FormLabel fontSize="18px">
+                  <FormLabel
+                    fontSize={{
+                      base: "14px",
+                      sm: "18px",
+                      md: "18px",
+                      lg: "18px",
+                    }}
+                  >
                     <Box display="flex" alignItems="center">
                       <Image
                         src="./icons/key.svg"
                         alt="Pass Icon"
-                        h="20px"
-                        w="22px"
-                        mr={2}
-                        ml={2}
+                        h={{ base: "14px", sm: "20px", md: "20px", lg: "20px" }}
+                        w={{
+                          base: "15.7px",
+                          sm: "22px",
+                          md: "22px",
+                          lg: "22px",
+                        }}
+                        mr={{ base: "75px", sm: 2, md: 2, lg: 2 }}
+                        ml={{ base: 0, sm: 2, md: 2, lg: 2 }}
                       />
                       كلمة المرور
                     </Box>
                   </FormLabel>
                   <Input
-                    fontSize="16px"
+                    fontSize={{
+                      base: "12px",
+                      sm: "16px",
+                      md: "16px",
+                      lg: "16px",
+                    }}
                     type="password"
                     height="54px"
                     placeholder="قم بإنشاء كلمة مرور قوية"
@@ -284,21 +330,38 @@ const RegisterForm = () => {
                 </FormControl>
 
                 <FormControl isInvalid={errors.passwordConfirmError}>
-                  <FormLabel fontSize="18px">
+                  <FormLabel
+                    fontSize={{
+                      base: "14px",
+                      sm: "18px",
+                      md: "18px",
+                      lg: "18px",
+                    }}
+                  >
                     <Box display="flex" alignItems="center">
                       <Image
                         src="./icons/key.svg"
                         alt="Pass Icon"
-                        h="20px"
-                        w="22px"
-                        mr={2}
-                        ml={2}
+                        h={{ base: "14px", sm: "20px", md: "20px", lg: "20px" }}
+                        w={{
+                          base: "15.7px",
+                          sm: "22px",
+                          md: "22px",
+                          lg: "22px",
+                        }}
+                        mr={{ base: "57px", sm: 2, md: 2, lg: 2 }}
+                        ml={{ base: 0, sm: 2, md: 2, lg: 2 }}
                       />
                       تأكيد كلمة المرور
                     </Box>
                   </FormLabel>
                   <Input
-                    fontSize="16px"
+                    fontSize={{
+                      base: "12px",
+                      sm: "16px",
+                      md: "16px",
+                      lg: "16px",
+                    }}
                     type="password"
                     height="54px"
                     placeholder="أعد إدخال كلمة المرور الخاصة بك للتأكد من مطابقتها"
@@ -340,7 +403,14 @@ const RegisterForm = () => {
               <>
                 <HStack width="100%" spacing={4} mt={-4}>
                   <FormControl isInvalid={errors.firstName}>
-                    <FormLabel fontSize="18px">
+                    <FormLabel
+                      fontSize={{
+                        base: "14px",
+                        sm: "18px",
+                        md: "18px",
+                        lg: "18px",
+                      }}
+                    >
                       <Box display="flex" alignItems="center">
                         <Image
                           src="./icons/user-check.svg"
@@ -354,8 +424,13 @@ const RegisterForm = () => {
                       </Box>
                     </FormLabel>
                     <Input
+                      fontSize={{
+                        base: "12px",
+                        sm: "16px",
+                        md: "16px",
+                        lg: "16px",
+                      }}
                       height="54px"
-                      fontSize="16px"
                       type="text"
                       placeholder="ادخل اسمك الأول"
                       rounded="md"
@@ -391,7 +466,14 @@ const RegisterForm = () => {
                   </FormControl>
 
                   <FormControl isInvalid={errors.lastName}>
-                    <FormLabel fontSize="18px">
+                    <FormLabel
+                      fontSize={{
+                        base: "14px",
+                        sm: "18px",
+                        md: "18px",
+                        lg: "18px",
+                      }}
+                    >
                       <Box display="flex" alignItems="center">
                         <Image
                           src="./icons/user-check.svg"
@@ -405,8 +487,13 @@ const RegisterForm = () => {
                       </Box>
                     </FormLabel>
                     <Input
+                      fontSize={{
+                        base: "12px",
+                        sm: "16px",
+                        md: "16px",
+                        lg: "16px",
+                      }}
                       height="54px"
-                      fontSize="16px"
                       type="text"
                       placeholder="ادخل اسمك الأخير"
                       rounded="md"
@@ -442,7 +529,14 @@ const RegisterForm = () => {
                   </FormControl>
                 </HStack>
                 <FormControl isInvalid={errors.username}>
-                  <FormLabel fontSize="18px">
+                  <FormLabel
+                    fontSize={{
+                      base: "14px",
+                      sm: "18px",
+                      md: "18px",
+                      lg: "18px",
+                    }}
+                  >
                     <Box display="flex" alignItems="center">
                       <Image
                         src="./icons/user-alt.svg"
@@ -457,8 +551,13 @@ const RegisterForm = () => {
                   </FormLabel>
 
                   <Input
+                    fontSize={{
+                      base: "12px",
+                      sm: "16px",
+                      md: "16px",
+                      lg: "16px",
+                    }}
                     height="54px"
-                    fontSize="16px"
                     type="text"
                     placeholder="اختر اسم مستخدم فريداً"
                     rounded="md"
@@ -494,7 +593,14 @@ const RegisterForm = () => {
                 </FormControl>
 
                 <FormControl isInvalid={errors.country}>
-                  <FormLabel fontSize="18px">
+                  <FormLabel
+                    fontSize={{
+                      base: "14px",
+                      sm: "18px",
+                      md: "18px",
+                      lg: "18px",
+                    }}
+                  >
                     <Box display="flex" alignItems="center">
                       <Image
                         src="./icons/map-marker-alt.svg"
@@ -583,7 +689,7 @@ const RegisterForm = () => {
                 <FormControl isRequired={errors.privacyAccepted}>
                   <Checkbox
                     iconColor="#783BA2"
-                    mr={100}
+                    mr={{ base: "0", sm: "100px", md: "100px", lg: "100px" }}
                     isChecked={privacyAccepted}
                     onChange={(e) => setPrivacyAccepted(e.target.checked)}
                     sx={{
@@ -599,7 +705,7 @@ const RegisterForm = () => {
                     يرجى تأكيد موافقتك على سياسة الخصوصية الخاصة بنا
                   </Checkbox>
                   {errors.privacyAccepted && (
-                    <Text fontSize="xs" color="red.500" mt={1}>
+                    <Text fontSize="xs" color="#DB4A39" mt={1}>
                       {errors.privacyAccepted}
                     </Text>
                   )}
@@ -608,12 +714,19 @@ const RegisterForm = () => {
             )}
           </VStack>
 
-          <HStack justify="space-between">
+          <Stack
+            direction={{ base: "column", sm: "row" }}
+            spacing={4}
+            pr={2}
+            w="100%"
+            justifyContent="center"
+            alignItems="center"
+          >
             {step === 2 && (
               <Button
                 bg="#FF6542"
                 color="white"
-                w="24%"
+                w={{ base: "55%", sm: "24%", md: "24%", lg: "24%" }}
                 h="55px"
                 mt={2}
                 leftIcon={
@@ -629,13 +742,12 @@ const RegisterForm = () => {
                 رجوع
               </Button>
             )}
-            setLoading(true);
+
             <Button
               bg="#00BE98"
               color="white"
-              fontSize="16px"
-              w="24%"
-              mr={295}
+              fontSize={{ base: "14px", sm: "16px", md: "16px", lg: "16px" }}
+              w={{ base: "55%", sm: "24%", md: "24%", lg: "24%" }}
               mt={2}
               h="55px"
               borderRadius="10px"
@@ -663,26 +775,40 @@ const RegisterForm = () => {
                 />
               </Flex>
             </Button>
-          </HStack>
-          <VStack spacing={5} mt="-19px" w="full" align="center">
+          </Stack>
+          <VStack
+            fontSize={{ base: "14px", sm: "18px", md: "18px", lg: "18px" }}
+            spacing={5}
+            mt={{ base: "19px", sm: "-19px", md: "-19px", lg: "-19px" }}
+            w="full"
+            align="center"
+          >
             <Text
               color="#713488"
-              fontSize="18px"
               textAlign="center"
               borderBottom="2px solid #713488"
             >
               لديك حساب مسبقاً
             </Text>
-            <Text color="#713488" fontSize="18px" textAlign="center">
+            <Text color="#713488" textAlign="center">
               يمكنك تسجيل الدخول باستخدام
             </Text>
-            <HStack spacing={4} mt="-10px" mr="15px">
+            <HStack
+              spacing={{ base: 3, sm: 4, md: 4, lg: 4 }}
+              mt={{ base: "0px", sm: "-10px", md: "-10px", lg: "-10px" }}
+              mr={{ base: "0px", sm: "15px", md: "15px", lg: "15px" }}
+            >
               <Button
                 backgroundColor="#3566A5"
                 color="white"
-                h="49px"
-                w="155px"
-                fontSize="21px"
+                h={{ base: "45px", sm: "49px", md: "49px", lg: "49px" }}
+                w={{ base: "130px", sm: "155px", md: "155px", lg: "155px" }}
+                fontSize={{
+                  base: "default",
+                  sm: "21px",
+                  md: "21px",
+                  lg: "21px",
+                }}
                 onClick={() => handleSocialLogin("facebook")}
                 _hover={{ bg: "#2a4d7f" }}
                 borderRadius="10px"
@@ -702,9 +828,14 @@ const RegisterForm = () => {
               <Button
                 backgroundColor="#DB4A39"
                 color="white"
-                h="49px"
-                w="155px"
-                fontSize="21px"
+                h={{ base: "45px", sm: "49px", md: "49px", lg: "49px" }}
+                w={{ base: "130px", sm: "155px", md: "155px", lg: "155px" }}
+                fontSize={{
+                  base: "default",
+                  sm: "21px",
+                  md: "21px",
+                  lg: "21px",
+                }}
                 pr={-2}
                 onClick={() => signIn("google", { callbackUrl: "/" })}
                 _hover={{ bg: "#b3362a" }}
