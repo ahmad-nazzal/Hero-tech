@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import fs from "fs/promises";
 import path from "path";
 const fakeDBPath = path.join(process.cwd(), "fakeDB", "db.json");
-export async function POST(request) {
+export async function POST(request: Request) {
   try {
     const objFromFrontEnd = await request.json();
 
@@ -20,8 +20,13 @@ export async function POST(request) {
     const dbContent = await fs.readFile(fakeDBPath, "utf-8");
     const parsedData = JSON.parse(dbContent);
 
+    interface User {
+      email: string;
+      password: string;
+    }
+
     const userExists = parsedData.users.some(
-      (user) => user.email === objFromFrontEnd.email
+      (user: User) => user.email === objFromFrontEnd.email
     );
     if (userExists) {
       return NextResponse.json(
@@ -52,13 +57,13 @@ export async function POST(request) {
       message: "تم حفظ بيانات المستخدم بنجاح في db.json",
       data: objFromFrontEnd,
     });
-  } catch (error) {
-    console.error("Error saving user data:", error);
+  } catch (error: unknown) {
+    console.error("Error saving user data:", error as Error);
     return NextResponse.json(
       {
         success: false,
         message: "فشل في حفظ بيانات المستخدم في db.json",
-        error: error.message,
+        error: (error as Error)?.message || "Unknown error",
       },
       { status: 500 }
     );

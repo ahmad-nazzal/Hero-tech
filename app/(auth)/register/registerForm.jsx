@@ -148,6 +148,10 @@ const RegisterForm = () => {
     setStep(1);
   };
 
+  function handleSocialLogin() {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <ChakraProvider>
       <Box
