@@ -25,7 +25,6 @@ export default function DarkModeToggle() {
       height="fit-content"
       transition="all 0.3s ease"
     >
-      {/* الأيقونة */}
       <span
         style={{
           display: "inline-block",
@@ -43,9 +42,7 @@ export default function DarkModeToggle() {
           fontSize: "1rem",
           paddingRight: "5px",
         }}
-      >
-        {colorMode === "light" ? "الوضع الليلي" : "الوضع النهاري"}
-      </span>
+      ></span>
     </Button>
   );
 }
