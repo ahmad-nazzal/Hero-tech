@@ -74,7 +74,7 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
       setShowWhiteLayer(true);
     }
   };
-  const { color } = useTheme();
+  const { color, bg } = useTheme();
 
   return (
     <Box paddingTop={{ base: 8, sm: 8, md: 8, lg: 2 }}>
@@ -198,7 +198,7 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
                     left="0"
                     right="0"
                     bottom="0"
-                    backgroundColor="#fff"
+                    backgroundColor={bg}
                     pointerEvents="none"
                     style={{
                       marginRight: isMobile ? "-1px" : "-5px",
@@ -365,7 +365,7 @@ const Courses: React.FC<CoursesProps> = ({ data }) => {
                       left="0"
                       right="0"
                       bottom="0"
-                      backgroundColor="#fff"
+                      backgroundColor={bg}
                       pointerEvents="none"
                       style={{
                         marginRight: isMobile ? "-1px" : "-5px",
