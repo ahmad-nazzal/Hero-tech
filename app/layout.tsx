@@ -39,14 +39,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "اسم تطبيقك",
-  },
-  icons: {
-    icon: [
-      { url: "/images/pwaphone.png", sizes: "192x192", type: "image/png" },
-      { url: "/images/pwadesktop.png", sizes: "512x512", type: "image/png" },
-    ],
-    apple: [{ url: "/images/pwaphone.png" }],
+    title: "الأكاديمية العربية للبرمجة",
   },
 };
 
