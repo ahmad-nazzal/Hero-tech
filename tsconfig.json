@@ -31,6 +31,6 @@
     "sections/home/CoursesSection/loading.tsx",
     "app/page.tsx",
     "sections/home/CoursesSection/CoursesSection.tsx"
-  ],
+, "public/manifest.js", "public/sw.js", "public/workbox-e43f5367.js"  ],
   "exclude": ["node_modules"]
 }

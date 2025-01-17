@@ -1,0 +1,26 @@
+{
+  "name": "الاكاديميةالعربية للبرمجة",
+  "short_name": "الاكاديميةالعربية",
+  "description": "منصة خاصة تهدف الى تعزيز وتطوير مستويات الطلاب في تعلم لغات البرمجة",
+  "start_url": "/",
+  "dir": "rtl",
+  "display": "standalone",
+  "background_color": "#783BA2",
+  "theme_color": "#783BA2",
+  "lang": "ar",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/images/pwaphone.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/pwadesktop.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

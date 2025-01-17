@@ -96,9 +96,6 @@ const HeaderDesktop = () => {
                 </Link>
               </ListItem>
               <ListItem>
-                <Link href="/education-paths">المسارات التعليمية</Link>
-              </ListItem>
-              <ListItem>
                 <Link href="/contact">التواصل</Link>
               </ListItem>
             </List>
