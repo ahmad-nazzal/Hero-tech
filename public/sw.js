@@ -1,10 +1,3 @@
-/**
-  Copyright 2019 Google LLC
-      Use of this source code is governed by an MIT-style
-      license that can be found in the LICENSE file or at
-      https://opensource.org/licenses/MIT.
- */
-
 if (!self.define) {
   let registry = {};
   let nextDefineUri;
@@ -65,7 +58,7 @@ define(["./workbox-e43f5367"], function (workbox) {
   self.skipWaiting();
   workbox.clientsClaim();
 
-  // التعامل مع URL الرئيسي
+  // Handling the main URL
   workbox.registerRoute(
     "/",
     new workbox.NetworkFirst({
@@ -84,7 +77,7 @@ define(["./workbox-e43f5367"], function (workbox) {
           },
         },
         {
-          // إضافة معالجة للأخطاء
+          // Add error handling
           handlerDidError: async () => {
             return await caches.match("/offline.html");
           },
@@ -94,7 +87,7 @@ define(["./workbox-e43f5367"], function (workbox) {
     "GET"
   );
 
-  // تخزين الصور
+  // Storing images
   workbox.registerRoute(
     /\.(?:png|jpg|jpeg|svg|gif)$/,
     new workbox.CacheFirst({
@@ -108,7 +101,7 @@ define(["./workbox-e43f5367"], function (workbox) {
     })
   );
 
-  // تخزين المحتوى الثابت مثل CSS و JavaScript
+  // Storing static content like CSS and JavaScript
   workbox.registerRoute(
     /\.(?:js|css)$/,
     new workbox.StaleWhileRevalidate({
@@ -116,7 +109,7 @@ define(["./workbox-e43f5367"], function (workbox) {
     })
   );
 
-  // تخزين صفحات الموقع
+  // Storing website pages
   workbox.registerRoute(
     /^https?.*/,
     new workbox.NetworkFirst({
@@ -127,7 +120,7 @@ define(["./workbox-e43f5367"], function (workbox) {
           maxAgeSeconds: 24 * 60 * 60, // يوم واحد
         }),
         {
-          // معالجة حالة عدم الاتصال
+          // Handling offline case
           handlerDidError: async () => {
             return (
               (await caches.match("/offline.html")) ||
@@ -146,14 +139,14 @@ define(["./workbox-e43f5367"], function (workbox) {
     "GET"
   );
 
-  // معالجة الطلبات الأخرى
+  // Handling other requests
   workbox.registerRoute(
     /.*/i,
     new workbox.NetworkOnly({
       cacheName: "dev",
       plugins: [
         {
-          // معالجة الأخطاء لجميع الطلبات
+          // Handling errors for all requests
           handlerDidError: async () => {
             return new Response("غير متصل بالإنترنت", { status: 503 });
           },
