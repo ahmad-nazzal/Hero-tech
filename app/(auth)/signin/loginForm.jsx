@@ -14,6 +14,8 @@ import {
   Text,
   Stack,
   Checkbox,
+  Divider,
+  Flex,
 } from "@chakra-ui/react";
 import ButtonAC from "../../../components/ButtonAC";
 
@@ -339,16 +341,20 @@ const LoginForm = () => {
                 href="/register"
               />
             </Stack>
-
-            <Text
-              color="#713488"
-              fontSize={{ lg: 15, sm: 10, base: 12 }}
-              textAlign="center"
-              mb={3}
-              fontWeight={{ base: "bold", sm: "normal", lg: "normal" }}
-            >
-              يمكنك تسجيل الدخول باستخدام
-            </Text>
+            <Flex justifyContent="center" alignItems="center">
+              <Divider borderColor="#A067B6" />
+              <Text
+                color="#713488"
+                fontSize={{ lg: 15, sm: 10, base: 12 }}
+                textAlign="center"
+                mx={4}
+                fontWeight={{ base: "bold", sm: "normal", lg: "normal" }}
+                whiteSpace={"nowrap"}
+              >
+                يمكنك تسجيل الدخول باستخدام
+              </Text>
+              <Divider borderColor="#A067B6" />
+            </Flex>
             <HStack
               direction={{ base: "column", sm: "row" }}
               spacing={{ base: 3, sm: 4, md: 4, lg: 4 }}

@@ -16,6 +16,7 @@ import {
   Image,
   ChakraProvider,
   Flex,
+  Divider,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -790,9 +791,20 @@ const RegisterForm = () => {
             >
               لديك حساب مسبقاً
             </Text>
-            <Text color="#713488" textAlign="center">
-              يمكنك تسجيل الدخول باستخدام
-            </Text>
+            <Flex width={"full"} alignItems={"center"}>
+              <Divider borderColor="#A067B6" />
+              <Text
+                color="#713488"
+                fontSize={{ lg: 15, sm: 10, base: 12 }}
+                textAlign="center"
+                mx={4}
+                fontWeight={{ base: "bold", sm: "normal", lg: "normal" }}
+                whiteSpace={"nowrap"}
+              >
+                يمكنك تسجيل الدخول باستخدام
+              </Text>
+              <Divider borderColor="#A067B6" />
+            </Flex>
             <HStack
               spacing={{ base: 3, sm: 4, md: 4, lg: 4 }}
               mt={{ base: "0px", sm: "-10px", md: "-10px", lg: "-10px" }}
