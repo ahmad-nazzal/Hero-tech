@@ -80,7 +80,7 @@ const HeaderDesktop = () => {
               </ListItem>
               <ListItem>
                 <Link
-                  href="/sources"
+                  href="/aiToolsPage"
                   display="flex"
                   alignItems="center"
                   gap="4px"
@@ -92,11 +92,11 @@ const HeaderDesktop = () => {
                   >
                     <ChakraImage src={dropdownicon} alt="Dropdown Arrow Icon" />
                   </Box>
-                  المصادر
+                  ادوات الذكاء الاصطناعي
                 </Link>
               </ListItem>
               <ListItem>
-                <Link href="/contact">التواصل</Link>
+                <Link href="/">التواصل</Link>
               </ListItem>
             </List>
           </GridItem>

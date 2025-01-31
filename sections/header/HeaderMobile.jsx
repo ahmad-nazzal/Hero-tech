@@ -179,7 +179,7 @@ const HeaderMobile = () => {
               />
             </ListItem>
             <Divider />
-            {["المسارات التعليمية", "المصادر", "التواصل"].map(
+            {["ادوات الذكاء الاصطناعي", "المصادر", "التواصل"].map(
               (item, index, array) => (
                 <ListItem
                   key={index}
@@ -197,9 +197,9 @@ const HeaderMobile = () => {
                   }}
                   paddingTop={2}
                 >
-                  {item === "المصادر" ? (
+                  {item === "ادوات الذكاء الاصطناعي" ? (
                     <Link
-                      href="#"
+                      href="/aiToolsPage"
                       onClick={toggleCollapse}
                       style={{
                         display: "flex",

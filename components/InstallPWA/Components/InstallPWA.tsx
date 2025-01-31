@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -51,30 +50,33 @@ export default function InstallPWA() {
   if (!showPrompt) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md sm:max-w-sm md:max-w-lg mx-4">
-        <div className="flex flex-col items-center">
-          <Image
-            src="/images/pwadesktop.png"
-            alt="شعار التطبيق"
-            width={120}
-            height={120}
-            className="mb-4"
-          />
-          <h2 className="text-xl font-bold mb-2 text-center">تثبيت التطبيق</h2>
-          <p className="text-gray-600 text-center mb-4 text-sm sm:text-base">
+    <div className="fixed inset-x-0 bottom-0 z-50" dir="rtl">
+      <div className="bg-white rounded-lg shadow-lg max-w-md mx-auto">
+        <div className="p-4">
+          <div className="flex justify-between items-start mb-4">
+            <h3 className="text-lg font-semibold">تثبيت التطبيق</h3>
+            <button
+              onClick={() => setShowPrompt(false)}
+              className="text-gray-400 hover:text-gray-600 text-xl font-bold px-2"
+            >
+              ×
+            </button>
+          </div>
+
+          <p className="text-gray-600 mb-4">
             هل تريد تثبيت التطبيق للوصول السريع والاستخدام بدون إنترنت؟
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 w-full">
+
+          <div className="flex flex-col sm:flex-row gap-2">
             <button
               onClick={handleInstall}
-              className="bg-[#462576] text-white px-4 py-2 rounded-lg w-full sm:w-auto"
+              className="bg-[#462576] text-white px-6 py-2 rounded-lg  w-full sm:w-auto order-1 sm:order-2"
             >
               تثبيت
             </button>
             <button
               onClick={() => setShowPrompt(false)}
-              className="border border-gray-300 px-4 py-2 text-black rounded-lg hover:bg-gray-100 transition-colors w-full sm:w-auto"
+              className="border border-gray-300 px-6 py-2 text-black rounded-lg hover:bg-gray-100 transition-colors w-full sm:w-auto order-2 sm:order-1"
             >
               لاحقاً
             </button>
